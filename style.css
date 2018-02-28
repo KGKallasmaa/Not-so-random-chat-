@@ -1,4 +1,32 @@
+/*START: Langing page divs*/
+/*END: Langing page divs*/
+
+
+/*START: Langing page divs*/
+#Message{
+  text-align: right;
+  color: #FFFF;
+}
+/*End: Langing page divs*/
+
+/*START: About page divs*/
+#About{
+}
+/*END: About page divs*/
+
+/*START: Statistics page divs*/
+#Statistics{
+}
+/*END: Statistics page divs*/
+
+/*START: TOS page divs*/
+#TOS{
+}
+/*END: TOS page divs*/
+
+
 footer {
   background-color: #FFFFFF;
   text-align: center;
+  align-self: auto;
 }
