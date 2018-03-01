@@ -3,27 +3,39 @@
 
 
 /*START: Langing page divs*/
-#Message{
-  text-align: right;
-  color: #FFFF;
+.message{
+  text-align:center;
 }
+.logIn{
+  text-align: center;
+}
+.random{
+  text-align: center;
+}
+.signUp{
+  text-align: center;
+}
+
 /*End: Langing page divs*/
 
 /*START: About page divs*/
-#About{
+.about{
+  text-align: left;
 }
 /*END: About page divs*/
 
 /*START: Statistics page divs*/
-#Statistics{
+.statistics{
 }
 /*END: Statistics page divs*/
 
 /*START: TOS page divs*/
-#TOS{
+.tos{
 }
 /*END: TOS page divs*/
-
+body{
+  align-self: auto;
+}
 
 footer {
   background-color: #FFFFFF;
