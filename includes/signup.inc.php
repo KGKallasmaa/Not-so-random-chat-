@@ -32,7 +32,7 @@ if (isset($_POST['submit'])){
       else {
         //check if password and repassword are the samme
         if ($password != $repassword){
-          header("Location: ../signup.php?signup=invalid");
+          header("Location: ../signup.php?signup=invalidpasswords");
           exit();
         }
         else{

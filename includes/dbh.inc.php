@@ -1,8 +1,9 @@
 <?php
 
 /*
-TODO: add real values
+TODO: add real valuess
 */
+
 
 $dbSevername = "localhost";
 $dbusername = "root";
