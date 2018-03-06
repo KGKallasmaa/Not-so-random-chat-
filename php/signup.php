@@ -16,6 +16,5 @@
       </form>
       <input type="button" value="Login(katki)" onclick="window.location.href='index.php'" />
     </div>
-
   </body>
 </html>
