@@ -1,7 +1,7 @@
 <?php
 
 /*
-TODO: add real valuess
+TODO: add real values
 */
 
 

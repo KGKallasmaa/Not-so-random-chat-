@@ -1,16 +1,5 @@
 <?php
 
-/*
-Security metrics
-1.Submit button is clicked
-2.All filed are filled
-3. All inputs are valid
-4. Email is valid
-5. Password and repassowrd are the same
-6.Password and nickname are not the same
-7. Email is unique
-*/
-
 
 //security
 if (isset($_POST['submit'])){
@@ -30,7 +19,7 @@ if (isset($_POST['submit'])){
   }
   else {
     //check if input characters are valid
-    if (!preg_match('/[^A-Za-z0-9.#\\-$]/', $nickname)||!preg_match('/[^A-Za-z0-9.#\\-$]/', $password)||!preg_match('/[^A-Za-z0-9.#\\-$]/', $repassword)||) {
+    if (!preg_match('/[^A-Za-z0-9.#\\-$]/', $nickname)||!preg_match('/[^A-Za-z0-9.#\\-$]/', $password)||!preg_match('/[^A-Za-z0-9.#\\-$]/', $repassword)) {
       header("Location: ../signup.php?signup=invalid");
       exit();
     }
@@ -47,36 +36,36 @@ if (isset($_POST['submit'])){
           exit();
         }
         else{
-          //check if password and nickname are the same
-          if($password != $nickname){
-            header("Location: ../signup.php?signup=invalid");
-            exit();
-          }else{
-            //Check, if email is unique
-            $sql_email = "SELECT * FROM Users WHERE email='$email'";
-            $result_email = mysqi_query($conn,$sql_email);
-            $result_email_check = mysqli_num_rows($result_email);
+          //Check, if email is unique
+          $sql_email = "SELECT * FROM Users WHERE email='$email'";
+          $result_email = $conn->query($sql_email);
+          $result_email_check = $result_email->num_rows;
 
             if($result_email_check >0){
-              header("Location: ../signup.php?signup=emailtaken");
-              exit();
-            }
-            else {
-              //hasing the password
-              $hashed_password = password_hash($password,PASSWORD_DEFAULT);
-
-              //Incert the user into the database
-
-              $sql = "INSERT INTO Users (nickname,email,password) Values ('$nickname','$email','$hashed_password')";
-              mysqli_query($conn,$sql);
-              header("Location: ../signup.php?signup=sucess");
-              exit();
+            header("Location: ../signup.php?signup=emailtaken");
+            exit();
           }
+          else {
+            //hasing the password
+            $hashed_password = password_hash($password,PASSWORD_DEFAULT);
+
+            //Incert the user into the database
+
+            $sql = "INSERT INTO Users (nickname,email,password) Values ('$nickname','$email','$hashed_password')";
+            mysqli_query($conn,$sql);
+            header("Location: ../signup.php?signup=sucess");
+            exit();
+
           }
+
+
       }
     }
   }
+
 }
+}
+
 else {
   header("Location: ../signup.php");
   exit();
