@@ -4,6 +4,7 @@
     <link rel = 'stylesheet' href="https://bootswatch.com/4/flatly/bootstrap.min.css">
 </head>
 <body>
+<!--
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class = "navbar-header">
@@ -17,6 +18,7 @@
         </div>
     </div>
 </nav>
+-->
 <div class = "container">
 
 
