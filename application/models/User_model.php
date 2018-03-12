@@ -4,10 +4,9 @@ class User_model extends CI_model{
         $this->db->insert('user',$user);
     }
     public function login_user($email,$pass){
-        $this->db->select('*');
+        $this->db->select('user_id,user_name');
         $this->db->from('user');
         $this->db->where('user_email',$email);
-        $this->db->select('user_password',$pass);
         if ($query=$this->db->get()){
             return $query->row_array();
         }

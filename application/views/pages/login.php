@@ -1,31 +1,17 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <form role="form">
-                <div class="form-group">
-
-                    <label for="exampleInputEmail1">
-                        Email address
-                    </label>
-                    <input class="form-control" id="exampleInputEmail1" type="email" />
-                </div>
-                <div class="form-group">
-
-                    <label for="exampleInputPassword1">
-                        Password
-                    </label>
-                    <input class="form-control" id="exampleInputPassword1" type="password" />
-                </div>
-                <div class="checkbox">
-
-                    <label>
-                        <input type="checkbox" /> Check me out
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    Loginin
-                </button>
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Login to Your Account</h1><br>
+            <!--TODO: fix this-->
+            <form method="post" action="Users/login_user">>
+                <input type="text" name="user" placeholder="Username">
+                <input type="password" name="pass" placeholder="Password">
+                <input type="submit" name="login" class="login loginmodal-submit" value="Login">
             </form>
+
+            <div class="login-help">
+                <a href="register.php">Register</a> - <a href="#">Forgot Password(missing!)</a>
+            </div>
         </div>
     </div>
 </div>
