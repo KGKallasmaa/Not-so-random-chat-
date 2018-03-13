@@ -12,5 +12,15 @@
             $this->load->view('pages/'.$page, $data);
             $this->load->view('templates/footer', $data);
         }
+        public function chat(){
+            $this->load->view('pages/chat');
+        }
+        public function register(){
+            $this->load->view('pages/register');
+        }
+        public function login(){
+            $this->load->view('pages/login');
+        }
+
 
     }

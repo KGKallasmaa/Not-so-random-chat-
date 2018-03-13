@@ -1,17 +1,15 @@
-<div class="modal fade">
-    <div class="modal-dialog">
-        <div class="loginmodal-container">
-            <h1>Login to Your Account</h1><br>
-            <!--TODO: fix this-->
-            <form method="post" action="Users/login_user">>
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="pass" placeholder="Password">
-                <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-            </form>
-
-            <div class="login-help">
-                <a href="register.php">Register</a> - <a href="#">Forgot Password(missing!)</a>
-            </div>
+<div class="col-lg-8 col-lg-offset-2">
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for = "email">Email: </label>
+            <input class="forms-control" name="email" id="email" type="text">
         </div>
-    </div>
+        <div class="form-group">
+            <label for = "password">Password: </label>
+            <input class="forms-control" name="password" id="password" type="password">
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" name="login" >Login</button>
+        </div>
+    </form>
 </div>

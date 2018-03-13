@@ -26,6 +26,8 @@ $config['base_url'] = 'http://localhost/rando/Not-so-random-chat-';
 */
 $config['base_url'] = 'http://localhost/rando/Not-so-random-chat-/';
 
+$config['controller_url'] = 'http://localhost/rando/Not-so-random-chat-/controllers/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File
