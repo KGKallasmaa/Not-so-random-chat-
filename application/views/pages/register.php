@@ -1,5 +1,7 @@
 <div class="col-lg-8 col-lg-offset-2">
-    <form action="" method="POST" >
+    <?php echo form_open('index.php/Auth/register'); ?>
+
+    <form action="" method="post" autocomplete="on" target="_top">
     <div class="form-group">
         <label for = "username">Username: </label>
         <input class="forms-control" name="username" id="username" type="text">
@@ -17,7 +19,7 @@
         <input class="forms-control" name="password2" id="password2" type="password">
     </div>
     <div class="text-center">
-        <input class="btn btn-lg btn-success btn-block" type="submit" value="Register" name="register" >
+        <button class="btn btn-primary" name = "register" value="register"> Register</button>
     </div>
     </form>
 </div>
