@@ -3,7 +3,7 @@
 
     <form action="" method="post" autocomplete="on" target="_top">
     <div class="form-group">
-        <label for = "username">Username: </label>
+        <label for = "username">Nickname: </label>
         <input class="forms-control" name="username" id="username" type="text">
     </div>
     <div class="form-group">

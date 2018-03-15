@@ -11,6 +11,8 @@ class Auth_model extends CI_Model{
         parent::__construct();
     }
     function contains_email($email){
+        $this->db->select("*");
+        $this->db->from('users');
         $this->db->where('email',$email);
         $query = $this->db->get('users');
         if($query->num_rows() == 1){
@@ -19,8 +21,9 @@ class Auth_model extends CI_Model{
         return false;
     }
     function password_correct($email,$password){
-        $this->db->where('email',$email);
-        $this->db->where('password',$password);
+        $this->db->select("*");
+        $this->db->from('users');
+        $this->db->where(array('email' => $email,'password' =>$password));
         $query = $this->db->get('users');
         if($query->num_rows() == 1){
             return true;
@@ -28,6 +31,11 @@ class Auth_model extends CI_Model{
         return false ;
 
     }
+    function insert_user($data){
+
+    }
+
+
 
 
 }

@@ -15,18 +15,13 @@ class Auth extends  CI_Controller{
             $this->form_validation->set_rules('password', 'Password', 'required');
 
             if ($this->form_validation->run() == TRUE){
-
                 //load model
                 $this->load->model('Auth_model');
-
                 //input variables
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
-
-
                 //1. do we have that email?
                 if ($this->Auth_model->contains_email($email)){
-
                     $password_hashed =password_hash($password, PASSWORD_DEFAULT);
                     //2. is the password correct?
                     if($this->Auth_model->password_correct($email,$password_hashed)){
@@ -34,7 +29,8 @@ class Auth extends  CI_Controller{
                         $session_data = array(
                           'email' =>  $email
                         );
-                        $this->session->set_userdata($session_data);
+                        $_SESSION['usser_logged'] = TRUE;
+                        $_SESSION['user_email'] = $email;
                         $this->load->view('pages/chat');
                    //     redirect(base_url().'index.php/pages/chat');
 
@@ -43,7 +39,7 @@ class Auth extends  CI_Controller{
                     $this->load->view('pages/login');
 
                 }
-                $this->session->set_flashdata('error','Username dose not excist');
+                $this->session->set_flashdata('error','Username dose not exist');
                 $this->load->view('pages/login');
             }
 
@@ -69,16 +65,27 @@ class Auth extends  CI_Controller{
                     'email'=>$_POST['email'],
                     'password'=>$_POST[$hashed_password],
                 );
+                if ($this->Auth_model->contains_email($data['email'] != false)){
+                    $this->Auth_model->insert_user($data);
+                    $this->session->set_flashdata('success','Registration successful. You can now login ');
+                    $this->load->view('pages/login.php');
+                }
+                else{
+                    $this->session->set_flashdata('error','This email already exists. Please try another one');
+                    $this->load->view('pages/register.php');
+                }
 
-                //TODO: fix this
-                $this->db->insert('users',$data);
+
                // redirect("auth/register","refresh");
               //  header('Location: chat.php');
                // $this->load->view("chat.php");
-                echo form_open('index.php/Pages/chat');
+             //   $this->load->view('pages/login.php');
+             //   echo form_open('index.php/Pages/chat');
+
+              //  $this->session->set_flashdata('error','Incorrect password');
             }
         }
         // load view
-        $this->load->view('pages/chat.php');
+        // $this->load->view('pages/chat.php');
     }
 }
