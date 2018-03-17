@@ -8,7 +8,7 @@
 class Auth extends  CI_Controller{
 
     public function login(){
-        echo 'you have logged in!!!! (not yet)';
+
         //was the login button clicked?
         if($this->input->post('login') !== false){
             $this->form_validation->set_rules('email', 'Email', 'required');
@@ -25,6 +25,7 @@ class Auth extends  CI_Controller{
                     $password_hashed =password_hash($password, PASSWORD_DEFAULT);
                     //2. is the password correct?
                     if($this->Auth_model->password_correct($email,$password_hashed)){
+                        echo 'you have logged in!!!!';
                         //SUCCESS!
                         $session_data = array(
                           'email' =>  $email
@@ -50,23 +51,31 @@ class Auth extends  CI_Controller{
        // $this->load->helper('form');
         //valitating that all inputs are correct
         if($this->input->post('register') !== false){
+            echo 'register button clicked';
             $this->form_validation->set_rules('username', 'Username', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-            $this->form_validation->set_rules('password2', 'Confirm Password', 'required|min_length[5]|matches[password]');
+         //   $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+         //   $this->form_validation->set_rules('password2', 'Confirm Password', 'required|min_length[5]|matches[password]');
 
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password2', 'Confirm Password', 'required');
 
+            echo "";
             if ($this->form_validation->run() == TRUE){
+
              //   echo "form valitated";
                 //add user to database
                 $hashed_password = password_hash('password', PASSWORD_DEFAULT);
                 $data = array(
-                  'username'=>$_POST['username'],
+                  'user_name'=>$_POST['username'],
                     'email'=>$_POST['email'],
                     'password'=>$_POST[$hashed_password],
                 );
-                if ($this->Auth_model->contains_email($data['email'] != false)){
-                    $this->Auth_model->insert_user($data);
+                echo "";
+                if ($this->Auth_model->contains_email($data['email']) == false){
+                    echo 'email is unique';
+                    $this->Auth_model->register_user($data);
+                    echo 'you have successfully registered !!!';
                     $this->session->set_flashdata('success','Registration successful. You can now login ');
                     $this->load->view('pages/login.php');
                 }
