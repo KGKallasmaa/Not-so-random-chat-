@@ -15,6 +15,12 @@
         public function chat(){
             $this->load->view('pages/chat');
         }
+        public function history(){
+            $this->load->view('pages/history');
+        }
+        public function settings(){
+            $this->load->view('pages/settings');
+        }
         public function register(){
             $this->load->view('pages/register');
         }

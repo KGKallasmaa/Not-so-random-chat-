@@ -1,12 +1,24 @@
 .nav_bar {
-     width: 16.6666667%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width:16.6666667%;
+    background-color: #f1f1f1;
  }
 
 .chat_application {
-    width: 58.3333333333%;
+    list-style-type: none;
+    margin:16.6666667%;
+    padding: 0;
+    background-color: #f1f1f1;
+    width:58.3333333333%;
 }
 
 .info {
-    width: 25%;
+    list-style-type: none;
+    margin:75%;
+    padding: 0;
+    background-color: #f1f1f1;
+    width:25%;
 }
 
