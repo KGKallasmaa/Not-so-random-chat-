@@ -15,7 +15,7 @@
         <br>
         <div class="text-center">
             <button class="btn btn-primary" name="login" type="submit" value="login">Login</button>
-            <a href='#register'>Not a user? Register</a>
+            <a href="pages/register.php">Not a user? Register</a>
         </div>
     </form>
 </div>
