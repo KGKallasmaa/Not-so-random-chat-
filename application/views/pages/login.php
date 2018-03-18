@@ -1,4 +1,4 @@
-<link rel = 'stylesheet' href="css/bootstrap.min.css" type="text/css">
+<link rel = 'stylesheet' href="/css/bootstrap.min.css" type="text/css">
 <div class="col-md-4">
     <h1>Log in</h1>
     <?php echo form_open('index.php/Auth/login'); ?>

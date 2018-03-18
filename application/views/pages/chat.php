@@ -1,4 +1,4 @@
-<link rel = 'stylesheet' href="css/bootstrap.min.css" type="text/css">
+<link rel = 'stylesheet' href="/css/bootstrap.min.css" type="text/css">
 <link rel = 'stylesheet' href="css/chat_app.css" type="text/css">
 <div class="chat">
     <div class="nav_bar">
@@ -30,7 +30,6 @@
         <div id="map">
             Google maps goes here
         </div>
-
     </div>
 </div>
 

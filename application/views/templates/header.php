@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en">
 <head>
-    <title>Rando</title>
+    <p lang="fr">Ceci est un paragraphe.</p>
     <link rel = 'stylesheet' href="css/bootstrap.min.css" type="text/css">
     <meta name="description" content="Rando is the greatest free messaging application for random people">
     <meta name="authors" content="Fred Kasemaa, Paul Pung and Karl-Gustav Kallasmaa">
