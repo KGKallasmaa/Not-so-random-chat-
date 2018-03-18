@@ -30,11 +30,3 @@
 </div>
 
 
-<!--
-<img src="images/giphy.gif" id="cover_gif">
-
-
--->
-
-
-
