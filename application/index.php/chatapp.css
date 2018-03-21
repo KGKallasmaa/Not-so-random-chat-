@@ -1,0 +1,28 @@
+.nav_bar {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    width:16.6666667%;
+<!--width:16.6666667%-->
+    background-color: #f1f1f1;
+}
+
+.chat_application {
+    list-style-type: none;
+<!--margin-left: 16.6666667%-->
+    padding: 0;
+    font-size: larger;
+    background-color: #f1f1f1;
+    width:58.3333333333%;
+<!--width:58.3333333333%;-->
+}
+
+.info {
+    list-style-type: none;
+    margin-left:75%;
+<!-- margin-left:75%;-->
+    padding: 0;
+    background-color: #f1f1f1;
+    width:25%;
+<!-- width:25%;-->
+}
