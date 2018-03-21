@@ -1,4 +1,5 @@
 <div class="col-lg-8 col-lg-offset-2">
+    <h1>Registration</h1>
     <?php echo form_open('index.php/Auth/register'); ?>
 
     <form action="" method="post" autocomplete="on" target="_top">

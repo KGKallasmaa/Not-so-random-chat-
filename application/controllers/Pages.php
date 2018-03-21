@@ -8,9 +8,9 @@
 
             $data['title'] = ucfirst($page); // Capitalize the first letter
             $this->load->helper('url');
-            $this->load->view('templates/header', $data);
+            $this->load->view('pages/header', $data);
             $this->load->view('pages/'.$page, $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('pages/footer', $data);
         }
         public function chat(){
             $this->load->view('pages/chat');

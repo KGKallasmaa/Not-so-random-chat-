@@ -1,6 +1,8 @@
 <link rel = 'stylesheet' href="/css/bootstrap.min.css" type="text/css">
 <div class="col-md-4">
     <h1>Log in</h1>
+    <!-- <?php echo validation_errors('<div class= "alert alert-danger">','</div>'); ?>-->
+
     <?php echo form_open('index.php/Auth/login'); ?>
     <form action="" method="post" autocomplete="on" target="_top">
         <div class="form-group">

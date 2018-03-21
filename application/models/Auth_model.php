@@ -15,7 +15,6 @@ class Auth_model extends CI_Model{
         $this->db->where('user_email',$email);
         $query = $this->db->get('users');
         if($query->num_rows() == 1){
-
             return true;
         }
         return false;
@@ -37,7 +36,7 @@ class Auth_model extends CI_Model{
             'user_password'  => $data['user_password'],
         );
 
-        $this->db->inser('user', $new_data);
+        $this->db->insert('user', $new_data);
 
     }
 

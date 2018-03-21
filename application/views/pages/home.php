@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="css/landing.css">
+<link rel="stylesheet" href="css/landing.css" type="text/css">
 <div class="landing_page">
     <br>
     <br>
