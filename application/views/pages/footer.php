@@ -6,8 +6,8 @@
     <br>
     <br>
     <!--TODO: fix this-->
-    <a href="<?php echo base_url();?>index.php/Pages/About">About(broken)</a>
-    <a href="<?php echo base_url();?>index.php/Pages/Tos">Tos(broken)</a>
-    <a href="<?php echo base_url();?>index.php/Pages/Stat">Stat(broken)</a>
+    <a href='<?php echo base_url();?>index.php/Pages/about'>About   </a>
+    <a href="<?php echo base_url();?>index.php/Pages/tos">Terms of service   </a>
+    <a href="<?php echo base_url();?>index.php/Pages/stat">Statistics   </a>
 </footer>
-</html>
+</htm

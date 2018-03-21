@@ -21,8 +21,6 @@
         $random = rand(1,PHP_INT_MAX);
         $_SESSION['conversation_id'] = $random;
 
-
-
         ?>
 
         <div class="chat_log">
@@ -51,7 +49,7 @@
             <button>Next</button>
             <!-- DO you want to save this conversation?-->
             <button>Save</button>
-            <!-- Save button: is the user logged in-> yes(conversation can be saved)-- no (registration is required, cookie is used for saving the current progress))>
+            <!-- Save button: is the user logged in-> yes(conversation can be saved)-- no (registration is required, cookie is used for saving the current progress)) -->
         </div>
         <div id="map">
             Google maps goes here

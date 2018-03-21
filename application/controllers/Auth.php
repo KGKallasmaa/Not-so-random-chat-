@@ -76,17 +76,20 @@ class Auth extends  CI_Controller{
                     'user_password' => md5($_POST['password'])
                 );
                 echo "";
-                if ($this->Auth_model->ontains_email($data['email']) == false) {
+                if ($this->contains_email($data['email']) == false) {
                     echo 'email is unique';
                     $this->register_user($data);
                     echo 'you have successfully registered !!!';
                     $this->session->set_flashdata('success', 'Registration successful. You can now login ');
                     //  redirect("pages/login","refresh");
                     header('Location: /login');
+
                 } else {
                     $this->session->set_flashdata('error', 'This email already exists. Please try another one');
                     // redirect("pages/register","refresh");
-                    header('Location: register.php');
+                  //  header('Location: register.php');
+                    header("Location: <?php echo base_url();?>index.php/Pages/register"); /* Redirect browser */
+                    exit();
                     //location: /profile
                 }
 
