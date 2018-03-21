@@ -2,43 +2,46 @@
 
 class Message extends  CI_Controller{
 
-    public function send_message($message){
-
+    public function send_message(){
         if($this->input->post('message_sent') !== false){
+            //Adding the message to the conversation table
 
-            //Is this the first message in this conversation?
-            if($this->contains_conversations($_SESSION['conversation_id'])){
-                //NO
-                $this->db->insert($message);
-                $this->db->where('conversation_id',$_SESSION['conversation_id']);
-                $query = $this->db->get('message');
+            //is the user logged in?
+            if (isset($_SESSION["user_id"])){
+                $sender_id = $_SESSION["user_id"];
             }
             else{
-                //YES
-                $this->db->insert('conversation_id');
-                $query = $this->db->get('conversations');
+                $sender_id = $_COOKIE["sender_id"];
             }
 
-
+            $data = array(
+                'message' => $_POST['message'],
+                'conversation' => $_SESSION['conversation_id'],
+                'fk_user_id' => $sender_id
+            );
+            $this->db->insert('posts',$data);
+        }
+        print_conversation();
+    }
+    public function print_conversation()
+    {
+        if ($this->input->post('message_sent') !== false) {
+            $messages = get_conversation_messages();
+            foreach ($messages as $message) {
+                echo $message;
+            }
         }
     }
-    public function number_of_conversations(){
-        $this->db->select("*");
-        $query = $this->db->get('conversations');
-        return $query->num_rows();
-    }
-    function contains_conversations($id){
-        $this->db->select("*");
-         $this->db->where('conversation_id',$id);
-        $query = $this->db->get('conversations');
 
-        if ($query->num_rows() >= 1){
-            return true;
-        }
-        return false;
+    public function get_conversation_messages(){
+        $this->db->select('*');
+        $this->db->from('posts');
+        $this->db->where('conversation',$_SESSION['conversation_id']);
+        $this->db->order_by("date", "asc");
+        $query = $this->db->get();
+        return $query->result();
     }
-    public function load_conversation(){
-        ;
-    }
+
+
 
 }
