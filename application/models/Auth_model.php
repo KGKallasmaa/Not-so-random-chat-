@@ -55,12 +55,6 @@ class Auth_model extends CI_Model{
         return $query;
     }
 
-    function get_user($email,$password){
-        $this->db->select("*");
-        $this->db->where(array('user_email'=>$email,'password'=>$password));
-        $query= $this->db->get('users');
-        return $query->row();
-    }
 
     function get_username($email)
     {

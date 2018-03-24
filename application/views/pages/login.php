@@ -6,6 +6,13 @@
 <!--Pulling Awesome Font -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+
+<title>Rando||Login</title>
+<meta name="description" content="Logging in enables you to read past chats">
+
+
+
+
 <?php if(validation_errors() != false): ?>
     <div class="alert alert-info">
         <strong>Info!</strong> <?php echo validation_errors();?>
@@ -16,7 +23,7 @@
     <div class="row">
         <div class="col-md-offset-5 col-md-3">
             <?php
-            //TODO: add valitation error display
+            //TODO: add validation error display
             ?>
             <div class="form-login">
                 <?php echo validation_errors('<div class= "alert alert-danger">','</div'); ?>

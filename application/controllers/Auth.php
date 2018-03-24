@@ -24,7 +24,7 @@ class Auth extends  CI_Controller{
                     if ($this->Auth_model->password_correct($email, md5($password)) == true) {
 
                         //user variable
-                        $user = $this->Aut_model->get_user($email,md5($password));
+                      //  $user = $this->Auth_model->get_user($email,md5($password));
 
 
                         //changing the user online status on database from false to true
@@ -32,9 +32,9 @@ class Auth extends  CI_Controller{
 
                         //SUCCESS!;
                         $_SESSION['logged_in'] = true;
-                        $_SESSION['user_email'] = $user->$email;
-                        $_SESSION['user_name'] = $user-> $this->Auth_model->get_username($email);
-                        $_SESSION['user_id'] = $user->$this->Auth_model->get_userid($email);
+                        $_SESSION['user_email'] = $email;
+                        $_SESSION['user_name'] = $this->Auth_model->get_username($email);
+                        $_SESSION['user_id'] = $this->Auth_model->get_userid($email);
 
                       redirect( '/index.php/Pages/chat','refresh');
                       //  $this->load->view('pages/login');
@@ -185,15 +185,15 @@ class Auth extends  CI_Controller{
         return $query;
     }
 
+     */
 
-    function online_users()
+    function online_users($my_id)
     {
         $this->db->select("user_id");
-        $this->db->where(array("user_online_status'" => true));
+        $this->db->where(array("user_online_status'" => true,"user_chat_status" => false,"user_id" != $my_id));
         $query = $this->db->get("users");
         return $query;
     }
-     */
 
 }
 

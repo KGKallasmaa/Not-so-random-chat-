@@ -11,6 +11,14 @@
     background-color: #f1f1f1;
 }
 
+#chat_log{
+    margin-top: 80%;
+}
+#chat_box{
+    margin-top: 20%;
+}
+
+
 #chat_application {
     list-style-type: none;
 <!--margin-left: 16.6666667%-->

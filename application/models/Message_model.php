@@ -11,29 +11,52 @@ class Message_model extends CI_Model
    public function post_message($data){
 
        $new_data = array(
-           'message' => $data['message'],
            'conversation' => $data['conversation'],
            'sender_id'  => $data['sender_id'],
        );
+       //For every pair of (conversation_id and sender_id) there is only one row in the db
+       if ($this->conversation_sender_excists($new_data['conversation'],$new_data['sender_id']) == false){
+           $this->db->insert('posts', $new_data);
+       }
+       $new_data['message'] = $data['message'];
+       $new_data['sender_name'] = $data['sender_name'];
 
-       $this->db->insert('posts', $new_data);
 
+       //creating new file
+       $file_name = strval($new_data['conversation'].".txt");
+
+      // echo $file_name;
+
+
+       $handle = fopen("application/conversations/".$file_name, 'a') or die('Cannot open file:  '.$file_name);
+       $message_to_be_written = strval($new_data['sender_name']." (".date("Y-m-d h:i:sa")."):   ".$new_data['message']."\n");
+       fwrite($handle, $message_to_be_written);
+       fclose($handle);
    }
+   function conversation_sender_excists($conversation_id,$sender_id){
+        $this->db->select("*");
+       $this->db->where(array("conversation"=>$conversation_id,"sender_id"=>$sender_id));
+       $query = $this->db->get('posts');
+       if ($query->num_rows() == 1){
+           return true;
+       }
+       return false;
+   }
+
    public function print_conversation($conversation_id){
-       $this->db->select('*');
-       $this->db->where('conversation',$conversation_id);
-     //  $this->db->order_by("date", "asc");
+        $my_file = strval("application/conversations/".$conversation_id.".txt");
+       echo "File name: ".strval($my_file);
+        if(file_exists($my_file)){
+            echo "file exists";
+            $file = fopen($my_file, 'r');
 
-
-       $results = $this->db->get('posts');
-
-        if ($results->num_rows > 0){
-            foreach($results as $message) {
-                echo $message."<br/>";
-                echo "<br/>";
+            while(! feof($file))
+            {
+                echo fgets($file). "<br />";
             }
-        }
 
+            fclose($file);
+        }
    }
 
 }
