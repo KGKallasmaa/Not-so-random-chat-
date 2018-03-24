@@ -26,7 +26,7 @@ class Auth_model extends CI_Model{
         if($query->num_rows() == 1){
             return true;
         }
-        return false ;
+        return false;
 
     }
     function register_user($data){
@@ -40,6 +40,42 @@ class Auth_model extends CI_Model{
 
     }
 
+    function set_status($email, $value){
+        $this->db->set("user_online_status", $value);
+        $this->db->where('user_email', $email);
+        $this->db->update('users');
+
+
+    }
+    function get_userid($email)
+    {
+        $this->db->select("user_id");
+        $this->db->where(array("user_email" => $email));
+        $query = $this->db->get("users");
+        return $query;
+    }
+
+    function get_user($email,$password){
+        $this->db->select("*");
+        $this->db->where(array('user_email'=>$email,'password'=>$password));
+        $query= $this->db->get('users');
+        return $query->row();
+    }
+
+    function get_username($email)
+    {
+        $this->db->select("user_name");
+        $this->db->where(array("user_email" => $email));
+        $query = $this->db->get("users");
+        return $query;
+    }
+    function online_users()
+    {
+        $this->db->select("user_id");
+        $this->db->where(array("user_online_status'" => true));
+        $query = $this->db->get("users");
+        return $query;
+    }
 
 
 

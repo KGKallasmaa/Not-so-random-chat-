@@ -14,7 +14,7 @@
                 <h3>Welcome back to Rando</h3>
                 <?php echo form_open('index.php/Auth/register'); ?>
 
-                <form action="" method="post" autocomplete="on" target="_top">
+                <form action="" method="post" autocomplete="on" target="_top" accept-charset="utf-8">
                     <div class="form-group">
                         <label for = "username">Nickname: </label>
                         <input class="form-control input-sm chat-input" name="username" id="username" type="text">

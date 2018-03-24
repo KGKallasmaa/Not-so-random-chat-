@@ -1,13 +1,14 @@
-<link rel = 'stylesheet' href="bootstrap.min.css" type="text/css">
-<link rel= 'stylesheet' href="chatapp.css" type="text/css">
+<link rel = "stylesheet" href="bootstrap.min.css"/>
+<link href="css/chatapp.css" rel="stylesheet"/>
+
 
 <div class="chat">
-    <div class="nav_bar">
+    <div class="nav_bar" id="nav_bar">
         <button onclick="location.href='<?php echo base_url();?>index.php/Pages/history'" id="chat_history">History</button>
         <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="chat_main">Chat</button>
         <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings">Settings</button>
     </div>
-    <div class="chat_application">
+    <div class="chat_application" id="chat_application">
         <!--TODO: broken-->
         <?php
         //Is the current user logged in?
@@ -15,27 +16,37 @@
             $random = rand(1,PHP_INT_MAX);
             setcookie("sender_id",$random,time()+864000); //1 day
             $_SESSION['topic'] = 'Random';
-
         }
         //Random conversation id
         $random = rand(1,PHP_INT_MAX);
         $_SESSION['conversation_id'] = $random;
-
+        //TODO: fix the topic variable in the future
+        $_SESSION['topic'] = 'Random';
         ?>
 
-        <div class="chat_log">
+        <div class="chat_log" id="chat_log">
+            <?php echo form_open('index.php/Message/display_conversation'); ?>
+            <?php echo form_close(); ?>
 
         </div>
-        <div class="send_message">
+        <div class="send_message" id="send_message">
             <?php echo form_open('index.php/Message/send_message'); ?>
             <form action="" method="post" autocomplete="on" target="_top">
                 <textarea name="message" placeholder="Type to send a message ..."></textarea>
-                <input type="submit" value="message_sent" placeholder="Send">
+                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent">Send</button>
             </form>
+            <?php form_close();?>
         </div>
 
     </div>
-    <div class="info">
+    <div class="info" id="info">
+        <div class="logout">
+            <?php echo form_open('index.php/Auth/logout'); ?>
+            <form action="" method="post" autocomplete="on" target="_top">
+                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out">Log out</button>
+            </form>
+            <?php form_close();?>
+        </div>
         <div id="profile_picture">
             Your opponents picture
         </div>
@@ -47,9 +58,7 @@
         </div>
         <div id="action">
             <button>Next</button>
-            <!-- DO you want to save this conversation?-->
             <button>Save</button>
-            <!-- Save button: is the user logged in-> yes(conversation can be saved)-- no (registration is required, cookie is used for saving the current progress)) -->
         </div>
         <div id="map">
             Google maps goes here

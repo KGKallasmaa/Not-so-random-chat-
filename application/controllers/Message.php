@@ -5,21 +5,29 @@ class Message extends  CI_Controller{
     public function send_message(){
         if($this->input->post('message_sent')!== false){
 
+            //load model
+            $this->load->model('Message_model');
+
 
             //is the user logged in?
-            if (isset($_SESSION["user_id"])){
-                $sender_id = intval($_SESSION["user_id"]);
+            if (isset($_SESSION['user_id'])){
+                //TODO: it dose not work
+                $sender_id = $_SESSION['user_id'];
             }
             else{
-                $sender_id = intval($_COOKIE["sender_id"]);
+                $sender_id = $_COOKIE["sender_id"];
             }
 
             $data = array(
                 'message' => $_POST['message'],
                 'conversation' => $_SESSION['conversation_id'],
-                'sender_id' => $sender_id
+                'sender_id' => $sender_id,
             );
-            $this->db->insert('posts',$data);
+
+
+
+            //Adding message to the conversation db
+            $this->Message_model->post_message($data);
             //TODO: implmenent this
           //  $this->print_conversation();
         }
@@ -32,24 +40,15 @@ class Message extends  CI_Controller{
 
 
     }
-    function print_conversation(){
-        $results = ($this->get_conversation_messages());
+    public function display_conversation(){
+        //load model
+        $this->load->model('Message_model');
 
-        foreach($results as $message) {
-                echo $message."<br/>";
-                echo "<br/>";
-            }
-        }
+        $this->Message_model->print_conversation($_SESSION['conversation_id']);
 
-
-    public function get_conversation_messages(){
-        $this->db->select('*');
-        $this->db->from('posts');
-        $this->db->where('conversation',$_SESSION['conversation_id']);
-        $this->db->order_by("date", "asc");
-        $query = $this->db->get();
-        return $query->result();
     }
+
+
 
 
 
