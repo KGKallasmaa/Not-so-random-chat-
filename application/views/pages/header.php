@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
@@ -8,6 +9,9 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="<?php echo base_url();?>images/favicon.ico" />
 
+    <link rel = "stylesheet" href="bootstrap.min.css"/>
+    <link href="css/chatapp.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/landing.css" type="text/css">
 
 </head>
 <body>

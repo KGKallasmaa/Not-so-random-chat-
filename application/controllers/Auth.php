@@ -20,7 +20,8 @@ class Auth extends  CI_Controller{
             $this->form_validation->set_rules('email', 'Email', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
 
-            if ($this->form_validation->run() == TRUE) {
+            if ($this->form_validation->run() !== false) {
+
                 //load model
                 $this->load->model('Auth_model');
 
@@ -33,6 +34,7 @@ class Auth extends  CI_Controller{
                     //2. is the password correct?
                     if ($this->Auth_model->password_correct($email, md5($password)) == true) {
 
+
                         //user variable
                       //  $user = $this->Auth_model->get_user($email,md5($password));
 
@@ -43,10 +45,17 @@ class Auth extends  CI_Controller{
                         //SUCCESS!;
                         $_SESSION['logged_in'] = true;
                         $_SESSION['user_email'] = $email;
-                        $_SESSION['user_name'] = $this->Auth_model->get_username($email);
-                        $_SESSION['user_id'] = $this->Auth_model->get_userid($email);
+                        $user_name_json = $this->Auth_model->get_username($email);
 
-                      redirect( '/index.php/Pages/chat','refresh');
+
+                        $_SESSION['user_name'] = $user_name_json["user_name"];
+
+                        $user_id_json = $this->Auth_model->get_userid($email);
+                        $_SESSION['user_id'] =$user_id_json["user_id"];
+
+
+
+                     redirect( '/index.php/Pages/chat');
                       //  $this->load->view('pages/login');
 
                     }
@@ -55,10 +64,16 @@ class Auth extends  CI_Controller{
               //      redirect( '/index.php/Pages/login','refresh');
 
                 }
-                //   $this->session->set_flashdata('error','Username dose not exist');
-              //  redirect( '/index.php/Pages/register','refresh');
+               else{
+                   //   $this->session->set_flashdata('error','Username dose not exist');
+                   redirect( '/index.php/Pages/register','refresh');
+               }
             }
-            redirect( '/index.php/Pages/login','refresh');
+            else{
+                // validation not ok, send validation errors to the view
+                redirect( '/index.php/Pages/login');
+
+                }
 
         }
 
@@ -92,14 +107,19 @@ class Auth extends  CI_Controller{
 
             $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[5]');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[4]');
             $this->form_validation->set_rules('password2', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
 
+
+
             if ($this->form_validation->run() == TRUE) {
+
                 //load model
                 $this->load->model('Auth_model');
 
                 //input data
+                //generating random user id
+
 
                 $data = array(
                     'user_name' => $_POST['username'],
@@ -111,6 +131,7 @@ class Auth extends  CI_Controller{
 
                     $this->Auth_model->register_user($data);
 
+
                     $this->session->set_flashdata('success', 'Registration successful. You can now login ');
                     //  redirect("pages/login","refresh");
                     redirect( '/index.php/Pages/login','refresh');
@@ -119,7 +140,7 @@ class Auth extends  CI_Controller{
                     $this->session->set_flashdata('error', 'This email already exists. Please try another one');
                     // redirect("pages/register","refresh");
                   //  header('Location: register.php');
-                    redirect( '/index.php/Pages/register','refresh');
+                   // redirect( '/index.php/Pages/register','refresh');
                     exit();
                     //location: /profile
                 }
@@ -133,7 +154,10 @@ class Auth extends  CI_Controller{
 
                 //  $this->session->set_flashdata('error','Incorrect password');
             }
-            redirect( '/index.php/Pages/register','refresh');
+           else{
+              // redirect( '/index.php/Pages/register','refresh');
+           }
+
 
         }
         // load view
@@ -142,73 +166,15 @@ class Auth extends  CI_Controller{
 
 
 
-    /*
-     *  function contains_email($email)
-    {
-        $this->db->select("*");
-        $this->db->where('user_email', $email);
-        $query = $this->db->get('users');
-        if ($query->num_rows() == 1) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-
-    function password_correct($email, $password)
-    {
-        $this->db->select("*");
-        $this->db->where(array('user_email' => $email, 'user_password' => $password));
-        $query = $this->db->get('users');
-        if ($query->num_rows() == 1) {
-            return true;
-        }
-        return false;
-
-    }
-
-    function register_user($data)
-    {
-        $new_data = array(
-            'user_email' => $data['user_email'],
-            'user_password' => $data['user_password'],
-            'user_name' => $data['user_name']
-        );
-
-        $this->db->insert('users', $new_data);
-
-    }
-
-    function get_username($email)
-    {
-        $this->db->select("user_name");
-        $this->db->where(array("user_email" => $email));
-        $query = $this->db->get("users");
-        return $query;
-    }
-    function get_userid($email)
-    {
-        $this->db->select("user_id");
-        $this->db->where(array("user_email" => $email));
-        $query = $this->db->get("users");
-        return $query;
-    }
-
-     */
-
-    function online_users($my_id)
-    {
-        $this->db->select("user_id");
-        $this->db->where(array("user_online_status'" => true,"user_chat_status" => false,"user_id" != $my_id));
-        $query = $this->db->get("users");
-        return $query;
-    }
-
-	// facebooki login
+	//Facebook login
 	public function fblogin(){
+        //load Facebook
+
+
         $userData = array();
-        // Check if user is logged in
+        // Check if user is logged
+
+        //TODO- > facebook? variable is missing
         if($this->facebook->is_authenticated()){
             // Get user facebook profile details
             $userProfile = $this->facebook->request('get', '/me?fields=id,first_name');
@@ -241,7 +207,7 @@ class Auth extends  CI_Controller{
         
     }
 	
-	 public function fblogout() {
+    public function fblogout() {
         // Remove local Facebook session
         $this->facebook->destroy_session();
 
@@ -249,8 +215,9 @@ class Auth extends  CI_Controller{
         $this->session->unset_userdata('userData');
 
         // Redirect to login page
-        redirect('/Pages/login');
-    }
+        redirect('/index.php/Pages/login');
+
+     }
 	
 	
 	

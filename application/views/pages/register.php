@@ -8,7 +8,7 @@
 
 
 <title>Rando||Register</title>
-<meta name="description" content="Sining up for a chat app has never been easier">
+<meta name="description" content="Signing up for a chat app has never been easier">
 
 
 <div class="container">
@@ -16,6 +16,7 @@
         <div class="col-md-offset-5 col-md-3">
             <div class="form-login">
                 <h3>Register</h3>
+
                 <?php echo form_open('index.php/Auth/register'); ?>
 
                 <form action="" method="post" autocomplete="on" target="_top" accept-charset="utf-8">

@@ -2,13 +2,14 @@
     background-color: #00CC00;
 }
 
-#nav_bar {
+.nav_bar {
     list-style-type: none;
     margin:0;
     padding:0;
     width:16.6666667%;
-<!--width:16.6666667%-->
     background-color: #f1f1f1;
+    display: block;
+
 }
 
 #chat_log{
@@ -37,4 +38,9 @@
     background-color: #f1f1f1;
     width:25%;
 <!-- width:25%;-->
+}
+
+footer{
+    text-align: center;
+    width: 100%;
 }

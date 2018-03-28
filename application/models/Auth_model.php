@@ -30,13 +30,16 @@ class Auth_model extends CI_Model{
 
     }
     function register_user($data){
+
+        $new_userid =  uniqid(rand(), true);
         $new_data = array(
+            'user_id' => $new_userid,
             'user_name' => $data['user_name'],
             'user_email' => $data['user_email'],
             'user_password'  => $data['user_password'],
         );
 
-        $this->db->insert('user', $new_data);
+        $this->db->insert('users', $new_data);
 
     }
 
@@ -45,23 +48,28 @@ class Auth_model extends CI_Model{
         $this->db->where('user_email', $email);
         $this->db->update('users');
 
-
     }
     function get_userid($email)
     {
         $this->db->select("user_id");
+        $this->db->from('users');
         $this->db->where(array("user_email" => $email));
-        $query = $this->db->get("users");
-        return $query;
+        $query = $this->db->get();
+        return json_encode($query->result_array());
+
     }
+
 
 
     function get_username($email)
     {
         $this->db->select("user_name");
+        $this->db->from('users');
         $this->db->where(array("user_email" => $email));
-        $query = $this->db->get("users");
-        return $query;
+        $query = $this->db->get();
+        return json_encode($query->result_array());
+
+
     }
     function online_users()
     {

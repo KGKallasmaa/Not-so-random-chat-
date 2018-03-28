@@ -28,9 +28,7 @@ class Message extends  CI_Controller{
                 'sender_name' => $sender_name,
                 'sender_id' => $sender_id,
             );
-
-
-
+            
 
             //Adding message to the conversation db
             $this->Message_model->post_message($data);

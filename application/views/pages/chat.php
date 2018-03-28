@@ -1,24 +1,12 @@
-<link rel = "stylesheet" href="bootstrap.min.css"/>
-<link href="css/chatapp.css" rel="stylesheet"/>
-
 <title>Rando||Chat</title>
 <meta name="description" content="Chatting with random people is as easy as 1,2,3">
 
 <div class="chat">
     <div class="nav_bar" id="nav_bar">
-        <?PHP
-        //TODO: it dose not work
-        if (!isset($_POST['logged_in'])){
-            $chat_history = 'disabled';
-            $settings = 'disabled';
-        }
-        ;
-        ?>
 
-        <button onclick="location.href='<?php echo base_url();?>index.php/Pages/history'" id="chat_history" <?php $chat_history ? 'disabled' : ''; ?>>History</button>
+        <button onclick="location.href='<?php echo base_url();?>index.php/Pages/history'" id="chat_history">History</button>
         <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="chat_main">Chat</button>
-        <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings" <?php $settings ? 'disabled' : ''; ?>>Settings</button>
-
+        <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings">Settings</button>
 
 
     </div>
@@ -30,13 +18,14 @@
         if ($random == 1){
             //A brand new conversation is started
             //Is the current user logged in?
-            if (!isset($_SESSION["user_id"])){
+            if (!isset($_SESSION['user_id'])){
                 $random = rand(1,PHP_INT_MAX);
                 if (!isset($_COOKIE["sender_id"])){
                     setcookie("sender_id",$random,time()); //0 days
                 }
                 $_SESSION['topic'] = 'Random';
             }
+
             //Random conversation id
             $random = rand(1,PHP_INT_MAX);
             if (!isset($_SESSION["conversation_id"])){
@@ -84,12 +73,10 @@
             <form action="" method="post" autocomplete="on" target="_top">
                 <textarea name="message" placeholder="Type to send a message ..."></textarea>
                 <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent">Send</button>
+                <?php form_close();?>
             </form>
-            <?php form_close();?>
         </div>
         <?php form_close();?>
-
-
 
     </div>
     <div class="info" id="info">
@@ -113,8 +100,9 @@
             <form>
                 <button class="btn btn-primary btn-md" name="next" type="submit" value=next">Next</button>
             </form>
+            <br>
             <form>
-                <button class="btn btn-primary btn-md" name="save" type="submit" value=next">Save</button>
+                <button class="btn btn-primary btn-md" name="save" type="submit" value=save">Save</button>
             </form>
 
 
@@ -126,10 +114,5 @@
 </div>
 
 <!--
-        <a href="<?php echo base_url();?>index.php/Pages/history"><img border="0" alt="History" src="images/blue_book.png" width="100" height="100"> </a>
-     <li><a href=""><img src="images/blue_book.png"></a></li>
-
-
       <?php echo form_open('index.php/Message/display_conversation'); ?>
-
 -->
