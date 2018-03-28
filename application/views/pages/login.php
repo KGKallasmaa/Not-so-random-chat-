@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-md-offset-5 col-md-3">
             <?php
-            //TODO: add validation error display
+            //TODO: add validation error display 
             ?>
             <div class="form-login">
                 <?php echo validation_errors('<div class= "alert alert-danger">','</div'); ?>
@@ -43,6 +43,8 @@
                     </div>
                     <br>
                     <div class="text-center">
+						<a href = "<?php echo base_url(); ?>index.php/Auth/fblogin"><img alt="" src="<?php echo base_url(); ?>images/fblogin.png"/></a>			
+						<br>
                         <button class="btn btn-primary btn-md" name="login" type="submit" value="login">Login</button>
                         <a href="<?php echo base_url();?>index.php/Pages/register">Not a user? Register</a>
                     </div>
