@@ -4,9 +4,13 @@
 <div class="chat">
     <div class="nav_bar" id="nav_bar">
 
-        <button onclick="location.href='<?php echo base_url();?>index.php/Pages/history'" id="chat_history">History</button>
+        <? if($_SESSION['logged_in'] == true) {?>
+            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/history'" id="chat_history">History</button>
+        <? } ?>
         <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="chat_main">Chat</button>
-        <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings">Settings</button>
+        <? if($_SESSION['logged_in'] == true) {?>
+            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings">Settings</button>
+        <? } ?>
 
 
     </div>
@@ -46,10 +50,10 @@
 
 
         <div class="chat_log" id="chat_log">
-            <h3>Chat is here ...</h3>
+            <h3>Your conversation</h3>
             <?php
-            //TODO: move it to a model file
-            $file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
+            //TODO: move it to a javascript file
+             $file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
 
             if (file_exists($file_name)){
                 if ($file = fopen($file_name, "r")) {
@@ -60,10 +64,12 @@
                     fclose($file);
                 }
             }
-
-
-
+            /*
+             *
+            */
             ?>
+            <p id="chat_log_area">Chat will appear here</p>
+            <script href="<?php echo base_url();?>js/print_chat_log.js"></script>
 
         </div>
 
@@ -72,9 +78,10 @@
 
             <form action="" method="post" autocomplete="on" target="_top">
                 <textarea name="message" placeholder="Type to send a message ..."></textarea>
-                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent">Send</button>
+                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent" onclick="print_chat(<?php echo $_SESSION['conversation_id']?>)">Send</button>
                 <?php form_close();?>
             </form>
+
         </div>
         <?php form_close();?>
 

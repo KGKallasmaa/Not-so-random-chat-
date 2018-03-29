@@ -10,8 +10,9 @@
     <link rel="shortcut icon" href="<?php echo base_url();?>images/favicon.ico" />
 
     <link rel = "stylesheet" href="bootstrap.min.css"/>
-    <link href="css/chatapp.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/chatapp.css"  type="text/css">
     <link rel="stylesheet" href="css/landing.css" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 </head>
 <body>

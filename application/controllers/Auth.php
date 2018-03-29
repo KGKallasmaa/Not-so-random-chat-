@@ -48,7 +48,7 @@ class Auth extends  CI_Controller{
                         $user_name_json = $this->Auth_model->get_username($email);
 
 
-                        $_SESSION['user_name'] = $user_name_json["user_name"];
+                        $_SESSION['user_name'] = $user_name_json[0];
 
                         $user_id_json = $this->Auth_model->get_userid($email);
                         $_SESSION['user_id'] =$user_id_json["user_id"];
@@ -174,7 +174,6 @@ class Auth extends  CI_Controller{
         $userData = array();
         // Check if user is logged
 
-        //TODO- > facebook? variable is missing
         if($this->facebook->is_authenticated()){
             // Get user facebook profile details
             $userProfile = $this->facebook->request('get', '/me?fields=id,first_name');

@@ -60,14 +60,13 @@ class Auth_model extends CI_Model{
     }
 
 
-
     function get_username($email)
     {
         $this->db->select("user_name");
         $this->db->from('users');
         $this->db->where(array("user_email" => $email));
         $query = $this->db->get();
-        return json_encode($query->result_array());
+        return json_encode($query->result());
 
 
     }
