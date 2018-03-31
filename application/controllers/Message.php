@@ -11,7 +11,6 @@ class Message extends  CI_Controller{
 
             //is the user logged in?
             if (isset($_SESSION['logged_in'])){
-                //TODO: it dose not work
                 $sender_name = $_SESSION['user_name'];
                 $sender_id = $_SESSION['user_id'];
             }
@@ -19,8 +18,10 @@ class Message extends  CI_Controller{
                 $sender_name = "Unregistered user";
                 $sender_id = $_COOKIE['sender_id'];
             }
-          //  echo "sender id: ".$sender_name;
-          //  echo "sender name: ".$sender_id;
+
+            //Is this the first message in this conversation?
+            //TODO
+
 
             $data = array(
                 'message' => $_POST['message'],
@@ -54,6 +55,18 @@ class Message extends  CI_Controller{
 
 
 
+    }
+
+    public function chat_to_join($myid){
+        //TODO: fix this
+        if(5>4){
+            //load model
+            $this->load->model('Message_model');
+
+            $chats_available_json = $this->Message_model->chat_to_join($myid);
+            $_SESSION['joined_id'] = $chats_available_json['conversation_id'][0];
+            return $chats_available_json['conversation_id'];
+        }
     }
 
 

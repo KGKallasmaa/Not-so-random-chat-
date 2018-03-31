@@ -41,7 +41,7 @@ Class Facebook
      * Facebook constructor.
      */
     public function __construct(){
-        // Load fb config
+        // Load fb Fig
         $this->load->config('facebook');
         // Load required libraries and helpers
         $this->load->library('session');

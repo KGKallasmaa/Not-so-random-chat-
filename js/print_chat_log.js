@@ -1,7 +1,7 @@
 function print_chat(conversation_id) {
   var file_name = "application/conversations/"+conversation_id+".txt";
    // document.write(file_name);
-    document.getElementById("test").innerHTML = file_name;
+    document.getElementById("chat_log_area").innerHTML = file_name;
     alert("tere");
 
    /*

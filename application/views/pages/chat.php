@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
 <title>Rando||Chat</title>
 <meta name="description" content="Chatting with random people is as easy as 1,2,3">
 
@@ -16,59 +20,55 @@
     </div>
     <div class="chat_application" id="chat_application">
         <?php
+
         //1. The user has, on average, 50% chance to start a brand new conversation, on another time he/she will join an excising one.
         $random = rand(1,1);
-        //TODO:  $random = rand(0,1);
-        if ($random == 1){
-            //A brand new conversation is started
-            //Is the current user logged in?
-            if (!isset($_SESSION['user_id'])){
-                $random = rand(1,PHP_INT_MAX);
-                if (!isset($_COOKIE["sender_id"])){
-                    setcookie("sender_id",$random,time()); //0 days
-                }
-                $_SESSION['topic'] = 'Random';
-            }
+        //TODO: implement other people
 
+        if ($random >= 0.5){
+            //A brand new conversation is started
             //Random conversation id
             $random = rand(1,PHP_INT_MAX);
             if (!isset($_SESSION["conversation_id"])){
                 $_SESSION['conversation_id'] = $random;
             }
-            $_SESSION['topic'] = 'Random';
 
         }
         else{
-            $_SESSION['topic'] = 'Random';
-            //Existing conversation is joined
-
             //TODO
-
-        }
-        //TODO: fix the topic variable in the future
-        ?>
-
-
-        <div class="chat_log" id="chat_log">
-            <h3>Your conversation</h3>
-            <?php
-            //TODO: move it to a javascript file
-             $file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
-
-            if (file_exists($file_name)){
-                if ($file = fopen($file_name, "r")) {
-                    while(!feof($file)) {
-                        $line = fgets($file);
-                        echo $line."<br>";
-                    }
-                    fclose($file);
-                }
-            }
-            /*
+            //Existing conversation is joined
+            /* require_once(APPPATH.'controllers/Message.php');
+            $conversation_id = $this->Message->chat_to_join($_SESSION['sender_id']);
              *
-            */
+             */
+         include_once(APPPATH.'controllers/Message.php');
+            $message = new Message;
+            $_SESSION['conversation_id'] = $message->chat_to_join($_SESSION['sender_id']);
+    }
+    $_SESSION['topic'] = 'Random';
+    //TODO: fix the topic variable in the future
+    ?>
+
+
+    <div class="chat_log" id="chat_log">
+        <h3><?php echo lang("Your conversation") ?></h3>
+        <?php
+        //TODO: move it to a javascript file
+
+        /*
+         *$file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
+
+        if (file_exists($file_name)){
+            if ($file = fopen($file_name, "r")) {
+                while(!feof($file)) {
+                    $line = fgets($file);
+                    echo $line."<br>";
+                }
+                fclose($file);
+            }
+        */
             ?>
-            <p id="chat_log_area">Chat will appear here</p>
+            <p id="chat_log_area">Chat will appear here(currently you can only talk with yourself)</p>
             <script href="<?php echo base_url();?>js/print_chat_log.js"></script>
 
         </div>
@@ -76,9 +76,11 @@
         <div class="chat_box" id="chat_box">
             <?php echo form_open('index.php/Message/send_message'); ?>
 
+
+
             <form action="" method="post" autocomplete="on" target="_top">
-                <textarea name="message" placeholder="Type to send a message ..."></textarea>
-                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent" onclick="print_chat(<?php echo $_SESSION['conversation_id']?>)">Send</button>
+                <textarea name="message" placeholder=<?php echo lang("Type to send a message ...") ?>></textarea>
+                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent" onclick="print_chat(<?php echo $_SESSION['conversation_id']?>)"><?php echo lang("Send") ?></button>
                 <?php form_close();?>
             </form>
 
@@ -101,15 +103,15 @@
             Your opponents name
         </div>
         <div id="topic">
-            <?php echo "Topic: ".$_SESSION['topic']?>
+            <?php echo lang("Topic").$_SESSION['topic']?>
         </div>
         <div id="action">
             <form>
-                <button class="btn btn-primary btn-md" name="next" type="submit" value=next">Next</button>
+                <button class="btn btn-primary btn-md" name="next" type="submit" value=next"><?php echo lang("Next") ?></button>
             </form>
             <br>
             <form>
-                <button class="btn btn-primary btn-md" name="save" type="submit" value=save">Save</button>
+                <button class="btn btn-primary btn-md" name="save" type="submit" value=save"><?php echo lang("Save") ?></button>
             </form>
 
 

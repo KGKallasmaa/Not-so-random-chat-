@@ -36,6 +36,10 @@
                         <label for = "username">Confirm password: </label>
                         <input class="form-control input-sm chat-input" name="password2" id="password2" type="password">
                     </div>
+                    <div class="form-group">
+                        <label for = "checkbox">By clicking this box you agree to our <a href="<?php echo base_url();?>index.php/Pages/tos">Terms of Service</a></label>
+                        <input class="form-control input-sm chat-input" name="agree_to_tos" id="agree_to_tos" type="checkbox">
+                    </div>
                     <div class="text-center">
                         <button class="btn btn-primary btn-md" name = "register" value="register"> Register</button>
                     </div>

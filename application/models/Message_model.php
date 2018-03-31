@@ -54,9 +54,15 @@ class Message_model extends CI_Model
             {
                 echo fgets($file). "<br />";
             }
-
             fclose($file);
         }
+   }
+   function chat_to_join($my_id){
+       $this->db->select("conversation_id");
+       $this->db->where(array('sender1' != $my_id,'sender2' != $my_id));
+       $this->db->limit(1);
+       $query = $this->db->get('current_chats');
+       return json_encode($query->result_array());
    }
 
 }

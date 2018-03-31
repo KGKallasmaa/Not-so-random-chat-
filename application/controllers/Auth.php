@@ -109,17 +109,13 @@ class Auth extends  CI_Controller{
             $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[4]');
             $this->form_validation->set_rules('password2', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
-
+            $this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'trim|required|xss_clean');
 
 
             if ($this->form_validation->run() == TRUE) {
 
                 //load model
                 $this->load->model('Auth_model');
-
-                //input data
-                //generating random user id
-
 
                 $data = array(
                     'user_name' => $_POST['username'],
@@ -130,7 +126,6 @@ class Auth extends  CI_Controller{
                 if ($this->Auth_model->contains_email($data['email']) == false) {
 
                     $this->Auth_model->register_user($data);
-
 
                     $this->session->set_flashdata('success', 'Registration successful. You can now login ');
                     //  redirect("pages/login","refresh");
@@ -144,7 +139,7 @@ class Auth extends  CI_Controller{
                     exit();
                     //location: /profile
                 }
-
+                redirect( '/index.php/Pages/register','refresh');
 
                 // redirect("auth/register","refresh");
                 //  header('Location: chat.php');
@@ -156,6 +151,7 @@ class Auth extends  CI_Controller{
             }
            else{
               // redirect( '/index.php/Pages/register','refresh');
+               redirect( '/index.php/Pages/register','refresh');
            }
 
 

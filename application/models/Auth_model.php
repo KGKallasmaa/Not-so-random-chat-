@@ -52,10 +52,12 @@ class Auth_model extends CI_Model{
     function get_userid($email)
     {
         $this->db->select("user_id");
-        $this->db->from('users');
         $this->db->where(array("user_email" => $email));
-        $query = $this->db->get();
+        $query = $this->db->get('users');
+
+
         return json_encode($query->result_array());
+
 
     }
 
@@ -63,11 +65,9 @@ class Auth_model extends CI_Model{
     function get_username($email)
     {
         $this->db->select("user_name");
-        $this->db->from('users');
         $this->db->where(array("user_email" => $email));
-        $query = $this->db->get();
+        $query = $this->db->get('users');
         return json_encode($query->result());
-
 
     }
     function online_users()
