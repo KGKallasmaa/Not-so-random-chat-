@@ -1,12 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
+/**
+ * Created by PhpStorm.
+ * User: karl96k
+ * Date: 13.03.2018
+ * Time: 22:24
+ */
 
 class Stat_model extends CI_Model{
-
-    public function __construct(){
-        parent::__construct();
-    }
 
 
     public function add_sender_data($data){
@@ -43,7 +43,6 @@ class Stat_model extends CI_Model{
     public function get_sender_data($sender_id){
         $query = $this->db->get_where('user_statistics', array('sender_id' => $sender_id));
         return json_encode($query->result_array());
-
     }
 
     function number_of_visits($sender_id){
@@ -61,3 +60,4 @@ class Stat_model extends CI_Model{
         return json_encode($query->result_array());
     }
 }
+

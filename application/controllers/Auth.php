@@ -9,9 +9,9 @@ class Auth extends  CI_Controller{
         $this->load->library('facebook');
 
         //Load facebook user model
-        $this->load->model('fbuser');
-    }
+        $this->load->model('fbuser','',TRUE);
 
+    }
 
     public function login()
     {
@@ -20,10 +20,10 @@ class Auth extends  CI_Controller{
             $this->form_validation->set_rules('email', 'Email', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
 
-            if ($this->form_validation->run() !== false) {
+                if ($this->form_validation->run() !== false) {
 
-                //load model
-                $this->load->model('Auth_model');
+                    //load model
+                    $this->load->model('Auth_model', '', TRUE);
 
                 //input variables
                 $email = $this->input->post('email');
@@ -35,10 +35,6 @@ class Auth extends  CI_Controller{
                     if ($this->Auth_model->password_correct($email, md5($password)) == true) {
 
 
-                        //user variable
-                      //  $user = $this->Auth_model->get_user($email,md5($password));
-
-
                         //changing the user online status on database from false to true
                         $this->Auth_model->set_status($email,true);
 
@@ -48,10 +44,10 @@ class Auth extends  CI_Controller{
                         $user_name_json = $this->Auth_model->get_username($email);
 
 
-                        $_SESSION['user_name'] = $user_name_json[0];
+                        $_SESSION['user_name'] = reset($user_name_json['user_name']);
 
                         $user_id_json = $this->Auth_model->get_userid($email);
-                        $_SESSION['user_id'] =$user_id_json["user_id"];
+                        $_SESSION['user_id'] =reset($user_id_json["user_id"]);
 
 
 
@@ -82,10 +78,11 @@ class Auth extends  CI_Controller{
     public function logout(){
         //was the logout button clicked?
         if ($this->input->post('logout') !== false) {
-            //load model
-            $this->load->model('Auth_model');
-            //set status
 
+            //loading the modle
+            $this->load->model('Auth_model', '', TRUE);
+
+            //set status
             $this->Auth_model->set_status($_SESSION['user_email'],false);
 
             $user_data = $this->session->all_userdata();
@@ -113,9 +110,6 @@ class Auth extends  CI_Controller{
 
 
             if ($this->form_validation->run() == TRUE) {
-
-                //load model
-                $this->load->model('Auth_model');
 
                 $data = array(
                     'user_name' => $_POST['username'],

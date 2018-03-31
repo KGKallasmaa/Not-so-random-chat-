@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
             <form action="" method="post" autocomplete="on" target="_top">
-                <textarea name="message" placeholder=<?php echo lang("Type to send a message ...") ?>></textarea>
+                <textarea name="message" placeholder="Type to send a message ..."></textarea>
                 <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent" onclick="print_chat(<?php echo $_SESSION['conversation_id']?>)"><?php echo lang("Send") ?></button>
                 <?php form_close();?>
             </form>

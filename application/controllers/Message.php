@@ -6,17 +6,15 @@ class Message extends  CI_Controller{
         if($this->input->post('message_sent')!== false){
 
             //load model
-            $this->load->model('Message_model');
+            $this->load->model('Message_model','',TRUE);
 
 
             //is the user logged in?
             if (isset($_SESSION['logged_in'])){
                 $sender_name = $_SESSION['user_name'];
-                $sender_id = $_SESSION['user_id'];
             }
             else{
                 $sender_name = "Unregistered user";
-                $sender_id = $_COOKIE['sender_id'];
             }
 
             //Is this the first message in this conversation?
@@ -27,12 +25,12 @@ class Message extends  CI_Controller{
                 'message' => $_POST['message'],
                 'conversation' => $_SESSION['conversation_id'],
                 'sender_name' => $sender_name,
-                'sender_id' => $sender_id,
+                'sender_id' => $_SESSION['sender_id'],
             );
             
 
             //Adding message to the conversation db
-            $this->Message_model->post_message($data);
+            $this->load->Message_model->post_message($data);
 
         }
         else{

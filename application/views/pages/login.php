@@ -1,16 +1,5 @@
-
-
-<!------ Include the above in your HEAD tag ---------->
-
-
-<!--Pulling Awesome Font -->
-
-
-
 <title>Rando||Login</title>
 <meta name="description" content="Logging in enables you to read past chats">
-
-
 
 
 <div class="container">
