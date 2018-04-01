@@ -55,7 +55,11 @@
             $this->load->view('pages/login');
             $this->load->view('pages/footer');
         }
-
+		public function test(){
+            $this->load->view('pages/header');
+            $this->load->view('pages/test');
+            $this->load->view('pages/footer');
+        }
 
 
     }
