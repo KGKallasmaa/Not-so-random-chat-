@@ -5,7 +5,7 @@ class Message extends  CI_Controller{
     public function send_message(){
         if($this->input->post('message_sent')!== false){
             //load model
-            $this->load->model('Message_model','',TRUE);
+            $this->load->model('Message_model');
             //is the user logged in?
             if (isset($_SESSION['logged_in'])){
                 $sender_name = $_SESSION['user_name'];

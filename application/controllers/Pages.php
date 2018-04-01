@@ -6,6 +6,7 @@
                 // Whoops, we don't have a page for that!
                 show_404();
             }
+            $data = $this->header_data();
             $this->load->helper('url');
             $this->load->view('pages/header', $data);
             $this->load->view('pages/'.$page, $data);

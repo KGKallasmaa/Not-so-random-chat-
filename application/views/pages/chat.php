@@ -86,7 +86,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </form>
 
         </div>
-        <?php form_close();?>
 
     </div>
     <div class="info" id="info">
@@ -104,15 +103,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             Your opponents name
         </div>
         <div id="topic">
-            <?php echo "Topic".$_SESSION['topic']?>
+            <?php echo "Topic: ".$_SESSION['topic']?>
         </div>
         <div id="action">
             <form>
-                <button class="btn btn-primary btn-md" name="next" type="submit" value=next">Next></button>
+                <button class="btn btn-primary btn-md" name="next" type="submit" value=next">Next</button>
             </form>
             <br>
             <form>
-                <button class="btn btn-primary btn-md" name="save" type="submit" value=save">"Save"</button>
+                <button class="btn btn-primary btn-md" name="save" type="submit" value=save">Save</button>
             </form>
 
         </div>

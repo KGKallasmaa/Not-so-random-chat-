@@ -1,7 +1,3 @@
-
-
-
-
 <div class="row center-text">
 	<div class="col-md-offset-5 col-md-3">
 		<?php
@@ -24,6 +20,7 @@
 				<div class="fb_button">
 					<a href = "<?php echo base_url(); ?>index.php/Auth/fblogin"><img alt="" src="<?php echo base_url(); ?>images/fblogin.png"></a>
 				</div>
+                <br>
 					<button class="btn btn-primary btn-md" name="login" type="submit" value="login">Login</button>
 					<a href="<?php echo base_url();?>index.php/Pages/register">Not a user? Register</a>
 			</form>
