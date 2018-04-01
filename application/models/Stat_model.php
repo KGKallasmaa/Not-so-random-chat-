@@ -6,7 +6,7 @@
  * Time: 22:24
  */
 
-class Stat_model extends CI_Model{
+class Stat_model extends CI_Model {
 
 
     public function add_sender_data($data){
@@ -18,7 +18,7 @@ class Stat_model extends CI_Model{
         //updating data_file
         $new_data = array(
             'sender_id' => $data['sender_id'],
-            'sender_browser' => $data['browser'],
+            'sender_referrer' => $data['referrer'],
             'sender_os' => $data['os'],
             'sender_timezone'  => $data['timezone'],
             'sender_times_visited'  => $new_number_of_times_visited,
@@ -33,16 +33,24 @@ class Stat_model extends CI_Model{
         }
         else{
           //update
-            $this->db->set('sender_browser','sender_os','sender_timezone','sender_times_visited', 'sender_saved_conversations');
-            $this->db->where('sender_id',$new_data['sender_id']);
-            $this->db->update('user_statistics');
+            $this->db->set('sender_times_visited');
+
+            //Should I update the sender times visited by one?
+            if($this->update_in_order($new_data['sender_id'])){
+                $this->db->where('sender_id',$new_data['sender_id']);
+                $this->db->update('user_statistics');
+            }
+            //$this->db->where('sender_id',$new_data['sender_id']);
+            //$this->db->update('user_statistics');
         }
 
     }
 
-    public function get_sender_data($sender_id){
-        $query = $this->db->get_where('user_statistics', array('sender_id' => $sender_id));
-        return json_encode($query->result_array());
+    public function get_users_data(){
+        $this->db->select();
+        $query = $this->db->get('user_statistics');
+        return json_encode($query->result());
+
     }
 
     function number_of_visits($sender_id){
@@ -50,6 +58,22 @@ class Stat_model extends CI_Model{
         $this->db->where('sender_id',$sender_id);
         $query = $this->db->get('user_statistics');
         return json_encode($query->result_array());
+
+    }
+    function update_in_order($sender_id){
+        $this->db->select('sender_last_time_visited');
+        $this->db->where('sender_id',$sender_id);
+        $query = $this->db->get('user_statistics');
+        if(reset($query) <= (time()-86400)){
+            $data = array('sender_last_time_visited' => time());
+            $this->db->replace('user_statistics', $data);
+            return true;
+        }
+        $data = array('sender_last_time_visited' => time());
+        $this->db->replace('user_statistics', $data);
+        return false;
+
+
 
     }
 

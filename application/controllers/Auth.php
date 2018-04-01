@@ -44,10 +44,10 @@ class Auth extends  CI_Controller{
                         $user_name_json = $this->Auth_model->get_username($email);
 
 
-                        $_SESSION['user_name'] = reset($user_name_json['user_name']);
+                        $_SESSION['user_name'] = implode("",$user_name_json['user_name']);
 
                         $user_id_json = $this->Auth_model->get_userid($email);
-                        $_SESSION['user_id'] =reset($user_id_json["user_id"]);
+                        $_SESSION['user_id'] = implode("",$user_id_json["user_id"]);
 
 
 

@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $conversation_id = $this->Message->chat_to_join($_SESSION['sender_id']);
              *
              */
-         include_once(APPPATH.'controllers/Message.php');
+            include_once(APPPATH.'controllers/Message.php');
             $message = new Message;
             $_SESSION['conversation_id'] = $message->chat_to_join($_SESSION['sender_id']);
     }
@@ -50,10 +50,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     ?>
 
 		<div class="chat_log" id="chat_log">
-	
+
         <h3>"Your conversation"</h3>
         <?php
         //TODO: move it to a javascript file
+
 
         /*
          *$file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
@@ -67,12 +68,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 fclose($file);
             }
         */
-		
             ?>
             <p id="chat_log_area">Chat will appear here(currently you can only talk with yourself)</p>
             <script href="<?php echo base_url();?>js/print_chat_log.js"></script>
 
         </div>
+
         <div class="chat_box" id="chat_box">
             <?php echo form_open('index.php/Message/send_message'); ?>
 
@@ -107,13 +108,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div id="action">
             <form>
-                <button class="btn btn-primary btn-md" name="next" type="submit" value=next">"Next"</button>
+                <button class="btn btn-primary btn-md" name="next" type="submit" value=next">Next></button>
             </form>
             <br>
             <form>
                 <button class="btn btn-primary btn-md" name="save" type="submit" value=save">"Save"</button>
             </form>
-
 
         </div>
 		<div id="map"></div>
