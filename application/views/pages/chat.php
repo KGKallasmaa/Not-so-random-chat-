@@ -117,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         </div>
 		<div id="map"></div>
-		<script src=" base_url();?>js/gmap.js"></script>
+		<script src="<?php base_url();?>js/gmap.js"></script>
 		<script async defer
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXFGiuUMrmP1Gm9jn4FcbgSnX9ZwD0Aa0&callback=initMap">
 		</script>
