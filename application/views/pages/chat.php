@@ -49,9 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //TODO: fix the topic variable in the future
     ?>
 
-
-    <div class="chat_log" id="chat_log">
-        <h3><?php echo lang("Your conversation") ?></h3>
+		<div class="chat_log" id="chat_log">
+	
+        <h3>"Your conversation"</h3>
         <?php
         //TODO: move it to a javascript file
 
@@ -67,12 +67,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 fclose($file);
             }
         */
+		
             ?>
             <p id="chat_log_area">Chat will appear here(currently you can only talk with yourself)</p>
             <script href="<?php echo base_url();?>js/print_chat_log.js"></script>
 
         </div>
-
         <div class="chat_box" id="chat_box">
             <?php echo form_open('index.php/Message/send_message'); ?>
 
@@ -80,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <form action="" method="post" autocomplete="on" target="_top">
                 <textarea name="message" placeholder="Type to send a message ..."></textarea>
-                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent" onclick="print_chat(<?php echo $_SESSION['conversation_id']?>)"><?php echo lang("Send") ?></button>
+                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent" onclick="print_chat(<?php echo $_SESSION['conversation_id']?>)">"Send"</button>
                 <?php form_close();?>
             </form>
 
@@ -103,22 +103,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             Your opponents name
         </div>
         <div id="topic">
-            <?php echo lang("Topic").$_SESSION['topic']?>
+            <?php echo "Topic".$_SESSION['topic']?>
         </div>
         <div id="action">
             <form>
-                <button class="btn btn-primary btn-md" name="next" type="submit" value=next"><?php echo lang("Next") ?></button>
+                <button class="btn btn-primary btn-md" name="next" type="submit" value=next">"Next"</button>
             </form>
             <br>
             <form>
-                <button class="btn btn-primary btn-md" name="save" type="submit" value=save"><?php echo lang("Save") ?></button>
+                <button class="btn btn-primary btn-md" name="save" type="submit" value=save">"Save"</button>
             </form>
 
 
         </div>
-        <div id="map">
-            Google maps goes here
-        </div>
+		<div id="map"></div>
+		<script src=" base_url();?>js/gmap.js"></script>
+		<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXFGiuUMrmP1Gm9jn4FcbgSnX9ZwD0Aa0&callback=initMap">
+		</script>
     </div>
 </div>
 

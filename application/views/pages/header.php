@@ -13,10 +13,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="<?php echo base_url();?>images/favicon.ico" />
 
-    <link rel = "stylesheet" href="bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/chatapp.css"  type="text/css">
-    <link rel="stylesheet" href="css/landing.css" type="text/css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel ="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css type="text/css"/>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/chatapp.css"  type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/landing.css" type="text/css">
 
 </head>
 <body>
@@ -37,6 +36,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $_SESSION['sender_id'] = $_SESSION['user_id'];
         }
 
-        require (APPPATH."/views/logic/statistics_logic.php")
+        //require (APPPATH."/views/logic/statistics_logic.php")
         ?>
     </div>

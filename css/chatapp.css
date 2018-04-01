@@ -12,6 +12,11 @@
 
 }
 
+#fb_button{
+	width: 30%;
+	height: auto;
+}
+	
 #chat_log{
     margin-top: 80%;
 }
@@ -22,25 +27,48 @@
 
 #chat_application {
     list-style-type: none;
-<!--margin-left: 16.6666667%-->
     padding: 0;
     font-size: larger;
     background-color: #f1f1f1;
     width:58.3333333333%;
-<!--width:58.3333333333%;-->
 }
 
 #info {
     list-style-type: none;
     margin-left:75%;
-<!-- margin-left:75%;-->
     padding: 0;
     background-color: #f1f1f1;
     width:25%;
-<!-- width:25%;-->
+
 }
 
-footer{
-    text-align: center;
-    width: 100%;
+
+.footer{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	text-align: center;
 }
+
+.footer a{
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.fb_button img{
+	width:100%;
+	height:auto;
+}
+
+#map {
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
