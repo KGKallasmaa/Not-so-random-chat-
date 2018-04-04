@@ -64,7 +64,13 @@ class Stat_model extends CI_Model {
         $this->db->select('sender_last_time_visited');
         $this->db->where('sender_id',$sender_id);
         $query = $this->db->get('user_statistics');
-        if(reset($query) <= (time()-86400)){
+
+        $hour = 00;
+        $today = strtotime($hour . ':00:00');
+        $yesterday= strtotime('-1 day',$today);
+
+
+        if(reset($query) <= $yesterday){
             $data = array('sender_last_time_visited' => time());
             $this->db->replace('user_statistics', $data);
             return true;

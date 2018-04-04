@@ -20,10 +20,10 @@ class Auth extends  CI_Controller{
             $this->form_validation->set_rules('email', 'Email', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
 
-                if ($this->form_validation->run() !== false) {
+                if ($this->form_validation->run() !== FALSE){
 
                     //load model
-                    $this->load->model('Auth_model', '', TRUE);
+                    $this->load->model('Auth_model');
 
                 //input variables
                 $email = $this->input->post('email');
@@ -80,7 +80,7 @@ class Auth extends  CI_Controller{
         if ($this->input->post('logout') !== false) {
 
             //loading the modle
-            $this->load->model('Auth_model', '', TRUE);
+            $this->load->model('Auth_model');
 
             //set status
             $this->Auth_model->set_status($_SESSION['user_email'],false);
@@ -101,7 +101,6 @@ class Auth extends  CI_Controller{
 
     public function register(){
         if ($this->input->post('register') !== false) {
-
             $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[4]');
@@ -109,7 +108,8 @@ class Auth extends  CI_Controller{
             $this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'trim|required|xss_clean');
 
 
-            if ($this->form_validation->run() == TRUE) {
+            if ($this->form_validation->run() !== FALSE){
+                echo "i'm here";
 
                 $data = array(
                     'user_name' => $_POST['username'],

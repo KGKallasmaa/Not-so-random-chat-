@@ -5,7 +5,7 @@
 		//<?php echo validation_errors();
 		?>
 		<div class="form-login">
-
+            <?php echo validation_errors(); ?>
 			<?php echo form_open('index.php/Auth/login'); ?>
 			<h3>Welcome back to Rando</h3>
 			<form action="" method="post" autocomplete="on" target="_top" accept-charset="utf-8">

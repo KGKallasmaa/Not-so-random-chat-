@@ -12,8 +12,8 @@
             <?php
             //TODO
             //echo $main_data;
-            /*
-              foreach($main_data->result() as $row)
+
+              foreach($data->fetch_all() as $row)
             {
                 echo "<td>" .$row['sender_id']. "</td>";
                 echo "<td>" .$row['sender_browser']. "</td>";
@@ -22,7 +22,7 @@
                 echo "<td>" .$row['sender_times_visited']. "</td>";
                 echo "<td>" .$row['sender_saved_conversations']. "</td>";
             }
-             */
+
             ?>
         </tr>
     </table>

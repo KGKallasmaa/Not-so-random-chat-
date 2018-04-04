@@ -102,6 +102,9 @@ class Auth_model extends CI_Model{
         $this->db->where(array("user_email" => $email));
         $query = $this->db->get('users');
 
+        $str = file_get_contents($query);
+
+        $json = json_decode($str, true);
 
         return json_encode($query->result_array());
 

@@ -9,6 +9,7 @@
 		<div class="form-login">
 			<h3>Register</h3>
 
+            <?php echo validation_errors(); ?>
 			<?php echo form_open('index.php/Auth/register'); ?>
 
 			<form action="" method="post" autocomplete="on" target="_top" accept-charset="utf-8">

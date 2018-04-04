@@ -6,9 +6,12 @@
                 // Whoops, we don't have a page for that!
                 show_404();
             }
-            $data = $this->header_data();
+
+            $header_data = $this->header_data();
+
+
             $this->load->helper('url');
-            $this->load->view('pages/header', $data);
+            $this->load->view('pages/header', $header_data);
             $this->load->view('pages/'.$page, $data);
             $this->load->view('pages/footer', $data);
         }
@@ -93,51 +96,43 @@
             return $returns;
         }
         public function chat(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/chat');
             $this->load->view('pages/footer');
         }
         public function about(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/about');
             $this->load->view('pages/footer');
         }
         public function tos(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/tos');
             $this->load->view('pages/footer');
         }
         public function stat(){
-            $header_data = $this->header_data();
-            $this->load->view('pages/header',$header_data);
-            $main_data = $this->stat_data();
-            $this->load->view('pages/stat',$main_data);
+            $this->load->view('pages/header');
+            $data = $this->stat_data();
+            $this->load->view('pages/stat',$data);
             $this->load->view('pages/footer');
         }
         public function history(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/history');
             $this->load->view('pages/footer');
         }
         public function settings(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/settings');
             $this->load->view('pages/footer');
         }
         public function register(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/register');
             $this->load->view('pages/footer');
         }
         public function login(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/login');
             $this->load->view('pages/footer');
         }
