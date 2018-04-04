@@ -46,34 +46,13 @@ class Stat_model extends CI_Model {
 
     }
 
+
     public function get_users_data(){
         $this->db->select();
         $query = $this->db->get('user_statistics');
-        $visitors = array();
 
-        $i = 0;
-
-        foreach ($query->result_array() as $row){
-
-            $visitors[$i]["sender_id"] = $row["sender_id"];
-
-            $visitors[$i]["sender_referrer"] = $row["sender_referrer"];
-
-            $visitors[$i]["sender_os"] = $row["sender_os"];
-
-            $visitors[$i]["sender_timezone"] = $row["sender_timezone"];
-
-            $visitors[$i]["sender_last_time_visited"] = $row["sender_last_time_visited"];
-
-            $visitors[$i]["sender_times_visited"] = $row["sender_times_visited"];
-
-            $visitors[$i]["sender_saved_conversations"] = $row["sender_saved_conversations"];
-
-            $i++;
-
-        }
-
-        return $visitors;
+        return $query->result();
+        //return json_encode($query->result());
 
 
     }
@@ -82,7 +61,7 @@ class Stat_model extends CI_Model {
         $this->db->select('sender_times_visited');
         $this->db->where('sender_id',$sender_id);
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result_array());
+        return json_encode($query->result());
 
     }
     function update_in_order($sender_id){
@@ -94,7 +73,6 @@ class Stat_model extends CI_Model {
         $today = strtotime($hour . ':00:00');
         $yesterday= strtotime('-1 day',$today);
 
-
         if(reset($query) <= $yesterday){
             $data = array('sender_last_time_visited' => time());
             $this->db->replace('user_statistics', $data);
@@ -103,16 +81,13 @@ class Stat_model extends CI_Model {
         $data = array('sender_last_time_visited' => time());
         $this->db->replace('user_statistics', $data);
         return false;
-
-
-
     }
 
     function number_of_conversations($sender_id){
         $this->db->select('sender_saved_conversations');
         $this->db->where('sender_id',$sender_id);
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result_array());
+        return json_encode($query->result());
     }
 }
 

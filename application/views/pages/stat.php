@@ -7,13 +7,17 @@
             <th>timezone</th>
             <th>number of times visited</th>
             <th>number of saved conversations</th>
+
+        <tr>
+            <?php foreach ($information as $row) { ?>
+                <td><?php echo $row->sender_id; ?></td>
+                <td><?php echo $row->sender_referrer; ?></td>
+                <td><?php echo $row->sender_os; ?></td>
+                <td><?php echo $row->sender_timezone; ?></td>
+                <td><?php echo $row->sender_last_time_visited; ?></td>
+                <td><?php echo $row->sender_times_visited; ?></td>
+                <td><?php echo $row->sender_saved_conversations; ?></td>
+            <?php } ?>
         </tr>
-        <?php foreach ($data as $row): ?>
-            <tr>
-
-                <td> <?php echo $row["sender_id"];?></td>
-
-            </tr>
-        <?php endforeach; ?>
     </table>
 </div>
