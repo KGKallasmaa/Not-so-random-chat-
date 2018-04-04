@@ -49,7 +49,32 @@ class Stat_model extends CI_Model {
     public function get_users_data(){
         $this->db->select();
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result());
+        $visitors = array();
+
+        $i = 0;
+
+        foreach ($query->result_array() as $row){
+
+            $visitors[$i]["sender_id"] = $row["sender_id"];
+
+            $visitors[$i]["sender_referrer"] = $row["sender_referrer"];
+
+            $visitors[$i]["sender_os"] = $row["sender_os"];
+
+            $visitors[$i]["sender_timezone"] = $row["sender_timezone"];
+
+            $visitors[$i]["sender_last_time_visited"] = $row["sender_last_time_visited"];
+
+            $visitors[$i]["sender_times_visited"] = $row["sender_times_visited"];
+
+            $visitors[$i]["sender_saved_conversations"] = $row["sender_saved_conversations"];
+
+            $i++;
+
+        }
+
+        return $visitors;
+
 
     }
 

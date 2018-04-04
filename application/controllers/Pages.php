@@ -91,7 +91,7 @@
             return $returns;
         }
         function stat_data(){
-            $this->load->model('Stat_model', '', TRUE);
+            $this->load->model('Stat_model');
             $returns = $this->Stat_model->get_users_data();
             return $returns;
         }
@@ -113,6 +113,14 @@
         public function stat(){
             $this->load->view('pages/header');
             $data = $this->stat_data();
+            echo $data;
+            //$data = array(
+              //  'title' => 'My Title',
+              //  'heading' => 'My Heading',
+              //  'message' => 'My Message'
+            //);
+
+
             $this->load->view('pages/stat',$data);
             $this->load->view('pages/footer');
         }
