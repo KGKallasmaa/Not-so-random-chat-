@@ -56,18 +56,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //TODO: move it to a javascript file
 
 
-        /*
-         *$file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
 
-        if (file_exists($file_name)){
+        $file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
+
+        if (file_exists($file_name)) {
             if ($file = fopen($file_name, "r")) {
-                while(!feof($file)) {
+                while (!feof($file)) {
                     $line = fgets($file);
-                    echo $line."<br>";
+                    echo $line . "<br>";
                 }
                 fclose($file);
             }
-        */
+        }
+
             ?>
             <p id="chat_log_area">Chat will appear here(currently you can only talk with yourself)</p>
             <script href="<?php echo base_url();?>js/print_chat_log.js"></script>
@@ -76,7 +77,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="chat_box" id="chat_box">
             <?php echo form_open('index.php/Message/send_message'); ?>
-
             <form action="" method="post" autocomplete="on" target="_top">
                 <textarea name="message" placeholder="Type to send a message ..."></textarea>
                 <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent" onclick="print_chat(<?php echo $_SESSION['conversation_id']?>)">"Send"</button>
@@ -122,7 +122,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
     </div>
 </div>
-
-<!--
-      <?php echo form_open('index.php/Message/display_conversation'); ?>
--->

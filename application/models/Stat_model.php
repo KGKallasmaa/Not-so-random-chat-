@@ -46,10 +46,14 @@ class Stat_model extends CI_Model {
 
     }
 
+
     public function get_users_data(){
         $this->db->select();
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result());
+
+        return $query->result();
+        //return json_encode($query->result());
+
 
     }
 
@@ -57,7 +61,7 @@ class Stat_model extends CI_Model {
         $this->db->select('sender_times_visited');
         $this->db->where('sender_id',$sender_id);
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result_array());
+        return json_encode($query->result());
 
     }
     function update_in_order($sender_id){
@@ -69,7 +73,6 @@ class Stat_model extends CI_Model {
         $today = strtotime($hour . ':00:00');
         $yesterday= strtotime('-1 day',$today);
 
-
         if(reset($query) <= $yesterday){
             $data = array('sender_last_time_visited' => time());
             $this->db->replace('user_statistics', $data);
@@ -78,16 +81,13 @@ class Stat_model extends CI_Model {
         $data = array('sender_last_time_visited' => time());
         $this->db->replace('user_statistics', $data);
         return false;
-
-
-
     }
 
     function number_of_conversations($sender_id){
         $this->db->select('sender_saved_conversations');
         $this->db->where('sender_id',$sender_id);
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result_array());
+        return json_encode($query->result());
     }
 }
 

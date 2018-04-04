@@ -91,9 +91,8 @@
             return $returns;
         }
         function stat_data(){
-            $this->load->model('Stat_model', '', TRUE);
-            $returns = $this->Stat_model->get_users_data();
-            return $returns;
+            $this->load->model('Stat_model');
+            return $this->Stat_model->get_users_data();
         }
         public function chat(){
             $this->load->view('pages/header');
@@ -112,7 +111,7 @@
         }
         public function stat(){
             $this->load->view('pages/header');
-            $data = $this->stat_data();
+            $data['information'] =$this->stat_data();
             $this->load->view('pages/stat',$data);
             $this->load->view('pages/footer');
         }
