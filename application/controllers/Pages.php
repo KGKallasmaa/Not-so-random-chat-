@@ -137,8 +137,12 @@
             $this->load->view('pages/footer');
         }
 		public function test(){
-            $this->load->view('pages/header');
             $this->load->view('pages/test');
+        }
+		
+		public function test2(){
+            $this->load->view('pages/header');
+            $this->load->view('pages/test2');
             $this->load->view('pages/footer');
         }
 
