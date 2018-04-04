@@ -86,39 +86,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
     </div>
-    <div class="info" id="info">
-        <div class="logout">
-            <?php echo form_open('index.php/Auth/logout'); ?>
-            <form action="" method="post" autocomplete="on" target="_top">
-                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure?')">Log out</button>
-            </form>
-            <?php form_close();?>
+    <div class = ".col-xs-6 .col-md-4">
+        <?php echo form_open('index.php/Auth/logout'); ?>
+        <form action="" method="post" autocomplete="on" target="_top">
+            <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure?')">Log out</button>
+        </form>
+        <?php form_close();?>
+        <p>Your opponents picture</p>
+        <p>Your opponents name</p>
+        <form>
+            <button class="btn btn-primary btn-md" name="next" type="submit" value=next">Next</button>
+        </form>
+        <br>
+        <form>
+            <button class="btn btn-primary btn-md" name="save" type="submit" value=save">Save</button>
+        </form>
+        <div id="gmap">
+            <div id="map"></div>
+            <script src="<?php echo base_url(); ?>js/gmap.js">
+            </script>
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXFGiuUMrmP1Gm9jn4FcbgSnX9ZwD0Aa0&callback=initMap">
+            </script>
         </div>
-        <div id="profile_picture">
-            Your opponents picture
-        </div>
-        <div id="name">
-            Your opponents name
-        </div>
-        <div id="topic">
-            <?php echo "Topic: ".$_SESSION['topic']?>
-        </div>
-        <div id="action">
-            <form>
-                <button class="btn btn-primary btn-md" name="next" type="submit" value=next">Next</button>
-            </form>
-            <br>
-            <form>
-                <button class="btn btn-primary btn-md" name="save" type="submit" value=save">Save</button>
-            </form>
-
-        </div>
-		<div id ="gmap">
-		<div id="map"></div>
-		<script src="<?php base_url();?>js/gmap.js"></script>
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXFGiuUMrmP1Gm9jn4FcbgSnX9ZwD0Aa0&callback=initMap">
-		</script>
-		</div>
     </div>
 </div>

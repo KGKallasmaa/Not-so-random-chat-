@@ -101,15 +101,24 @@ class Auth extends  CI_Controller{
 
     public function register(){
         if ($this->input->post('register') !== false) {
-            $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[4]');
-            $this->form_validation->set_rules('password2', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
-            $this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'trim|required|xss_clean');
+            //$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+            //$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+            //$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[4]');
+            //$this->form_validation->set_rules('password2', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
+            //$this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'trim|required|xss_clean');
+
+            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('email', 'Email', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password2', 'Confirm Password', 'required|matches[password]');
+            $this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'required');
 
 
-            if ($this->form_validation->run() !== FALSE){
-                echo "i'm here";
+            if ($this->form_validation->run() !== false){
+
+                //load model
+                $this->load->model('Auth_model');
+
 
                 $data = array(
                     'user_name' => $_POST['username'],
@@ -118,6 +127,7 @@ class Auth extends  CI_Controller{
                 );
 
                 if ($this->Auth_model->contains_email($data['email']) == false) {
+                    echo "i'm here";
 
                     $this->Auth_model->register_user($data);
 

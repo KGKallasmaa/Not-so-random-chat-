@@ -51,7 +51,12 @@ class Stat_model extends CI_Model {
         $this->db->select();
         $query = $this->db->get('user_statistics');
 
-        return $query->result();
+        $length = sizeOf($query);
+        $data['information'] = [];
+
+
+
+        return $query->result(); // <- it works
         //return json_encode($query->result());
 
 

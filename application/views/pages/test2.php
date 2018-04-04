@@ -43,8 +43,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //TODO: move it to a javascript file
 
 
-        /*
-         *$file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
+
+         $file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
 
         if (file_exists($file_name)){
             if ($file = fopen($file_name, "r")) {
@@ -54,7 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
                 fclose($file);
             }
-        */
+            }
+
             ?>
             <p id="chat_log_area">Chat will appear here(currently you can only talk with yourself)</p>
             <script href="<?php echo base_url();?>js/print_chat_log.js"></script>
