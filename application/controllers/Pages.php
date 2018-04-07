@@ -71,8 +71,14 @@
             }
             //user_agent
             $user_agent = getOS($_SERVER['HTTP_USER_AGENT']);
-            //2. browser
-            $referrer = $_SERVER['HTTP_REFERER'];
+            //2. reference
+            if (isset($_SERVER['HTTP_REFERER'])){
+                $referrer = $_SERVER['HTTP_REFERER'];
+            }
+            else{
+                $referrer = null;
+            }
+
             //3. os
             $os = getOS($user_agent);
             //4. timezone
@@ -109,14 +115,26 @@
                 $my_id = $random;
             }
 
-            $conversation_id = $this->Message_model->get_conversation_id($my_id);
-            $other_sender_id = $this->Message_model->get_other_id($my_id,$conversation_id);
+            $_SESSION['my_sender_id'] = $my_id;
+            $_SESSION['conversation_id'] = $this->Message_model->get_conversation_id($_SESSION['my_sender_id']);
+            $_SESSION['other_sender_id'] = $this->Message_model->get_other_id($_SESSION['my_sender_id'],$_SESSION['conversation_id']);
+            $_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
 
+            //TODO: remove that array
             $data = array(
-                'my_sender_id' => $my_id,
-                'conversation_id' => $conversation_id,
-                'other_sender_id' => $other_sender_id,
-                );
+                'my_sender_id' => $_SESSION['my_sender_id'],
+                'conversation_id' => $_SESSION['conversation_id'],
+                'other_sender_id' =>$_SESSION['other_sender_id'],
+                'other_sender_name' => $_SESSION['other_sender_name']
+            );
+
+            //testing
+            echo "My sender id: ".$_SESSION['my_sender_id'];
+            echo "conversation_id: ".$_SESSION['conversation_id'];
+            echo "other_sender_id: ".$_SESSION['other_sender_id'];
+            echo "other_sender_name: ".$_SESSION['other_sender_name'];
+
+
             $this->load->view('pages/test2',$data);
             $this->load->view('pages/footer');
         }

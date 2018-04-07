@@ -3,38 +3,38 @@
 class Message extends  CI_Controller{
 
     public function send_message(){
+
         if($this->input->post('message_sent')!== false){
+
             //load model
             $this->load->model('Message_model');
             //is the user logged in?
-            if (isset($_SESSION['logged_in'])){
-                $sender_name = $_SESSION['user_name'];
+            if (!isset($_SESSION['logged_in'])){
+                if (!isset($_SESSION['user_name'])){
+                    $random = rand(1,PHP_INT_MAX);
+                    $_SESSION['user_name'] = "Unregistered user(".$random.")";
+                }
+
             }
-            else{
-                $sender_name = "Unregistered user";
-            }
+
 
             //Is this the first message in this conversation?
             //TODO
 
-
             $data = array(
                 'message' => $_POST['message'],
-                'conversation' => $_SESSION['conversation_id'],
-                'sender_name' => $sender_name,
-                'sender_id' => $_SESSION['sender_id'],
+                'sender_name' =>$_SESSION['user_name'],
             );
             
 
             //Adding message to the conversation db
-            $this->load->Message_model->post_message($data);
+            $this->Message_model->post_message($data);
 
         }
         else{
-            $this->load->view('pages/chat');
-            exit();
+            $this->load->view('pages/test2');
         }
-        $this->load->view('pages/chat');
+        $this->load->view('pages/test2');
 
 
 
@@ -52,16 +52,39 @@ class Message extends  CI_Controller{
 
     }
 
-    public function chat_to_join($myid){
-        //TODO: fix this
-        if(5>4){
-            //load model
-            $this->load->model('Message_model');
+    public function next_message(){
+        if ($this->input->post('next') !== false) {
+            //Is the user logged in?
+            if (isset($_SESSION["logged_in"])){
+                if ($_SESSION("logged_in")){
+                    //DO they want to save it?
+                    $conformation = confirm('Do you want to save this chat');
+                    if ($conformation){
+                        //loading the modle
+                        $this->load->model('Message_model');
+                        $this->Message_model->save_message();
+                    }
+                    //the conversation was not saved
 
-            $chats_available_json = $this->Message_model->chat_to_join($myid);
-            $_SESSION['joined_id'] = $chats_available_json['conversation_id'][0];
-            return $chats_available_json['conversation_id'];
+                    //reseting the chat
+
+                    $data = array(
+                        'conversation_id' => $_SESSION['conversation_id'],
+                        'other_sender_name' => $_SESSION['other_sender_name'],
+                        'topic' => $_SESSION['topic'],
+                    );
+                    foreach ($data as $key){
+                        $this->session->unset_userdata($key);
+                    }
+                    redirect( '/index.php/Pages/test2');
+                }
+            }
         }
+    }
+    public function save_message(){
+        //loading the modle
+        $this->load->model('Message_model');
+        $this->Message_model->save_message();
     }
 
 

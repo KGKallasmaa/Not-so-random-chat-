@@ -46,7 +46,7 @@ class Auth extends  CI_Controller{
 
 
 
-                     redirect( '/index.php/Pages/chat');
+                     redirect( '/index.php/Pages/test2');
                       //  $this->load->view('pages/login');
 
                     }
