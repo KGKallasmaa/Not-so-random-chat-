@@ -1,9 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 ?>
 
 <title>Rando||Chat</title>
 <meta name="description" content="Chatting with random people is as easy as 1,2,3">
+
+
 <div class="row">
 <div class = ".col-xs-12 .col-md-8">
 <?php
@@ -35,14 +38,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $_SESSION['topic'] = 'Random';
     //TODO: fix the topic variable in the future
     ?>
-
     <!-- -->
 	
 	<h3>"Your conversation"</h3>
         <?php
         //TODO: move it to a javascript file
-
-
 
          $file_name = "application/conversations/".$_SESSION['conversation_id'].".txt";
 

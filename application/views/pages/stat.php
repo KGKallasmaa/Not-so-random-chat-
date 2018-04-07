@@ -1,3 +1,6 @@
+<title>Rando||Statistics</title>
+<meta name="description" content="Who are our user and what are they up do?">
+
 <div class="table-responsive">
     <table class="table">
         <tr>
@@ -5,6 +8,7 @@
             <th>referer  </th>
             <th>os  </th>
             <th>timezone  </th>
+            <th>last time online  </th>
             <th>number of times visited </th>
             <th>number of saved conversations </th>
 

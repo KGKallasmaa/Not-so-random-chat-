@@ -9,7 +9,9 @@ class Message_model extends CI_Model
     }
 
    public function post_message($data){
-
+        //TODO
+       /*
+        *
        $new_data = array(
            'conversation' => $data['conversation'],
            'sender_id'  => $data['sender_id'],
@@ -32,15 +34,33 @@ class Message_model extends CI_Model
        $message_to_be_written = strval($new_data['sender_name']." (".date("Y-m-d h:i:sa")."):   ".$new_data['message']."\n");
        fwrite($handle, $message_to_be_written);
        fclose($handle);
+        */
+
    }
-   function conversation_sender_excists($conversation_id,$sender_id){
-        $this->db->select("*");
-       $this->db->where(array("conversation"=>$conversation_id,"sender_id"=>$sender_id));
-       $query = $this->db->get('posts');
-       if ($query->num_rows() == 1){
-           return true;
+
+   public function get_conversation_id($my_id)
+   {
+       //TODO
+       //is the current session conversation id set?
+       if (isset($_SESSION['conversation_id'])){
+           return $_SESSION['conversation_id'];
        }
-       return false;
+
+       //am I currently in a chat?
+       $query = $this->db->query("my_conversation_id(" . $my_id . ")");
+       if ($query->num_rows() == 1) {
+           //YES
+           return $query->result();
+       }
+       $random = rand(0,1);
+       if ($random >= 0.5){
+           //Joining excising chat
+       }
+       //Generating new chat id
+       $random = rand(1,PHP_INT_MAX);
+       return $random;
+
+
    }
 
    public function print_conversation($conversation_id){
@@ -58,11 +78,19 @@ class Message_model extends CI_Model
         }
    }
    function chat_to_join($my_id){
-       $this->db->select("conversation_id");
+        //TODO;
+       return null;
+       /*
+        *  $this->db->select("conversation_id");
        $this->db->where(array('sender1' != $my_id,'sender2' != $my_id));
        $this->db->limit(1);
        $query = $this->db->get('current_chats');
        return json_encode($query->result_array());
+        */
+   }
+   public function get_other_id(){
+        //TODO;
+        return null;
    }
 
 }

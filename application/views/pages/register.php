@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-md-offset-5 col-md-3">
 		<div class="form-login">
-			<h3>Register</h3>
+			<h3 title="register to Rando">Register</h3>
 
             <?php echo validation_errors(); ?>
 			<?php echo form_open('index.php/Auth/register'); ?>

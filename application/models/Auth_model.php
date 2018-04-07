@@ -96,19 +96,12 @@ class Auth_model extends CI_Model{
         $this->db->update('users');
 
     }
-    function get_userid($email)
-    {
+    function get_userid($email){
         $this->db->select("user_id");
         $this->db->where(array("user_email" => $email));
         $query = $this->db->get('users');
-
-        $str = file_get_contents($query);
-
-        $json = json_decode($str, true);
-
-        return json_encode($query->result_array());
-
-
+        $result = $query->row_array();
+        return $result['user_id'];
     }
 
 
@@ -117,7 +110,8 @@ class Auth_model extends CI_Model{
         $this->db->select("user_name");
         $this->db->where(array("user_email" => $email));
         $query = $this->db->get('users');
-        return json_encode($query->result());
+        $result = $query->row_array();
+        return $result['user_name'];
 
     }
     function online_users()
@@ -125,7 +119,8 @@ class Auth_model extends CI_Model{
         $this->db->select("user_id");
         $this->db->where(array("user_online_status'" => true));
         $query = $this->db->get("users");
-        return $query;
+        $result = $query->row_array();
+        return $result['user_id'];
     }
 
 }

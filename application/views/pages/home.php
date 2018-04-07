@@ -1,9 +1,8 @@
-
-
+<title>Rando||Home</title>
+<meta name="description" content="Choose your next bath wisely">
 <div class="landing_page">
 
-    <h1>WELCOME to RANDO</h1>
-
+    <h1 title="Welcome to Rando">WELCOME to RANDO</h1>
 
     <button onclick="location.href='<?php echo base_url();?>index.php/Pages/login'" id="landing_login">Login</button>
     <button onclick="location.href='<?php echo base_url();?>index.php/Pages/test2'" id="landing_chat">Chat</button>

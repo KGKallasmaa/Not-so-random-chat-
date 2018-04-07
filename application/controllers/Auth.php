@@ -41,13 +41,8 @@ class Auth extends  CI_Controller{
                         //SUCCESS!;
                         $_SESSION['logged_in'] = true;
                         $_SESSION['user_email'] = $email;
-                        $user_name_json = $this->Auth_model->get_username($email);
-
-
-                        $_SESSION['user_name'] = implode("",$user_name_json['user_name']);
-
-                        $user_id_json = $this->Auth_model->get_userid($email);
-                        $_SESSION['user_id'] = implode("",$user_id_json["user_id"]);
+                        $_SESSION['user_name'] = $this->Auth_model->get_username($email);
+                        $_SESSION['user_id'] = $this->Auth_model->get_userid($email);
 
 
 
@@ -145,11 +140,6 @@ class Auth extends  CI_Controller{
                 }
                 redirect( '/index.php/Pages/register','refresh');
 
-                // redirect("auth/register","refresh");
-                //  header('Location: chat.php');
-                // $this->load->view("chat.php");
-                //   $this->load->view('pages/login.php');
-                //   echo form_open('index.php/Pages/chat');
 
                 //  $this->session->set_flashdata('error','Incorrect password');
             }
@@ -161,7 +151,6 @@ class Auth extends  CI_Controller{
 
         }
         // load view
-        // $this->load->view('pages/chat.php');
     }
 
 

@@ -96,7 +96,28 @@
         }
         public function chat(){
             $this->load->view('pages/header');
-            $this->load->view('pages/chat');
+
+            //load model
+            $this->load->model('Message_model');
+
+            //TODO
+            if (isset($_SESSION['user_id'])){
+                $my_id = $_SESSION['user_id'];
+            }
+            else{
+                $random = rand(1,PHP_INT_MAX);
+                $my_id = $random;
+            }
+
+            $conversation_id = $this->Message_model->get_conversation_id($my_id);
+            $other_sender_id = $this->Message_model->get_other_id($my_id,$conversation_id);
+
+            $data = array(
+                'my_sender_id' => $my_id,
+                'conversation_id' => $conversation_id,
+                'other_sender_id' => $other_sender_id,
+                );
+            $this->load->view('pages/test2',$data);
             $this->load->view('pages/footer');
         }
         public function about(){
