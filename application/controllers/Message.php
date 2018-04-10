@@ -17,7 +17,6 @@ class Message extends  CI_Controller{
 
             }
 
-
             //Is this the first message in this conversation?
             //TODO
 
@@ -58,12 +57,12 @@ class Message extends  CI_Controller{
             if (isset($_SESSION["logged_in"])){
                 if ($_SESSION("logged_in")){
                     //DO they want to save it?
-                    $conformation = confirm('Do you want to save this chat');
-                    if ($conformation){
+
+                    //TODO
                         //loading the modle
-                        $this->load->model('Message_model');
-                        $this->Message_model->save_message();
-                    }
+                        //$this->load->model('Message_model');
+                        //$this->Message_model->save_message();
+
                     //the conversation was not saved
 
                     //reseting the chat

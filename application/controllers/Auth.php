@@ -122,7 +122,6 @@ class Auth extends  CI_Controller{
                 );
 
                 if ($this->Auth_model->contains_email($data['email']) == false) {
-                    echo "i'm here";
 
                     $this->Auth_model->register_user($data);
 
@@ -135,7 +134,7 @@ class Auth extends  CI_Controller{
                     // redirect("pages/register","refresh");
                   //  header('Location: register.php');
                    // redirect( '/index.php/Pages/register','refresh');
-                    exit();
+                    redirect('/index.php/Pages/register');
                     //location: /profile
                 }
                 redirect( '/index.php/Pages/register','refresh');

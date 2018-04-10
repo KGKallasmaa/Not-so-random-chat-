@@ -18,11 +18,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        echo "<h3>"."Your conversationID is: ".$_SESSION['conversation_id']."</h3>";
     }?>
 
-
         <?php
         //TODO: move it to a javascript file
 
-        if (isset($_SESSION['conversation_id'])) {
+        if (isset($_SESSION['conversation_id'])){
             $file_name = "application/conversations/" . $_SESSION['conversation_id'] . ".txt";
 
             if (file_exists($file_name)) {
@@ -35,9 +34,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
             }
         }
-        else{
+        if (!isset($_SESSION['conversation_id'])){
             echo "Chat will appear here(currently you can only talk with yourself)";
         }
+
         ?>
 
 	<!-- -->
@@ -54,13 +54,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class = ".col-xs-6 .col-md-4">
 	<?php echo form_open('index.php/Auth/logout'); ?>
             <form action="" method="post" autocomplete="on" target="_top">
-                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure?')">Log out</button>
+                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure you want to logout?')">Log out</button>
             </form>
             <?php form_close();?>
 	<p>Your opponents picture</p>
-	<p>You're chatting with: <?php if (isset($_SESSION['other_sender_name'])){
-	    echo $_SESSION['other_sender_name'];
-        }?></p>
+	<p>You're chatting with: <?php echo $_SESSION['other_sender_name'];?></p>
     <p>Topic: <?php echo $_SESSION['topic']?></p>
 
 	<form>

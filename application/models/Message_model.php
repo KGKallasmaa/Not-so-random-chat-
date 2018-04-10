@@ -11,7 +11,6 @@ class Message_model extends CI_Model
    public function post_message($data){
         //TODO
        if (isset($_SESSION['conversation_id'])){
-           $file_name = strval($_SESSION['conversation_id'].".txt");
            //creating new file
            $file_name = strval($_SESSION['conversation_id'].".txt");
 
@@ -35,26 +34,19 @@ class Message_model extends CI_Model
        //should I join an excisting chat?
 
        $random = rand(0,1);
+       $sql = "call add_current_chat(?,?,?)";
        if ($random >= 0.5){
            //Joining excising chat
            $suitable_conversation_id = $this->chat_to_join($my_id);
-           $data = array(
-               'conversation_id' => $suitable_conversation_id,
-               'sender_2' => $my_id,
-           );
-           $this->db->insert('current_chats', $data);
+           $query = $this->db->query($sql,array($suitable_conversation_id,null,$my_id));
 
-           return $data['conversation_id'];
+           return $suitable_conversation_id;
        }
        //Generating new chat id
        $random = rand(1,PHP_INT_MAX);
        //insert it into the db
-       $data = array(
-           'conversation_id' => $random,
-           'sender_1' => $my_id,
-       );
-       $this->db->insert('current_chats', $data);
-       return $data['conversation_id'];
+       $query = $this->db->query($sql,array($random,$my_id,null));
+       return $random;
    }
 
    public function print_conversation($conversation_id){
@@ -72,30 +64,35 @@ class Message_model extends CI_Model
         }
    }
    function chat_to_join($my_id){
-        //TODO;
-       $query = $this->db->query("chat_to_join(".$my_id.")");
+       $sql = "call chat_to_join(?)";
+       $query = $this->db->query($sql,array($my_id));
        $result = $query->row_array();
        return $result['conversation_id'];
 
    }
    function get_other_id($my_id,$conversation_id){
-       $query = $this->db->query("conversation_id(".$conversation_id.")");
-       $result = $query->row_array();
+       $sql = "call other_id(?,?)";
+       $query = $this->db->query($sql,array($my_id,$conversation_id));
+       $result = $query->row_array(); //sender1 and sender2
        if($result['sender_1'] == $my_id){
             return $result['sender_2'];
        }
        return $result['sender_1'];
+
+
+      // $sql = "call member_add(?,?,?)";
+      // $execute = $this->db->query($sql, array('irfan','ashraf','email.com'));
    }
    function get_other_name ($other_sender_id){
-       $this->db->select("user_name");
-       $this->db->where(array("user_id" => $other_sender_id));
-       $query = $this->db->get('users');
-       $result = $query->row_array();
-       if($query->num_rows() == 0){
-           //the user has not registered
-           return 'Rando, the ultimate user(the user has not registered yet)';
-       }
-       return $result['user_name'];
+        $sql = "call other_name(?)";
+        $query = $this->db->query($sql,array($other_sender_id));
+        $result = $query->row_array();
+        echo $result['user_name'];
+        if($query->num_rows() == 0){
+                //the user has not registered
+                return 'Rando, the ultimate user(the user has not registered yet)';
+        }
+        return $result['user_name'];
    }
 
     function save_message(){
@@ -119,7 +116,7 @@ class Message_model extends CI_Model
             }
             //is this conversation_id in the db
             $this->db->where('conversation_id',$data['conversation_id']);
-            $this->db->update('saved_conversation',data);
+            $this->db->update('saved_conversation',$data);
 
 
         }

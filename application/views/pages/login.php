@@ -25,7 +25,7 @@
 				</div>
                 <br>
 					<button class="btn btn-primary btn-md" name="login" type="submit" value="login">Login</button>
-					<a href="<?php echo base_url();?>index.php/Pages/register">Not a user? Register</a>
+					<a href="<?php echo base_url();?>index.php/Pages/register" alt="register">Not a user? Register</a>
 			</form>
 		</div>
 

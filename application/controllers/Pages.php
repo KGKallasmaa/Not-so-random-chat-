@@ -100,12 +100,10 @@
             $this->load->model('Stat_model');
             return $this->Stat_model->get_users_data();
         }
-        public function chat(){
+        public function test2(){
             $this->load->view('pages/header');
-
             //load model
             $this->load->model('Message_model');
-
             //TODO
             if (isset($_SESSION['user_id'])){
                 $my_id = $_SESSION['user_id'];
@@ -117,25 +115,30 @@
 
             $_SESSION['my_sender_id'] = $my_id;
             $_SESSION['conversation_id'] = $this->Message_model->get_conversation_id($_SESSION['my_sender_id']);
+            //echo "my sender id: ".$_SESSION['my_sender_id'];
+            //echo "conversation id: ".$_SESSION['conversation_id'];
             $_SESSION['other_sender_id'] = $this->Message_model->get_other_id($_SESSION['my_sender_id'],$_SESSION['conversation_id']);
+           // echo "other_sender_id: ".$_SESSION['other_sender_id'];
             $_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
 
-            //TODO: remove that array
-            $data = array(
+            /*
+             * $data = array(
                 'my_sender_id' => $_SESSION['my_sender_id'],
                 'conversation_id' => $_SESSION['conversation_id'],
                 'other_sender_id' =>$_SESSION['other_sender_id'],
                 'other_sender_name' => $_SESSION['other_sender_name']
             );
+             */
+
 
             //testing
-            echo "My sender id: ".$_SESSION['my_sender_id'];
-            echo "conversation_id: ".$_SESSION['conversation_id'];
-            echo "other_sender_id: ".$_SESSION['other_sender_id'];
-            echo "other_sender_name: ".$_SESSION['other_sender_name'];
+          //  echo "My sender id: ".$_SESSION['my_sender_id'];
+          //  echo "conversation_id: ".$_SESSION['conversation_id'];
+          //  echo "other_sender_id: ".$_SESSION['other_sender_id'];
+          //  echo "other_sender_name: ".$_SESSION['other_sender_name'];
 
 
-            $this->load->view('pages/test2',$data);
+            $this->load->view('pages/test2');
             $this->load->view('pages/footer');
         }
         public function about(){
@@ -178,7 +181,7 @@
             $this->load->view('pages/test');
         }
 		
-		public function test2(){
+		public function chat(){
             $this->load->view('pages/header');
             $this->load->view('pages/test2');
             $this->load->view('pages/footer');
