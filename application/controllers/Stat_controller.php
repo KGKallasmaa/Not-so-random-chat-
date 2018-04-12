@@ -23,27 +23,8 @@ class Stat_controller extends CI_Controller {
     public function get_users_data(){
         //load model
         $this->load->model('Stat_model', '', TRUE);
-
-        $json = $this->Stat_model->get_users_data();
-
-        $visitors = array();
-
-
-        $i = 0;
-
-        while($row = json_decode($json)->fetch()){
-            $visitors[$i]['sender_id'] = $row['sender_id'];
-            $visitors[$i]['sender_browser'] = $row['sender_browser'];
-            $visitors[$i]['sender_os'] = $row['sender_os'];
-            $visitors[$i]['sender_timezone'] = $row['sender_timezone'];
-            $visitors[$i]['sender_times_visited'] = $row['sender_times_visited'];
-            $visitors[$i]['sender_saved_conversations'] = $row['sender_saved_conversations'];
-            $i++;
-        }
-
-
-
-        $this->load->view("pages/stat",$visitors);
+        $data = $this->Stat_model->get_users_data();
+        return $data;
     }
 
 }

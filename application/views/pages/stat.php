@@ -1,29 +1,28 @@
+<title>Rando||Statistics</title>
+<meta name="description" content="Who are our user and what are they up do?">
+
 <div class="table-responsive">
     <table class="table">
         <tr>
-            <th>sender_id</th>
-            <th>browser</th>
-            <th>os</th>
-            <th>timezone</th>
-            <th>number of times visited</th>
-            <th>number of saved conversations</th>
-        </tr>
-            <tr>
-            <?php
-            //TODO
-            //echo $main_data;
-            /*
-              foreach($main_data->result() as $row)
-            {
-                echo "<td>" .$row['sender_id']. "</td>";
-                echo "<td>" .$row['sender_browser']. "</td>";
-                echo "<td>" .$row['sender_os']. "</td>";
-                echo "<td>" .$row['sender_timezone']. "</td>";
-                echo "<td>" .$row['sender_times_visited']. "</td>";
-                echo "<td>" .$row['sender_saved_conversations']. "</td>";
-            }
-             */
-            ?>
+            <th>sender_id  </th>
+            <th>referer  </th>
+            <th>os  </th>
+            <th>timezone  </th>
+            <th>last time online  </th>
+            <th>number of times visited </th>
+            <th>number of saved conversations </th>
+
+        <tr>
+            <?php foreach ($information as $row) { ?>
+                <td><?php echo $row->sender_id; ?></td>
+                <td><?php echo $row->sender_referrer; ?></td>
+                <td><?php echo $row->sender_os; ?></td>
+                <td><?php echo $row->sender_timezone; ?></td>
+                <td><?php echo $row->sender_last_time_visited; ?></td>
+                <td><?php echo $row->sender_times_visited; ?></td>
+                <td><?php echo $row->sender_saved_conversations; ?></td>
+                <tr> </tr>
+            <?php } ?>
         </tr>
     </table>
 </div>

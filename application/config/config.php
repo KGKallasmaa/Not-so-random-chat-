@@ -22,9 +22,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | If you need to allow multiple domains, remember that this file is still
 | a PHP script and you can easily do that on your own.
 |
-$config['base_url'] = 'http://localhost/rando/Not-so-random-chat-';
+$config['base_url'] = 'http://notsorandomchat.000webhostapp.com/';
 */
-$config['base_url'] = 'http://localhost/rando/Not-so-random-chat-/';
+$config['base_url'] = 'http://localhost/rando/Not-so-random-chat-';
 
 $config['controller_url'] = 'http://localhost/rando/Not-so-random-chat-/controllers/';
 

@@ -11,7 +11,8 @@ class Stat_model extends CI_Model {
 
     public function add_sender_data($data){
         //How many times has the user visited us before?
-        $new_number_of_times_visited = $this->number_of_visits($data['sender_id'])+1;
+        $new_number_of_times_visited = $this->number_of_visits($data['sender_id']);
+
         //Number of saved conversations?
         $new_number_of_saved_conversations = $this->number_of_conversations($data['sender_id'])+1;
 
@@ -27,8 +28,12 @@ class Stat_model extends CI_Model {
         //open database
 
         //should I update or insert?
-        if ($new_number_of_times_visited == 1){
+        //echo $new_number_of_times_visited;
+        //echo $this->number_of_visits($data['sender_id']);
+
+        if ($new_number_of_times_visited == 0){
             //insert
+            $new_data['sender_times_visited'] = $new_data['sender_times_visited']+1;
             $this->db->insert('user_statistics', $new_data);
         }
         else{
@@ -38,18 +43,26 @@ class Stat_model extends CI_Model {
             //Should I update the sender times visited by one?
             if($this->update_in_order($new_data['sender_id'])){
                 $this->db->where('sender_id',$new_data['sender_id']);
-                $this->db->update('user_statistics');
+                $new_data["sender_times_visited"] = $new_data["sender_times_visited"]+1;
+                $this->db->update('user_statistics',$new_data);
             }
-            //$this->db->where('sender_id',$new_data['sender_id']);
-            //$this->db->update('user_statistics');
+            //updating the last time the user visited the site
+            $this->db->where('sender_id',$new_data['sender_id']);
+            $new_data["sender_last_time_visited"] = date("Y-m-d H:i:s", time());
+            $this->db->update('user_statistics',$new_data);
+
         }
 
     }
 
+
     public function get_users_data(){
         $this->db->select();
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result());
+
+        return $query->result(); // <- it works
+        //return json_encode($query->result());
+
 
     }
 
@@ -57,31 +70,37 @@ class Stat_model extends CI_Model {
         $this->db->select('sender_times_visited');
         $this->db->where('sender_id',$sender_id);
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result_array());
+        $result = $query->row_array();
+        return $result['sender_times_visited'];
 
     }
     function update_in_order($sender_id){
         $this->db->select('sender_last_time_visited');
         $this->db->where('sender_id',$sender_id);
-        $query = $this->db->get('user_statistics');
-        if(reset($query) <= (time()-86400)){
-            $data = array('sender_last_time_visited' => time());
-            $this->db->replace('user_statistics', $data);
+        $query = $this->db->get('user_statistics',true);
+
+        $result = $query->row_array();
+
+       // echo $result['sender_last_time_visited'];
+
+
+        //if the user has was last online less than 1 day ago, then update is not in order
+        $difference = strtotime(date("Y-m-d H:i:s", time())) - strtotime($result['sender_last_time_visited']);
+
+
+        if($difference < strtotime('1 day')){
+            return false;
+        }
+        else{
             return true;
         }
-        $data = array('sender_last_time_visited' => time());
-        $this->db->replace('user_statistics', $data);
-        return false;
-
-
-
     }
 
     function number_of_conversations($sender_id){
         $this->db->select('sender_saved_conversations');
         $this->db->where('sender_id',$sender_id);
         $query = $this->db->get('user_statistics');
-        return json_encode($query->result_array());
+        return json_encode($query->result());
     }
 }
 

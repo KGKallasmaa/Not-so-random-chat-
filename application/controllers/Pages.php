@@ -6,9 +6,12 @@
                 // Whoops, we don't have a page for that!
                 show_404();
             }
-            $data = $this->header_data();
+
+            $header_data = $this->header_data();
+
+
             $this->load->helper('url');
-            $this->load->view('pages/header', $data);
+            $this->load->view('pages/header', $header_data);
             $this->load->view('pages/'.$page, $data);
             $this->load->view('pages/footer', $data);
         }
@@ -68,8 +71,14 @@
             }
             //user_agent
             $user_agent = getOS($_SERVER['HTTP_USER_AGENT']);
-            //2. browser
-            $referrer = $_SERVER['HTTP_REFERER'];
+            //2. reference
+            if (isset($_SERVER['HTTP_REFERER'])){
+                $referrer = $_SERVER['HTTP_REFERER'];
+            }
+            else{
+                $referrer = null;
+            }
+
             //3. os
             $os = getOS($user_agent);
             //4. timezone
@@ -88,62 +97,93 @@
             return $returns;
         }
         function stat_data(){
-            $this->load->model('Stat_model', '', TRUE);
-            $returns = $this->Stat_model->get_users_data();
-            return $returns;
+            $this->load->model('Stat_model');
+            return $this->Stat_model->get_users_data();
         }
-        public function chat(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
-            $this->load->view('pages/chat');
+        public function test2(){
+            $this->load->view('pages/header');
+            //load model
+            $this->load->model('Message_model');
+            //TODO
+            if (isset($_SESSION['user_id'])){
+                $my_id = $_SESSION['user_id'];
+            }
+            else{
+                $random = rand(1,PHP_INT_MAX);
+                $my_id = $random;
+            }
+
+            $_SESSION['my_sender_id'] = $my_id;
+            $_SESSION['conversation_id'] = $this->Message_model->get_conversation_id($_SESSION['my_sender_id']);
+            //echo "my sender id: ".$_SESSION['my_sender_id'];
+            //echo "conversation id: ".$_SESSION['conversation_id'];
+            $_SESSION['other_sender_id'] = $this->Message_model->get_other_id($_SESSION['my_sender_id'],$_SESSION['conversation_id']);
+           // echo "other_sender_id: ".$_SESSION['other_sender_id'];
+            $_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
+
+            /*
+             * $data = array(
+                'my_sender_id' => $_SESSION['my_sender_id'],
+                'conversation_id' => $_SESSION['conversation_id'],
+                'other_sender_id' =>$_SESSION['other_sender_id'],
+                'other_sender_name' => $_SESSION['other_sender_name']
+            );
+             */
+
+
+            //testing
+          //  echo "My sender id: ".$_SESSION['my_sender_id'];
+          //  echo "conversation_id: ".$_SESSION['conversation_id'];
+          //  echo "other_sender_id: ".$_SESSION['other_sender_id'];
+          //  echo "other_sender_name: ".$_SESSION['other_sender_name'];
+
+
+            $this->load->view('pages/test2');
             $this->load->view('pages/footer');
         }
         public function about(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/about');
             $this->load->view('pages/footer');
         }
         public function tos(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/tos');
             $this->load->view('pages/footer');
         }
         public function stat(){
-            $header_data = $this->header_data();
-            $this->load->view('pages/header',$header_data);
-            $main_data = $this->stat_data();
-            $this->load->view('pages/stat',$main_data);
+            $this->load->view('pages/header');
+            $data['information'] =$this->stat_data();
+            $this->load->view('pages/stat',$data);
             $this->load->view('pages/footer');
         }
         public function history(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/history');
             $this->load->view('pages/footer');
         }
         public function settings(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/settings');
             $this->load->view('pages/footer');
         }
         public function register(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/register');
             $this->load->view('pages/footer');
         }
         public function login(){
-            $data = $this->header_data();
-            $this->load->view('pages/header',$data);
+            $this->load->view('pages/header');
             $this->load->view('pages/login');
             $this->load->view('pages/footer');
         }
 		public function test(){
-            $this->load->view('pages/header');
             $this->load->view('pages/test');
+        }
+		
+		public function chat(){
+            $this->load->view('pages/header');
+            $this->load->view('pages/test2');
             $this->load->view('pages/footer');
         }
 

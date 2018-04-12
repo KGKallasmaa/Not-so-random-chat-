@@ -20,10 +20,10 @@ class Auth extends  CI_Controller{
             $this->form_validation->set_rules('email', 'Email', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
 
-                if ($this->form_validation->run() !== false) {
+                if ($this->form_validation->run() !== FALSE){
 
                     //load model
-                    $this->load->model('Auth_model', '', TRUE);
+                    $this->load->model('Auth_model');
 
                 //input variables
                 $email = $this->input->post('email');
@@ -41,17 +41,12 @@ class Auth extends  CI_Controller{
                         //SUCCESS!;
                         $_SESSION['logged_in'] = true;
                         $_SESSION['user_email'] = $email;
-                        $user_name_json = $this->Auth_model->get_username($email);
-
-
-                        $_SESSION['user_name'] = implode("",$user_name_json['user_name']);
-
-                        $user_id_json = $this->Auth_model->get_userid($email);
-                        $_SESSION['user_id'] = implode("",$user_id_json["user_id"]);
+                        $_SESSION['user_name'] = $this->Auth_model->get_username($email);
+                        $_SESSION['user_id'] = $this->Auth_model->get_userid($email);
 
 
 
-                     redirect( '/index.php/Pages/chat');
+                     redirect( '/index.php/Pages/test2');
                       //  $this->load->view('pages/login');
 
                     }
@@ -80,7 +75,7 @@ class Auth extends  CI_Controller{
         if ($this->input->post('logout') !== false) {
 
             //loading the modle
-            $this->load->model('Auth_model', '', TRUE);
+            $this->load->model('Auth_model');
 
             //set status
             $this->Auth_model->set_status($_SESSION['user_email'],false);
@@ -101,15 +96,24 @@ class Auth extends  CI_Controller{
 
     public function register(){
         if ($this->input->post('register') !== false) {
+            //$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+            //$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+            //$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[4]');
+            //$this->form_validation->set_rules('password2', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
+            //$this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'trim|required|xss_clean');
 
-            $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[4]');
-            $this->form_validation->set_rules('password2', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
-            $this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('email', 'Email', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password2', 'Confirm Password', 'required|matches[password]');
+            $this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'required');
 
 
-            if ($this->form_validation->run() == TRUE) {
+            if ($this->form_validation->run() !== false){
+
+                //load model
+                $this->load->model('Auth_model');
+
 
                 $data = array(
                     'user_name' => $_POST['username'],
@@ -130,16 +134,11 @@ class Auth extends  CI_Controller{
                     // redirect("pages/register","refresh");
                   //  header('Location: register.php');
                    // redirect( '/index.php/Pages/register','refresh');
-                    exit();
+                    redirect('/index.php/Pages/register');
                     //location: /profile
                 }
                 redirect( '/index.php/Pages/register','refresh');
 
-                // redirect("auth/register","refresh");
-                //  header('Location: chat.php');
-                // $this->load->view("chat.php");
-                //   $this->load->view('pages/login.php');
-                //   echo form_open('index.php/Pages/chat');
 
                 //  $this->session->set_flashdata('error','Incorrect password');
             }
@@ -151,7 +150,6 @@ class Auth extends  CI_Controller{
 
         }
         // load view
-        // $this->load->view('pages/chat.php');
     }
 
 
