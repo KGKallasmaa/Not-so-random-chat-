@@ -4,4 +4,7 @@
     <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings">Settings</button>
 </div>
 
+<input type="file" id="uploadme" />
+<input type="button" id="clickme" value="Upload Stuff!" />
+
 settings tab
