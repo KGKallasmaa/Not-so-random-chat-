@@ -81,7 +81,7 @@ class Message extends  CI_Controller{
         }
     }
     public function save_message(){
-        //loading the modle
+        //loading the model
         $this->load->model('Message_model');
         $this->Message_model->save_message();
     }

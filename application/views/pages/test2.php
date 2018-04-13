@@ -6,6 +6,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <title>Rando||Chat</title>
 <meta name="description" content="Chatting with random people is as easy as 1,2,3">
 
+<div class="nav_bar">
+    <button onclick="location.href='<?php echo base_url();?>index.php/Pages/history'" id="chat_history">History</button>
+    <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="chat_main">Chat</button>
+    <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings">Settings</button>
+</div>
 
 <div class="row">
 <div class = ".col-xs-12 .col-md-8">
@@ -57,7 +62,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure you want to logout?')">Log out</button>
             </form>
             <?php form_close();?>
-	<p>Your opponents picture</p>
+    <?php
+    /*
+     * <img src="<?php echo base_url('images/profile_pictures/'.$_SESSION['opponent_picture']);?> ?> alt="Your opponents picture" />
+     */
+    ?>
+    <p>Your opponents picture (we're working on it):></p>
+
+
 	<p>You're chatting with: <?php echo $_SESSION['other_sender_name'];?></p>
     <p>Topic: <?php echo $_SESSION['topic']?></p>
 
@@ -78,3 +90,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </script>
 	</div>
 </div>
+

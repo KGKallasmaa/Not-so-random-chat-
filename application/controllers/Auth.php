@@ -43,6 +43,7 @@ class Auth extends  CI_Controller{
                         $_SESSION['user_email'] = $email;
                         $_SESSION['user_name'] = $this->Auth_model->get_username($email);
                         $_SESSION['user_id'] = $this->Auth_model->get_userid($email);
+                        $_SESSION['user_picture'] = $this->Auth_model->get_userpicture_name( $_SESSION['user_id']);
 
 
 
@@ -118,8 +119,10 @@ class Auth extends  CI_Controller{
                 $data = array(
                     'user_name' => $_POST['username'],
                     'user_email' => $_POST['email'],
-                    'user_password' => md5($_POST['password'])
+                    'user_password' => md5($_POST['password']),
+                    'user_picture' => 'default.gif'
                 );
+
 
                 if ($this->Auth_model->contains_email($data['email']) == false) {
 

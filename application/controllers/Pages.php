@@ -109,6 +109,7 @@
                 $my_id = $_SESSION['user_id'];
             }
             else{
+                //ToDO: if noone currently wais a partner, then yuo'll get a random userid, if they do, you'll not
                 $random = rand(1,PHP_INT_MAX);
                 $my_id = $random;
             }
@@ -120,22 +121,24 @@
             $_SESSION['other_sender_id'] = $this->Message_model->get_other_id($_SESSION['my_sender_id'],$_SESSION['conversation_id']);
            // echo "other_sender_id: ".$_SESSION['other_sender_id'];
             $_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
+            //load model
+            $this->load->model('Auth_model');
+
+            //TODO: fix opponent picture this
 
             /*
-             * $data = array(
-                'my_sender_id' => $_SESSION['my_sender_id'],
-                'conversation_id' => $_SESSION['conversation_id'],
-                'other_sender_id' =>$_SESSION['other_sender_id'],
-                'other_sender_name' => $_SESSION['other_sender_name']
-            );
+             * if ($_SESSION['other_sender_id'] == null){
+                $_SESSION['opponent_picture'] = "other.gif";
+            }
+            else{
+                $_SESSION['opponent_picture'] = $this->Auth_model->get_userpicture_name($_SESSION['other_sender_id']);
+            }
              */
 
 
-            //testing
-          //  echo "My sender id: ".$_SESSION['my_sender_id'];
-          //  echo "conversation_id: ".$_SESSION['conversation_id'];
-          //  echo "other_sender_id: ".$_SESSION['other_sender_id'];
-          //  echo "other_sender_name: ".$_SESSION['other_sender_name'];
+
+
+
 
 
             $this->load->view('pages/test2');

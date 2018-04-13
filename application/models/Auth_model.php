@@ -37,6 +37,8 @@ class Auth_model extends CI_Model{
             'user_name' => $data['user_name'],
             'user_email' => $data['user_email'],
             'user_password'  => $data['user_password'],
+            'user_password'  => $data['user_password'],
+            'user_picture' => $data['default']
         );
 
         $this->db->insert('users', $new_data);
@@ -95,6 +97,18 @@ class Auth_model extends CI_Model{
         return $result['user_name'];
 
     }
+
+    function get_userpicture_name($user_id)
+    {
+        $this->db->select("user_picture");
+        $this->db->where(array("user_id" => $user_id));
+        $query = $this->db->get('users');
+        $result = $query->row_array();
+        return $result['user_picture'];
+
+    }
+
+
     function online_users()
     {
         $this->db->select("user_id");

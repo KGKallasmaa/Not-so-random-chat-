@@ -38,7 +38,9 @@ class Message_model extends CI_Model
        if ($random >= 0.5){
            //Joining excising chat
            $suitable_conversation_id = $this->chat_to_join($my_id);
-           $query = $this->db->query($sql,array($suitable_conversation_id,null,$my_id));
+           $sender_1 = $this->get_other_id($my_id,$suitable_conversation_id);
+           sleep(5);
+           $query = $this->db->query($sql,array($suitable_conversation_id,$sender_1,$my_id));
 
            return $suitable_conversation_id;
        }
@@ -84,14 +86,13 @@ class Message_model extends CI_Model
       // $execute = $this->db->query($sql, array('irfan','ashraf','email.com'));
    }
    function get_other_name ($other_sender_id){
+        if ($other_sender_id == null){
+            return 'Rando, the ultimate user(the user has not registered yet)';
+        }
+        //return "tere";
         $sql = "call other_name(?)";
         $query = $this->db->query($sql,array($other_sender_id));
         $result = $query->row_array();
-        echo $result['user_name'];
-        if($query->num_rows() == 0){
-                //the user has not registered
-                return 'Rando, the ultimate user(the user has not registered yet)';
-        }
         return $result['user_name'];
    }
 
