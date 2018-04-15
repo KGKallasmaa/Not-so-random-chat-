@@ -14,30 +14,30 @@
 
 			<form action="" method="post" autocomplete="on" target="_top" accept-charset="utf-8">
 				<div class="form-group">
-					<label for = "username">Nickname: </label>
+					<label for = "username"><?php echo lang("nickname"); ?>:</label>
 					<input class="form-control input-sm chat-input" name="username" id="username" type="text">
 				</div>
 				<div class="form-group">
-					<label for = "email">Email: </label>
+					<label for = "email"><?php echo lang("email"); ?>:</label>
 					<input class="form-control input-sm chat-input" name="email" id="email" type="text">
 				</div>
 				<div class="form-group">
-					<label for = "password">Password: </label>
+					<label for = "password"><?php echo lang("password"); ?>:</label>
 					<input class="form-control input-sm chat-input" name="password" id="password" type="password">
 				</div>
 				<div class="form-group">
-					<label for = "username">Confirm password: </label>
+					<label for = "username"><?php echo lang("confirm_password"); ?>:</label>
 					<input class="form-control input-sm chat-input" name="password2" id="password2" type="password">
 				</div>
 				<div class="form-group">
-					<label for = "checkbox">By clicking this box you agree to our <a href="<?php echo base_url();?>index.php/Pages/tos">Terms of Service</a></label>
+					<label for = "checkbox"><?php echo lang("agree_terms"); ?> <a href="<?php echo base_url();?>index.php/Pages/tos"><?php echo lang("terms_agreeing"); ?></a></label>
 					<input class="form-control input-sm chat-input" name="agree_to_tos" id="agree_to_tos" type="checkbox">
 				</div>
 				<div class="text-center">
 					<button class="btn btn-primary btn-md" name = "register" value="register"> Register</button>
 				</div>
 			</form>
-			<a href="<?php echo base_url();?>index.php/Pages/login">Already a user? Login</a>
+			<a href="<?php echo base_url();?>index.php/Pages/login"><?php echo lang("already_user"); ?></a>
 		</div>
 	</div>
 

@@ -26,6 +26,14 @@
             <tr></tr>
             <td><?php echo ("User email: ".$_SESSION['user_email'])?></td>
             <tr></tr>
+			<td>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+				<script src="<?php echo base_url(); ?>js/huvid.js"></script>
+				<button id="lisaHuvi">Lisa</button>
+				<p id="huvid">Huvid: </p>
+				
+			</td>
+			<tr></tr>
 
         </tr>
     </table>

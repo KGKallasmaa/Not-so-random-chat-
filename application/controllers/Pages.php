@@ -120,7 +120,7 @@
             //echo "conversation id: ".$_SESSION['conversation_id'];
             $_SESSION['other_sender_id'] = $this->Message_model->get_other_id($_SESSION['my_sender_id'],$_SESSION['conversation_id']);
            // echo "other_sender_id: ".$_SESSION['other_sender_id'];
-            $_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
+            //$_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
             //load model
             $this->load->model('Auth_model');
 
