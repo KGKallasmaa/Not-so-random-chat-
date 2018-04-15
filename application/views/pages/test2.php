@@ -53,8 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<?php echo form_open('index.php/Message/send_message'); ?>
         <form action="" method="post" autocomplete="on" target="_top">
-            <textarea name="message" placeholder="Type to send a message ..."></textarea>
-            <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent">Send</button>
+            <textarea name="message" placeholder=<?php echo lang("type_to_send"); ?>></textarea>
+            <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=message_sent"><?php echo lang("send"); ?></button>
             <?php form_close();?>
         </form>
 
@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php } else{?>
 	<?php echo form_open('index.php/Auth/logout'); ?>
             <form action="" method="post" autocomplete="on" target="_top">
-                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure you want to logout?')">Log out</button>
+                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure you want to logout?')"><?php echo lang("log_out"); ?></button>
             </form>
             <?php form_close();?>
     <?php }?>
@@ -79,16 +79,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <p>Your opponents picture (we're working on it):></p>
 
 
-	<p>You're chatting with: <?php echo $_SESSION['other_sender_name'];?></p>
-    <p>Topic: <?php echo $_SESSION['topic']?></p>
+	<p><?php echo lang("chatting_with"); ?> <?php echo $_SESSION['other_sender_name'];?></p>
+    <p><?php echo lang("topic"); ?>: <?php echo $_SESSION['topic']?></p>
 
 	<form>
         <?php echo form_open('index.php/Message/next_chat'); ?>
-        <button class="btn btn-primary btn-md" name="next" type="submit" value=next">Next</button>
+        <button class="btn btn-primary btn-md" name="next" type="submit" value=next"><?php echo lang("next"); ?></button>
     </form>
         <br>
     <form>
-        <button class="btn btn-primary btn-md" name="save" type="submit" value=save">Save</button>
+        <button class="btn btn-primary btn-md" name="save" type="submit" value=save"><?php echo lang("save"); ?></button>
     </form>
 	<div id="gmap">
         <div id="map"></div>

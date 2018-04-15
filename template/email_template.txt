@@ -1,0 +1,7 @@
+Hello!
+
+Thank you for signing up to our webpage.
+Please click the below link to confirm your email address and continue to our website.
+
+Best regards,
+Rando team
