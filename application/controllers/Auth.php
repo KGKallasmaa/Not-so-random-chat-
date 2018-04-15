@@ -43,8 +43,7 @@ class Auth extends  CI_Controller{
                         $_SESSION['user_email'] = $email;
                         $_SESSION['user_name'] = $this->Auth_model->get_username($email);
                         $_SESSION['user_id'] = $this->Auth_model->get_userid($email);
-                        $_SESSION['user_picture'] = $this->Auth_model->get_userpicture_name( $_SESSION['user_id']);
-
+                        $_SESSION['user_picture'] = $this->Auth_model->get_userpicture_name($_SESSION['user_id']);
 
 
                      redirect( '/index.php/Pages/test2');
@@ -75,11 +74,21 @@ class Auth extends  CI_Controller{
         //was the logout button clicked?
         if ($this->input->post('logout') !== false) {
 
-            //loading the modle
+            //Log out from current chats
+            //loading the model
+            $this->load->model('Message_model');
+            $this->Message_model->log_out_from_chat($_SESSION['user_id'],$_SESSION['conversation_id']);
+
+
+
+            //loading the model
             $this->load->model('Auth_model');
 
+
             //set status
-            $this->Auth_model->set_status($_SESSION['user_email'],false);
+            $this->Auth_model->et_online_status($_SESSION['user_email'],false);
+
+            $this->Auth_model->set_chat_status($_SESSION['user_id'],false);
 
             $user_data = $this->session->all_userdata();
             foreach ($user_data as $key => $value) {
@@ -88,6 +97,9 @@ class Auth extends  CI_Controller{
                 }
             }
             $this->session->sess_destroy();
+
+
+
 
 
             redirect( '/','refresh');

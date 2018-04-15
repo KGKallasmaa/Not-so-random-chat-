@@ -38,7 +38,7 @@ class Auth_model extends CI_Model{
             'user_email' => $data['user_email'],
             'user_password'  => $data['user_password'],
             'user_password'  => $data['user_password'],
-            'user_picture' => $data['default']
+            'user_picture' => $data['user_picture']
         );
 
         $this->db->insert('users', $new_data);
@@ -73,7 +73,7 @@ class Auth_model extends CI_Model{
 
     }
 
-    function set_status($email, $value){
+    function set_online_status($email, $value){
         $this->db->set("user_online_status", $value);
         $this->db->where('user_email', $email);
         $this->db->update('users');
@@ -97,25 +97,64 @@ class Auth_model extends CI_Model{
         return $result['user_name'];
 
     }
-
-    function get_userpicture_name($user_id)
+    /*
+     * TODO: implement
+     *  function get_userpicture_name($user_id)
     {
         $this->db->select("user_picture");
         $this->db->where(array("user_id" => $user_id));
-        $query = $this->db->get('users');
+        echo "I'm here";
+        $this->db->from('users');
+        $query = $this->db->get();
+        if($query->num_rows() == 0){
+            return 'Nope';
+        }
         $result = $query->row_array();
         return $result['user_picture'];
 
     }
+     */
+    //TODO: shotgun surgery
+    function get_userpicture_name($user_id){
+        return "default.gif";
+    }
+
+    function set_chat_status($user_id,$new_status){
+        $sql = "call new_chat_status(?,?)";
+        $query = $this->db->query($sql,array($user_id,$new_status));
+    }
+
 
 
     function online_users()
     {
         $this->db->select("user_id");
-        $this->db->where(array("user_online_status'" => true));
+        $this->db->where(array("user_online_status" => true));
         $query = $this->db->get("users");
         $result = $query->row_array();
         return $result['user_id'];
     }
+
+    function number_of_users_online(){
+    $this->db->select("user_id");
+    $this->db->where(array("user_online_status" => true));
+    $query = $this->db->get("users");
+    return $query->num_rows();
+    }
+    function number_of_users_online_and_not_chating(){
+        $this->db->select("user_id");
+        $this->db->where(array("user_online_status" => true,"user_chat_status" => false));
+        $query = $this->db->get("users");
+        return $query->num_rows();
+    }
+
+    function number_of_registered_users()
+    {
+        $this->db->select("user_id");
+        $query = $this->db->get("users");
+        return $query->num_rows();
+    }
+
+
 
 }

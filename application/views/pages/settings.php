@@ -11,7 +11,7 @@
 <input type="file" id="uploadme" />
 <input type="button" id="clickme" value="Upload Stuff!" />
 
-//siia tuleb su nimi, email, pilt ning hobide loetelu
+
 
 <div class="table-responsive">
     <table class="table">

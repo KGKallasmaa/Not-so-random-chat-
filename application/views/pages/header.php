@@ -16,7 +16,10 @@ foreach($user_pref_langs as $idx => $lang) {
         $_SESSION["language"] = 'en';
     }
 }
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="<?php $_SESSION["language"] ?>" xml:lang="<?php $_SESSION["language"] ?>"">
 <head>

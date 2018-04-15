@@ -7,11 +7,12 @@
                 show_404();
             }
 
-            $header_data = $this->header_data();
+           // $header_data = $this->header_data();
 
 
             $this->load->helper('url');
-            $this->load->view('pages/header', $header_data);
+          //  $this->load->view('pages/header', $header_data);
+             $this->load->view('pages/header');
             $this->load->view('pages/'.$page, $data);
             $this->load->view('pages/footer', $data);
         }
@@ -100,45 +101,71 @@
             $this->load->model('Stat_model');
             return $this->Stat_model->get_users_data();
         }
+        function general_data(){
+            //load model
+            $this->load->model('Auth_model');
+            //load model
+            $this->load->model('Message_model');
+
+            $data = array(
+                'number_of_registered_users' => $this->Auth_model->number_of_registered_users(),
+                'number_of_users_currently_online' => $this->Auth_model->number_of_users_online(),
+                'number_of_chats_in_progress' => $this->Message_model->number_of_current_chats(),
+            );
+            return $data;
+
+        }
+        function chat_data(){
+            //load model
+            $this->load->model('Auth_model');
+            //load model
+            $this->load->model('Message_model');
+
+
+            $data = array(
+                'sender_1_name' => $this->Message_model->sender_names("1"),
+                'sender_2_name' => $this->Message_model->sender_names("2"),
+                'chat_topic' => $this->Message->chat_topics()
+            );
+            return $data;
+
+
+        }
         public function test2(){
             $this->load->view('pages/header');
             //load model
             $this->load->model('Message_model');
+
+            //load model
+            $this->load->model('Auth_model');
             //TODO
             if (isset($_SESSION['user_id'])){
                 $my_id = $_SESSION['user_id'];
+
+                $this->Auth_model->set_chat_status($my_id,true);
             }
             else{
-                //ToDO: if noone currently wais a partner, then yuo'll get a random userid, if they do, you'll not
+                //todo: if noone currently waits a partner, then you'll get a random userid, if they do, you'll not
                 $random = rand(1,PHP_INT_MAX);
                 $my_id = $random;
             }
 
             $_SESSION['my_sender_id'] = $my_id;
             $_SESSION['conversation_id'] = $this->Message_model->get_conversation_id($_SESSION['my_sender_id']);
-            //echo "my sender id: ".$_SESSION['my_sender_id'];
-            //echo "conversation id: ".$_SESSION['conversation_id'];
             $_SESSION['other_sender_id'] = $this->Message_model->get_other_id($_SESSION['my_sender_id'],$_SESSION['conversation_id']);
-           // echo "other_sender_id: ".$_SESSION['other_sender_id'];
             $_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
             //load model
             $this->load->model('Auth_model');
 
             //TODO: fix opponent picture this
 
-            /*
-             * if ($_SESSION['other_sender_id'] == null){
+
+            if ($_SESSION['other_sender_id'] == null){
                 $_SESSION['opponent_picture'] = "other.gif";
             }
             else{
                 $_SESSION['opponent_picture'] = $this->Auth_model->get_userpicture_name($_SESSION['other_sender_id']);
             }
-             */
-
-
-
-
-
 
 
             $this->load->view('pages/test2');
@@ -157,6 +184,8 @@
         public function stat(){
             $this->load->view('pages/header');
             $data['information'] =$this->stat_data();
+            $data['general_information'] =$this->general_data();
+            $data['chat_information'] =$this->chat_data();
             $this->load->view('pages/stat',$data);
             $this->load->view('pages/footer');
         }
