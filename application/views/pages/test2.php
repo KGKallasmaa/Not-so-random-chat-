@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </div>
 
-<div class = ".col-xs-6 .col-md-4">
+    <div class = ".col-xs-6 .col-md-4">
 	<?php echo form_open('index.php/Auth/logout'); ?>
             <form action="" method="post" autocomplete="on" target="_top">
                 <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure you want to logout?')"><?php echo lang("log_out"); ?></button>
@@ -77,6 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php echo form_open('index.php/Message/next_chat'); ?>
         <button class="btn btn-primary btn-md" name="next" type="submit" value=next"><?php echo lang("next"); ?></button>
     </form>
+
         <br>
     <form>
         <button class="btn btn-primary btn-md" name="save" type="submit" value=save"><?php echo lang("save"); ?></button>
