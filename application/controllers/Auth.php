@@ -117,7 +117,7 @@ class Auth extends  CI_Controller{
 
             $this->form_validation->set_rules('username', 'Username', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
             $this->form_validation->set_rules('password2', 'Confirm Password', 'required|matches[password]');
             $this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'required');
 

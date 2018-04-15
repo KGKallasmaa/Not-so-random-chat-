@@ -15,13 +15,16 @@
 			<form action="" method="post" autocomplete="on" target="_top" accept-charset="utf-8">
 				<div class="form-group">
 					<label for = "username">Nickname: </label>
-					<input class="form-control input-sm chat-input" name="username" id="username" type="text">
+                    <img src="<?php echo base_url();?>images/tooltip.ico" title="Be creative"/>
+                    <input class="form-control input-sm chat-input" name="username" id="username" type="text">
 				</div>
 				<div class="form-group">
 					<label for = "email">Email: </label>
+                    <img src="<?php echo base_url();?>images/tooltip.ico" title="10 minute email is fine"/>
 					<input class="form-control input-sm chat-input" name="email" id="email" type="text">
 				</div>
 				<div class="form-group">
+                    <img src="<?php echo base_url();?>images/tooltip.ico" title="minimum 6 characters"/>
 					<label for = "password">Password: </label>
 					<input class="form-control input-sm chat-input" name="password" id="password" type="password">
 				</div>
