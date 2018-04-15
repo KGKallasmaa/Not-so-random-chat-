@@ -39,7 +39,7 @@ class Message_model extends CI_Model
            //Joining excising chat
            $suitable_conversation_id = $this->chat_to_join($my_id);
            $sender_1 = $this->get_other_id($my_id,$suitable_conversation_id);
-           sleep(5);
+         //  sleep(5);
            $query = $this->db->query($sql,array($suitable_conversation_id,$sender_1,$my_id));
 
            return $suitable_conversation_id;
@@ -85,16 +85,32 @@ class Message_model extends CI_Model
       // $sql = "call member_add(?,?,?)";
       // $execute = $this->db->query($sql, array('irfan','ashraf','email.com'));
    }
-   function get_other_name ($other_sender_id){
+
+    //TODO: fix this
+    /*
+     *
+     *  function get_other_name ($other_sender_id){
         if ($other_sender_id == null){
-            return 'Rando, the ultimate user(the user has not registered yet)';
+            return 'Rando, the ultimate user(user_id = null)';
         }
         //return "tere";
+       //do we have that id in the database?
+       //load model
+       $this->load->model('Auth_model');
+
+
+       if ($this->Auth_model-> get_userpicture_name($other_sender_id) == "Nope"){
+           return 'Brandon, the almost ultimate user(user not in db)';
+       }
         $sql = "call other_name(?)";
         $query = $this->db->query($sql,array($other_sender_id));
         $result = $query->row_array();
         return $result['user_name'];
    }
+     */
+    function get_other_name ($other_sender_id){
+        return "Broken";
+    }
 
     function save_message(){
         //is the user logged in?
@@ -124,6 +140,33 @@ class Message_model extends CI_Model
         //redirecting the user back to chat screen
         //TODO: implement special login and save
         redirect( '/index.php/Pages/test2');
+    }
+
+    function number_of_current_chats(){
+    $this->db->select("conversation_id");
+    $query = $this->db->get("current_chats");
+    return $query->num_rows();
+    }
+
+    function log_out_from_chat($sender_id){
+        $sql = "call log_out_from_chat(?)";
+        $query = $this->db->query($sql,array($sender_id));
+    }
+    function sender_names($type){
+        //type = sender1 or sender2
+        $sql = "call sender_names()";
+        $query = $this->db->query($sql,array());
+        $result = $query->row_array(); //sender1, sender_1_name, sender2, sender_2_name
+        if($type == "1"){
+            return $result['sender_2_name'];
+        }
+        return $result['sender_1_name'];
+    }
+    function chat_topics(){
+        $this->db->select("chat_topic");
+        $query = $this->db->get("current_chats");
+        $result = $query->row_array();
+        return $result['chat_topic'];
     }
 
 

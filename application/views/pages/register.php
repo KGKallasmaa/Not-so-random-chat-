@@ -24,8 +24,8 @@
 					<input class="form-control input-sm chat-input" name="email" id="email" type="text">
 				</div>
 				<div class="form-group">
-                    <img src="<?php echo base_url();?>images/tooltip.ico" title="minimum 6 characters"/>
 					<label for = "password">Password: </label>
+                    <img src="<?php echo base_url();?>images/tooltip.ico" title="minimum 6 characters"/>
 					<input class="form-control input-sm chat-input" name="password" id="password" type="password">
 				</div>
 				<div class="form-group">

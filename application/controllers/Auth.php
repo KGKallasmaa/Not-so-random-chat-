@@ -36,7 +36,7 @@ class Auth extends  CI_Controller{
 
 
                         //changing the user online status on database from false to true
-                        $this->Auth_model->set_status($email,true);
+                        $this->Auth_model->set_online_status($email,true);
 
                         //SUCCESS!;
                         $_SESSION['logged_in'] = true;
@@ -77,7 +77,7 @@ class Auth extends  CI_Controller{
             //Log out from current chats
             //loading the model
             $this->load->model('Message_model');
-            $this->Message_model->log_out_from_chat($_SESSION['user_id'],$_SESSION['conversation_id']);
+            $this->Message_model->log_out_from_chat($_SESSION['user_id']);
 
 
 
@@ -86,7 +86,7 @@ class Auth extends  CI_Controller{
 
 
             //set status
-            $this->Auth_model->et_online_status($_SESSION['user_email'],false);
+            $this->Auth_model->set_online_status($_SESSION['user_email'],false);
 
             $this->Auth_model->set_chat_status($_SESSION['user_id'],false);
 
@@ -97,9 +97,6 @@ class Auth extends  CI_Controller{
                 }
             }
             $this->session->sess_destroy();
-
-
-
 
 
             redirect( '/','refresh');
