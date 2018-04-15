@@ -6,12 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <title>Rando||Chat</title>
 <meta name="description" content="Chatting with random people is as easy as 1,2,3">
 
-<div class="nav_bar">
-    <button onclick="location.href='<?php echo base_url();?>index.php/Pages/history'" id="chat_history">History</button>
-    <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="chat_main">Chat</button>
-    <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings">Settings</button>
-</div>
-
 <div class="row">
 <div class = ".col-xs-12 .col-md-8">
 <?php
@@ -91,4 +85,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </script>
 	</div>
 </div>
-
+</div>
