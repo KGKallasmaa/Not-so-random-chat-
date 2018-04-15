@@ -29,7 +29,6 @@ $user_pref_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
     <link rel ="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/chatapp.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/landing.css" type="text/css">
-
 </head>
 <body>
 <div class = "container">
