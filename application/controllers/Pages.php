@@ -162,11 +162,13 @@
         }
         public function history(){
             $this->load->view('pages/header');
+			$this->load->view('pages/nav_bar');
             $this->load->view('pages/history');
             $this->load->view('pages/footer');
         }
         public function settings(){
             $this->load->view('pages/header');
+			$this->load->view('pages/nav_bar');
             $this->load->view('pages/settings');
             $this->load->view('pages/footer');
         }
@@ -180,12 +182,10 @@
             $this->load->view('pages/login');
             $this->load->view('pages/footer');
         }
-		public function test(){
-            $this->load->view('pages/test');
-        }
-		
+
 		public function chat(){
             $this->load->view('pages/header');
+			$this->load->view('pages/nav_bar');
             $this->load->view('pages/test2');
             $this->load->view('pages/footer');
         }
