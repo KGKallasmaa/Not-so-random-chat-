@@ -1,3 +1,4 @@
+<html>
 <title>Rando||Setting</title>
 <meta name="description" content="Customise your user experience">
 
@@ -7,16 +8,22 @@
     <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="chat_main">Chat</button>
     <button onclick="location.href='<?php echo base_url();?>index.php/Pages/settings'" id="chat_settings">Settings</button>
 </div>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
+<!DOCTYPE html>
+
 
 //siia tuleb su nimi, email, pilt ning hobide loetelu
 
 <div class="table-responsive">
     <table class="table">
+        <!DOCTYPE html>
+
+        <body>
+        <form action="<?php echo base_url();?>upload/upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload image" name="submit">
+        </form>
+        </body>
 
         <tr>
             <td><img src="<?php echo base_url('images/profile_pictures/'.$_SESSION['user_picture']);?> ?> alt="Profile_picture" /></td>
@@ -30,3 +37,4 @@
         </tr>
     </table>
 </div>
+</html>
