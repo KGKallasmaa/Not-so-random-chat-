@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
+	<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/bootstrap.bundle.js"></script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
