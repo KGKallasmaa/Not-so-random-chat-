@@ -86,6 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php echo form_open('index.php/Message/next_chat'); ?>
         <button class="btn btn-primary btn-md" name="next" type="submit" value=next"><?php echo lang("next"); ?></button>
     </form>
+
         <br>
     <form>
         <button class="btn btn-primary btn-md" name="save" type="submit" value=save"><?php echo lang("save"); ?></button>
@@ -98,5 +99,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXFGiuUMrmP1Gm9jn4FcbgSnX9ZwD0Aa0&callback=initMap">
     </script>
 	</div>
+</div>
 </div>
 

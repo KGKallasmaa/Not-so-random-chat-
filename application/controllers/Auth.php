@@ -46,7 +46,7 @@ class Auth extends  CI_Controller{
                         $_SESSION['user_picture'] = $this->Auth_model->get_userpicture_name($_SESSION['user_id']);
 
 
-                     redirect( '/index.php/Pages/test2');
+                     redirect( '/index.php/Pages/chat');
                       //  $this->load->view('pages/login');
 
                     }
