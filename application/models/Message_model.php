@@ -130,6 +130,7 @@ class Message_model extends CI_Model
         if ($other_sender_id == null){
             return 'Rando, the ultimate user(user_id = null)';
         }
+        $pointless_var = 4;
         $sql = "call other_name(?)";
         $query = $this->db->query($sql,array($other_sender_id));
         mysqli_next_result($this->db->conn_id);
