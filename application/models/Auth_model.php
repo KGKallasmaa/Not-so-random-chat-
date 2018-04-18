@@ -96,7 +96,6 @@ class Auth_model extends CI_Model{
         $this->db->set("user_online_status", $value);
         $this->db->where('user_email', $email);
         $this->db->update('users');
-
     }
     function get_userid($email){
         $this->db->select("user_id");

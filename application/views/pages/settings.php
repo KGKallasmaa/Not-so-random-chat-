@@ -6,9 +6,6 @@
 
 <!DOCTYPE html>
 
-
-
-
 <div class="table-responsive">
     <table class="table">
         <!DOCTYPE html>

@@ -1,17 +1,18 @@
 <?php
 
-$lang['welcome_message'] = 'Tere tulemast Randosse';
+$lang['welcome_message'] = 'Tere tulemast Randosse!';
 $lang['login'] = 'Logi sisse';
-$lang['chat'] = 'Vestlus';
+$lang['chat'] = 'Vestle';
 $lang['register'] = 'Registreeri';
 
-$lang['about'] = 'meist';
-$lang['terms'] = 'kasutustingimused';
-$lang['statistic'] = 'statistika';
+$lang['about'] = 'Meist';
+$lang['terms'] = 'Kasutustingimused';
+$lang['statistic'] = 'sSatistika';
 
 $lang['welcome_back'] = 'Tere tulemast tagasi Randosse';
 $lang['email'] = 'Email';
-$lang['password'] = 'Password';
+$lang['nickname'] = 'Hüüdnimi';
+$lang['password'] = 'Parool';
 $lang['confirm_password'] = 'Kinnita parool';
 $lang['not_a_user'] = 'Ei ole veel kasutaja? Registreeri';
 $lang['already_user'] = 'Olete juba kasutaja? Logi sisse';

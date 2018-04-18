@@ -10,6 +10,7 @@ $lang['terms'] = 'Terms of service';
 $lang['statistic'] = 'Statistics';
 
 $lang['welcome_back'] = 'Welcome back to Rando';
+$lang['nickname'] = 'Nickname';
 $lang['email'] = 'Email';
 $lang['password'] = 'Password';
 $lang['confirm_password'] = 'Confirm password';

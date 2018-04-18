@@ -9,7 +9,6 @@
 
            // $header_data = $this->header_data();
 
-
             $this->load->helper('url');
           //  $this->load->view('pages/header', $header_data);
              $this->load->view('pages/header');
@@ -141,21 +140,21 @@
             //TODO
             if (isset($_SESSION['user_id'])){
                 $my_id = $_SESSION['user_id'];
-
                 $this->Auth_model->set_chat_status($my_id,true);
+
             }
             else{
-                //todo: if noone currently waits a partner, then you'll get a random userid, if they do, you'll not
                 $random = rand(1,PHP_INT_MAX);
                 $my_id = $random;
             }
-
+            echo "Hi";
             $_SESSION['my_sender_id'] = $my_id;
             $_SESSION['conversation_id'] = $this->Message_model->get_conversation_id($_SESSION['my_sender_id']);
             $_SESSION['other_sender_id'] = $this->Message_model->get_other_id($_SESSION['my_sender_id'],$_SESSION['conversation_id']);
             $_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
            // echo "other_sender_id: ".$_SESSION['other_sender_id'];
-            //$_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
+        //    $_SESSION['other_sender_name'] = $this->Message_model->get_other_name($_SESSION['other_sender_id']);
+
             //load model
             $this->load->model('Auth_model');
 

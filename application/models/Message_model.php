@@ -31,24 +31,43 @@ class Message_model extends CI_Model
        if (isset($_SESSION['conversation_id'])){
            return $_SESSION['conversation_id'];
        }
-       //should I join an excisting chat?
+       //1. Joining excisting chat
+       $chat_line = $this->chat_line();
+       if (!empty($chat_line)){
+            //setting myself as sender_1 or sender_2
+           $data = array(
+               'conversation_id' => $chat_line['conversation_id'],
+           );
+           if ($chat_line['sender_1'] == null){
+               //TODO: implement procedure
+               $data['sender_1'] = $my_id;
+           }
+           else{
+               $data['sender_2'] = $my_id;
+           }
 
-       $random = rand(0,1);
-       $sql = "call add_current_chat(?,?,?)";
-       if ($random >= 0.5){
-           //Joining excising chat
-           $suitable_conversation_id = $this->chat_to_join($my_id);
-           $sender_1 = $this->get_other_id($my_id,$suitable_conversation_id);
-         //  sleep(5);
-           $query = $this->db->query($sql,array($suitable_conversation_id,$sender_1,$my_id));
-
-           return $suitable_conversation_id;
+           $this->db->insert('current_chats', $data);
+           return $chat_line['conversation_id'];
        }
-       //Generating new chat id
-       $random = rand(1,PHP_INT_MAX);
+
+       //grating new chat
+
+       $conversation_id = rand(1,PHP_INT_MAX);
        //insert it into the db
-       $query = $this->db->query($sql,array($random,$my_id,null));
-       return $random;
+       //TODO: implement procedure
+       $data = array(
+           'conversation_id' => $conversation_id,
+           'sender_1' => $my_id,
+           'sender_2' => null,
+       );
+      // $query->next_result();
+      // $query->free_result();
+       echo "I'm here";
+       $sql = "call add_current_chat(?,?,?)";
+
+       $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
+
+       return $conversation_id;
    }
 
    public function print_conversation($conversation_id){
@@ -65,13 +84,17 @@ class Message_model extends CI_Model
             fclose($file);
         }
    }
-   function chat_to_join($my_id){
+
+
+   /*
+    *  function chat_to_join($my_id){
        $sql = "call chat_to_join(?)";
        $query = $this->db->query($sql,array($my_id));
        $result = $query->row_array();
        return $result['conversation_id'];
 
    }
+    */
    function get_other_id($my_id,$conversation_id){
        $sql = "call other_id(?,?)";
        $query = $this->db->query($sql,array($my_id,$conversation_id));
@@ -80,10 +103,6 @@ class Message_model extends CI_Model
             return $result['sender_2'];
        }
        return $result['sender_1'];
-
-
-      // $sql = "call member_add(?,?,?)";
-      // $execute = $this->db->query($sql, array('irfan','ashraf','email.com'));
    }
 
     //TODO: fix this
@@ -167,6 +186,15 @@ class Message_model extends CI_Model
         $query = $this->db->get("current_chats");
         $result = $query->row_array();
         return $result['chat_topic'];
+    }
+
+    function chat_line(){
+        //select 1 chat, where sender1 or sender 2 is null
+        //returns conversation_id, sender_1, sender_2
+
+        $sql = "call chat_line()";
+        $query = $this->db->query($sql,array());
+        return $query->row_array();
     }
 
 

@@ -2,8 +2,6 @@
 <title>Rando||Register</title>
 <meta name="description" content="Signing up for a chat app has never been easier">
 
-
-
 <div class="row">
 	<div class="col-md-offset-5 col-md-3">
 		<div class="form-login">
@@ -15,14 +13,11 @@
 			<form action="" method="post" autocomplete="on" target="_top" accept-charset="utf-8">
 				<div class="form-group">
 					<label for = "username"><?php echo lang("nickname"); ?>:</label>
-					<input class="form-control input-sm chat-input" name="username" id="username" type="text">
-					<label for = "username">Nickname: </label>
                     <img src="<?php echo base_url();?>images/tooltip.ico" title="Be creative"/>
                     <input class="form-control input-sm chat-input" name="username" id="username" type="text">
 				</div>
 				<div class="form-group">
 					<label for = "email"><?php echo lang("email"); ?>:</label>
-					<label for = "email">Email: </label>
                     <img src="<?php echo base_url();?>images/tooltip.ico" title="10 minute email is fine"/>
 					<input class="form-control input-sm chat-input" name="email" id="email" type="text">
 				</div>
