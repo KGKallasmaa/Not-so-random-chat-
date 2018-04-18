@@ -1,6 +1,7 @@
 <title>Rando||Statistics</title>
 <meta name="description" content="Who are our user and what are they up do?">
 
+
 <div>
     <h2>General user statistics</h2>
     <p> Number of registered users  <?php echo $general_information['number_of_registered_users'] ?></p>
@@ -9,18 +10,24 @@
 </div>
 
 <div>
-    <h2>Current chats between registered users</h2>
+
+    <?php
+    /*
+     * <h2>Current chats between registered users</h2>
     <tr>
         <th>sender_1_name</th>
         <th>topic</th>
         <th>sender_2_name</th>
-    <tr>
+     <tr>
         <?php foreach ($chat_information as $row) { ?>
         <td><?php echo $row->sender_1_name; ?></td>
         <td><?php echo $row->chat_topic; ?></td>
         <td><?php echo $row->sender_2_name; ?></td>
     <tr> </tr>
     <?php } ?>
+     */
+    ?>
+
     </tr>
 </div>
 

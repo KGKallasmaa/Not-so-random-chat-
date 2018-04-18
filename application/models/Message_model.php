@@ -61,7 +61,6 @@ class Message_model extends CI_Model
        );
       // $query->next_result();
       // $query->free_result();
-       echo "I'm here";
       // $sql = "call add_current_chat(?,?,?)";
       // $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
        $this->db->insert('current_chats', $data);
@@ -130,8 +129,10 @@ class Message_model extends CI_Model
         if ($other_sender_id == null){
             return 'Rando, the ultimate user(user_id = null)';
         }
-        $pointless_var = 4;
-        $sql = "call other_name(?)";
+        return ("DROP TABLE");
+        //TODO
+        /*
+         * $sql = "call other_name(?)";
         $query = $this->db->query($sql,array($other_sender_id));
         mysqli_next_result($this->db->conn_id);
         $result = $query->result();
@@ -140,6 +141,8 @@ class Message_model extends CI_Model
         $query->free_result();
 
         return $result['user_name'];
+         */
+
     }
 
     function save_message(){
@@ -182,12 +185,19 @@ class Message_model extends CI_Model
         $sql = "call log_out_from_chat(?)";
         $query = $this->db->query($sql,array($sender_id));
         mysqli_next_result($this->db->conn_id);
-        return $query->row_array();
+        $result = $query->result();
+
+        $query->next_result();
+        $query->free_result();
+        return $result;
     }
     function sender_names($type){
         //type = sender1 or sender2
         $sql = "call sender_names()";
         $query = $this->db->query($sql,array());
+
+        mysqli_next_result($this->db->conn_id);
+
         $result = $query->row_array(); //sender1, sender_1_name, sender2, sender_2_name
         if($type == "1"){
             return $result['sender_2_name'];
@@ -198,7 +208,8 @@ class Message_model extends CI_Model
         $this->db->select("chat_topic");
         $query = $this->db->get("current_chats");
         $result = $query->row_array();
-        return $result['chat_topic'];
+        return $result["chat_topic"];
+
     }
 
     function chat_line(){

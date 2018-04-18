@@ -124,7 +124,7 @@
             $data = array(
                 'sender_1_name' => $this->Message_model->sender_names("1"),
                 'sender_2_name' => $this->Message_model->sender_names("2"),
-                'chat_topic' => $this->Message->chat_topics()
+                'chat_topic' => $this->Message_model->chat_topics()
             );
             return $data;
 
