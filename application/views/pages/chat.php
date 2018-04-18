@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     ?>
     <!-- -->
 	<?php if (isset($_SESSION['conversation_id'])){
-       echo "<h3>"."Your conversationID is: ".$_SESSION['conversation_id']."</h3>";
+       echo "<h3>".lang("Your conversationID is:").$_SESSION['conversation_id']."</h3>";
     }?>
 
         <?php

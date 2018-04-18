@@ -14,7 +14,6 @@ class Message extends  CI_Controller{
                     $random = rand(1,PHP_INT_MAX);
                     $_SESSION['user_name'] = "Unregistered user(".$random.")";
                 }
-
             }
 
             //Is this the first message in this conversation?
@@ -24,16 +23,15 @@ class Message extends  CI_Controller{
                 'message' => $_POST['message'],
                 'sender_name' =>$_SESSION['user_name'],
             );
-            
 
             //Adding message to the conversation db
             $this->Message_model->post_message($data);
 
         }
         else{
-            $this->load->view('pages/test2');
+            redirect( '/index.php/Pages/chat','refresh');
         }
-        $this->load->view('pages/test2');
+        $this->load->view('pages/chat');
 
 
 

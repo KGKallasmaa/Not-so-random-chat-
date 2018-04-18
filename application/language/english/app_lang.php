@@ -11,6 +11,8 @@ $lang['statistic'] = 'Statistics';
 
 $lang['welcome_back'] = 'Welcome back to Rando';
 $lang['nickname'] = 'Nickname';
+$lang['Your conversationID is:'] = 'Your conversationID is:';
+
 $lang['email'] = 'Email';
 $lang['password'] = 'Password';
 $lang['confirm_password'] = 'Confirm password';

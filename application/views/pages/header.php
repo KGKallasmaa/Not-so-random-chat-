@@ -2,7 +2,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+/*
 //Adding lanuage information
+
 $known_langs = array('en','et'); //English+Estonian
 //More information: https://www.w3schools.com/tags/ref_language_codes.asp
 $user_pref_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
@@ -16,9 +18,11 @@ foreach($user_pref_langs as $idx => $lang) {
         $_SESSION["language"] = 'en';
     }
 }
+*/
 ?>
+
 <!DOCTYPE html>
-<html lang="<?php $_SESSION["language"] ?>" xml:lang="<?php $_SESSION["language"] ?>"">
+<html lang="<?php if($this->session->userdata('site_lang')) ?>" xml:lang="<?php if($this->session->userdata('site_lang')) ?>"">
 <head>
     <meta name="description" content="Rando is the greatest free messaging application for random people.">
     <meta name="authors" content="Fred Kasemaa, Paul Pung and Karl-Gustav Kallasmaa">
@@ -29,6 +33,9 @@ foreach($user_pref_langs as $idx => $lang) {
     <link rel ="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/chatapp.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/landing.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/register.css" type="text/css">
+
+
 </head>
 <body>
 <div class = "container">

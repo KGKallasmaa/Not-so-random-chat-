@@ -45,7 +45,6 @@ class Message_model extends CI_Model
            else{
                $data['sender_2'] = $my_id;
            }
-
            $this->db->insert('current_chats', $data);
            return $chat_line['conversation_id'];
        }
@@ -63,9 +62,9 @@ class Message_model extends CI_Model
       // $query->next_result();
       // $query->free_result();
        echo "I'm here";
-       $sql = "call add_current_chat(?,?,?)";
-
-       $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
+      // $sql = "call add_current_chat(?,?,?)";
+      // $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
+       $this->db->insert('current_chats', $data);
 
        return $conversation_id;
    }
@@ -128,7 +127,18 @@ class Message_model extends CI_Model
    }
      */
     function get_other_name ($other_sender_id){
-        return "Broken";
+        if ($other_sender_id == null){
+            return 'Rando, the ultimate user(user_id = null)';
+        }
+        $sql = "call other_name(?)";
+        $query = $this->db->query($sql,array($other_sender_id));
+        mysqli_next_result($this->db->conn_id);
+        $result = $query->result();
+
+        $query->next_result();
+        $query->free_result();
+
+        return $result['user_name'];
     }
 
     function save_message(){
@@ -170,6 +180,8 @@ class Message_model extends CI_Model
     function log_out_from_chat($sender_id){
         $sql = "call log_out_from_chat(?)";
         $query = $this->db->query($sql,array($sender_id));
+        mysqli_next_result($this->db->conn_id);
+        return $query->row_array();
     }
     function sender_names($type){
         //type = sender1 or sender2
@@ -194,7 +206,9 @@ class Message_model extends CI_Model
 
         $sql = "call chat_line()";
         $query = $this->db->query($sql,array());
+        mysqli_next_result($this->db->conn_id);
         return $query->row_array();
+
     }
 
 

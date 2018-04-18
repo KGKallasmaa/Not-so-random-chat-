@@ -1,11 +1,5 @@
-
-
 <title>Rando||Login</title>
 <meta name="description" content="Login to have a more tailored experience">
-
-<?php if (session_status() == PHP_SESSION_NONE) {
-session_start();
-} ?>
 
 
 <div class="row center-text">

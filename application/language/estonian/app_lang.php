@@ -23,6 +23,8 @@ $lang['history'] = 'Ajalugu';
 $lang['settings'] = 'Seaded';
 $lang['log_out'] = 'Logi välja';
 
+$lang['Your conversationID is:'] = 'Sinu vestluse id on:';
+
 $lang['send'] = 'Saada';
 $lang['type_to_send'] = 'kirjuta, et saata sõnum ...';
 $lang['topic'] = 'Teema';
