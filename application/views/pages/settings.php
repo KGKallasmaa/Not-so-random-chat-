@@ -29,10 +29,12 @@
 			<td>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 				<script src="<?php echo base_url(); ?>js/huvid.js"></script>
-				<input id ="huvi" type = "text" name="huvi">
-				<button id="lisaHuvi">Lisa</button>
-				<p id="huvid">Huvid: </p>
-				
+				<input id ="interest" type = "text" name="interest">
+				<button id="addInterest">Lisa</button>
+				<div id ="interestLine"><p>Huvid: </p></div>
+				<br>
+				<button id="save">save</button>
+				<p id="demo">demo:</p>
 			</td>
 			<tr></tr>
 
