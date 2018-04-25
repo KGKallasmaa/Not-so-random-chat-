@@ -101,9 +101,8 @@
             return $this->Stat_model->get_users_data();
         }
         function general_data(){
-            //load model
+            //load models
             $this->load->model('Auth_model');
-            //load model
             $this->load->model('Message_model');
 
             $data = array(
@@ -133,14 +132,13 @@
         public function chat(){
             $this->load->view('pages/header');
             $this->load->view('pages/nav_bar');
-            //load model
+            //load models
             $this->load->model('Message_model');
-            //load model
             $this->load->model('Auth_model');
             //TODO
             if (isset($_SESSION['user_id'])){
                 $my_id = $_SESSION['user_id'];
-                $this->Auth_model->set_chat_status($my_id,true);
+               // $this->Auth_model->set_chat_status($my_id,true);
             }
             else{
                 $random = rand(1,PHP_INT_MAX);

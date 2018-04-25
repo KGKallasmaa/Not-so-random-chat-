@@ -15,7 +15,7 @@
 			<form action="" method="post" autocomplete="on" target="_top" accept-charset="utf-8">
 				<div class="form-group">
 					<label for = "email"><?php echo lang("email"); ?>:</label>
-					<input class="form-control input-sm chat-input" name="email"type="text" placeholder=<?php echo lang("email"); ?>>
+					<input class="form-control input-sm chat-input" name="email"type="text" placeholder=<?php echo lang("email"); ?> name="email" required>
 					<br>
 					<label for = "password"><?php echo lang("password"); ?>:</label>
 					<input class="form-control input-sm chat-input" name="password" type="password" placeholder=<?php echo lang("password"); ?>>

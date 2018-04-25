@@ -8,20 +8,36 @@ class Message_model extends CI_Model
         parent::__construct();
     }
 
-   public function post_message($data){
-        //TODO
-       if (isset($_SESSION['conversation_id'])){
-           //creating new file
-           $file_name = strval($_SESSION['conversation_id'].".txt");
+   public function post_message(){
+       //TODO
+       if (isset($_SESSION['conversation_id'])) {
+           $data[] = array($_SESSION['user_name'], time(), $_POST['message']);
 
-           // echo $file_name;
+           $file_location = 'application/conversations/' . $_SESSION['conversation_id'] . '.json';
 
-           $handle = fopen("application/conversations/".$file_name, 'a') or die('Cannot open file:  '.$file_name);
-           $message_to_be_written = strval($data['sender_name']." (".date("Y-m-d h:i:sa")."):   ".$data['message']."\n");
-           fwrite($handle, $message_to_be_written);
-           fclose($handle);
+           if (!file_exists($file_location)) {
+               fopen($file_location, "w");
+           } else {
+               $current_data = file_get_contents($file_location);
+               $array_data = json_decode($current_data, true);
+
+
+               $profile_pic =  "<img src=".base_url('images/profile_pictures/'.$_SESSION['user_picture'])."width=\"40\" height=\"40\" />";
+
+
+                   $extra = array(
+               //    <img src="<?php echo base_url('images/profile_pictures/'.$_SESSION['user_picture']
+
+                   'sender_picture' => $profile_pic,
+                   'sender' => $_SESSION['user_name'],
+                   'message' => $_POST["message"]
+               );
+               $array_data[] = $extra;
+               $final_data = json_encode($array_data);
+
+               file_put_contents($file_location, $final_data);
+           }
        }
-
    }
 
    public function get_conversation_id($my_id)
@@ -31,7 +47,7 @@ class Message_model extends CI_Model
        if (isset($_SESSION['conversation_id'])){
            return $_SESSION['conversation_id'];
        }
-       //1. Joining excisting chat
+       //1. Joining excising chat
        $chat_line = $this->chat_line();
        if (!empty($chat_line)){
             //setting myself as sender_1 or sender_2
@@ -39,13 +55,15 @@ class Message_model extends CI_Model
                'conversation_id' => $chat_line['conversation_id'],
            );
            if ($chat_line['sender_1'] == null){
-               //TODO: implement procedure
                $data['sender_1'] = $my_id;
            }
            else{
                $data['sender_2'] = $my_id;
            }
-           $this->db->insert('current_chats', $data);
+
+           $sql = "call add_current_chat(?,?,?)";
+           $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
+        //   $this->db->insert('current_chats', $data);
            return $chat_line['conversation_id'];
        }
 
@@ -61,9 +79,9 @@ class Message_model extends CI_Model
        );
       // $query->next_result();
       // $query->free_result();
-      // $sql = "call add_current_chat(?,?,?)";
-      // $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
-       $this->db->insert('current_chats', $data);
+       $sql = "call add_current_chat(?,?,?)";
+       $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
+      // $this->db->insert('current_chats', $data);
 
        return $conversation_id;
    }
@@ -104,9 +122,9 @@ class Message_model extends CI_Model
    }
 
     //TODO: fix this
-    /*
-     *
-     *  function get_other_name ($other_sender_id){
+
+
+     function get_other_name ($other_sender_id){
         if ($other_sender_id == null){
             return 'Rando, the ultimate user(user_id = null)';
         }
@@ -119,31 +137,15 @@ class Message_model extends CI_Model
        if ($this->Auth_model-> get_userpicture_name($other_sender_id) == "Nope"){
            return 'Brandon, the almost ultimate user(user not in db)';
        }
+         mysqli_next_result( $this->db->conn_id);
         $sql = "call other_name(?)";
         $query = $this->db->query($sql,array($other_sender_id));
+
         $result = $query->row_array();
         return $result['user_name'];
    }
-     */
-    function get_other_name ($other_sender_id){
-        if ($other_sender_id == null){
-            return 'Rando, the ultimate user(user_id = null)';
-        }
-        return ("DROP TABLE");
-        //TODO
-        /*
-         * $sql = "call other_name(?)";
-        $query = $this->db->query($sql,array($other_sender_id));
-        mysqli_next_result($this->db->conn_id);
-        $result = $query->result();
 
-        $query->next_result();
-        $query->free_result();
 
-        return $result['user_name'];
-         */
-
-    }
 
     function save_message(){
         //is the user logged in?
@@ -183,13 +185,14 @@ class Message_model extends CI_Model
 
     function log_out_from_chat($sender_id){
         $sql = "call log_out_from_chat(?)";
-        $query = $this->db->query($sql,array($sender_id));
         mysqli_next_result($this->db->conn_id);
-        $result = $query->result();
+        $query = $this->db->query($sql,array($sender_id));
+      //  mysqli_next_result($this->db->conn_id);
+       // $result = $query->result();
 
-        $query->next_result();
-        $query->free_result();
-        return $result;
+      //  $query->next_result();
+     //   $query->free_result();
+     //   return $result;
     }
     function sender_names($type){
         //type = sender1 or sender2
@@ -213,13 +216,11 @@ class Message_model extends CI_Model
     }
 
     function chat_line(){
-        //select 1 chat, where sender1 or sender 2 is null
-        //returns conversation_id, sender_1, sender_2
-
         $sql = "call chat_line()";
         $query = $this->db->query($sql,array());
-        mysqli_next_result($this->db->conn_id);
-        return $query->row_array();
+        mysqli_next_result( $this->db->conn_id);
+        $res = $query->row_array();
+        return $res;
 
     }
 

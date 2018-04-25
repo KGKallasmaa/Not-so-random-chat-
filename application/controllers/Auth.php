@@ -21,19 +21,17 @@ class Auth extends  CI_Controller{
             $this->form_validation->set_rules('password', 'Password', 'required');
 
                 if ($this->form_validation->run() !== FALSE){
-
                     //load model
                     $this->load->model('Auth_model');
 
-                //input variables
-                $email = $this->input->post('email');
-                $password = $this->input->post('password');
+                    //input variables
+                    $email = $this->input->post('email');
+                    $password = $this->input->post('password');
 
-                //1. do we have that email?
-                if ($this->Auth_model->contains_email($email) == true) {
-                    //2. is the password correct?
-                    if ($this->Auth_model->password_correct($email, md5($password)) == true) {
-
+                    //1. do we have that email?
+                    if ($this->Auth_model->contains_email($email) == true) {
+                        //2. is the password correct?
+                        if ($this->Auth_model->password_correct($email, md5($password)) == true) {
 
                         //changing the user online status on database from false to true
                         $this->Auth_model->set_online_status($email,true);
@@ -46,28 +44,19 @@ class Auth extends  CI_Controller{
                         $_SESSION['user_picture'] = $this->Auth_model->get_userpicture_name($_SESSION['user_id']);
 
 
-                     redirect( '/index.php/Pages/chat');
-                      //  $this->load->view('pages/login');
-
+                        redirect( '/index.php/Pages/chat');
                     }
                     $this->session->set_flashdata('error', 'Incorrect password');
-                    $this->load->view('pages/login');
-              //      redirect( '/index.php/Pages/login','refresh');
-
+                        redirect( '/index.php/Pages/login');
                 }
                else{
-                   //   $this->session->set_flashdata('error','Username dose not exist');
                    redirect( '/index.php/Pages/register','refresh');
                }
             }
             else{
-                // validation not ok, send validation errors to the view
                 redirect( '/index.php/Pages/login');
-
                 }
-
         }
-
     }
 
     public function logout(){
@@ -78,7 +67,6 @@ class Auth extends  CI_Controller{
             //loading the model
             $this->load->model('Message_model');
             $this->Message_model->log_out_from_chat($_SESSION['user_id']);
-
 
 
             //loading the model

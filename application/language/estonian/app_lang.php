@@ -1,7 +1,7 @@
 <?php
 
 $lang['welcome_message'] = 'Tere tulemast Randosse!';
-$lang['login'] = 'Logi sisse';
+$lang['login'] = 'Meldi';
 $lang['chat'] = 'Vestle';
 $lang['register'] = 'Registreeri';
 
@@ -21,7 +21,7 @@ $lang['terms_agreeing'] = 'kasutustingimustega';
 
 $lang['history'] = 'Ajalugu';
 $lang['settings'] = 'Seaded';
-$lang['log_out'] = 'Logi välja';
+$lang['log_out'] = 'Meldi välja';
 
 $lang['Your conversationID is:'] = 'Sinu vestluse id on:';
 

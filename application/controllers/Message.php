@@ -2,6 +2,10 @@
 
 class Message extends  CI_Controller{
 
+    function __construct() {
+        parent::__construct();
+    }
+
     public function send_message(){
 
         if($this->input->post('message_sent')!== false){
@@ -26,6 +30,7 @@ class Message extends  CI_Controller{
 
             //Adding message to the conversation db
             $this->Message_model->post_message($data);
+            redirect( '/index.php/Pages/chat','refresh');
 
         }
         else{
@@ -49,21 +54,14 @@ class Message extends  CI_Controller{
 
     }
 
-    public function next_message(){
+    public function next_chat(){
+        echo "I'm here";
         if ($this->input->post('next') !== false) {
             //Is the user logged in?
             if (isset($_SESSION["logged_in"])){
                 if ($_SESSION("logged_in")){
-                    //DO they want to save it?
 
-                    //TODO
-                        //loading the modle
-                        //$this->load->model('Message_model');
-                        //$this->Message_model->save_message();
-
-                    //the conversation was not saved
-
-                    //reseting the chat
+                    echo "old conversation_id".$_SESSION['conversation_id'];
 
                     $data = array(
                         'conversation_id' => $_SESSION['conversation_id'],
@@ -73,7 +71,8 @@ class Message extends  CI_Controller{
                     foreach ($data as $key){
                         $this->session->unset_userdata($key);
                     }
-                    redirect( '/index.php/Pages/test2');
+                    echo "new conversation_id".$_SESSION['conversation_id'];
+                    redirect( '/index.php/Pages/chat','refresh');
                 }
             }
         }

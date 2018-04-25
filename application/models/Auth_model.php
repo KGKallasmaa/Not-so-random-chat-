@@ -132,17 +132,30 @@ class Auth_model extends CI_Model{
 
     }
      */
-    //TODO: shotgun surgery
-    function get_userpicture_name($user_id){
-        return "default.gif";
+    public function get_userpicture_name($user_id){
+
+        $sql = "call get_profile_picture(?)";
+        $query = $this->db->query($sql,array($user_id));
+        mysqli_next_result( $this->db->conn_id);
+        $result = $query->row_array(); //sender1 and sender2
+
+        return $result['user_picture'];
+
     }
 
-    function set_chat_status($user_id,$new_status){
+    public function change_userpicture_name($user_id,$new_name){
+        $sql = "call change_profile_picture(?,?)";
+        mysqli_next_result( $this->db->conn_id);
+        $query = $this->db->query($sql,array($user_id,$new_name));
+
+    }
+
+    /*
+     * function set_chat_status($user_id,$new_status){
         $sql = "call new_chat_status(?,?)";
         $query = $this->db->query($sql,array($user_id,$new_status));
     }
-
-
+     */
 
     function online_users()
     {
