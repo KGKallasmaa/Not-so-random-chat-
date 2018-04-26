@@ -6,8 +6,17 @@ $lang['chat'] = 'Vestle';
 $lang['register'] = 'Registreeri';
 
 $lang['about'] = 'Meist';
+$lang['home'] = 'Kodu';
 $lang['terms'] = 'Kasutustingimused';
-$lang['statistic'] = 'sSatistika';
+$lang['statistic'] = 'Statistika';
+$lang['sitemap'] = 'Sisu kaart';
+
+
+
+$lang['Welcome to the sitetmap!'] = 'Tere tulemast sisukaardi lehele!';
+
+
+
 
 $lang['welcome_back'] = 'Tere tulemast tagasi Randosse';
 $lang['email'] = 'Email';

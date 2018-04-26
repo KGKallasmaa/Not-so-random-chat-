@@ -42,16 +42,10 @@
 
 }
 
-
 .footer{
-	height:70px;
-	margin-top:-70px;
-	text-align: center;
+    text-align: center;
 }
 
-.footer  {
-    margin-top: 75%;
-}
 
 .fb_button img{
 	width:100%;

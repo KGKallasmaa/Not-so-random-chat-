@@ -22,13 +22,13 @@ class Message_model extends CI_Model
                $array_data = json_decode($current_data, true);
 
 
-               $profile_pic =  "<img src=".base_url('images/profile_pictures/'.$_SESSION['user_picture'])."width=\"40\" height=\"40\" />";
+            //   $profile_pic =  "0."width=\"40\" height=\"40\" />";
 
 
                    $extra = array(
                //    <img src="<?php echo base_url('images/profile_pictures/'.$_SESSION['user_picture']
 
-                   'sender_picture' => $profile_pic,
+                   'sender_picture' => "test",
                    'sender' => $_SESSION['user_name'],
                    'message' => $_POST["message"]
                );
@@ -102,15 +102,11 @@ class Message_model extends CI_Model
    }
 
 
-   /*
-    *  function chat_to_join($my_id){
-       $sql = "call chat_to_join(?)";
-       $query = $this->db->query($sql,array($my_id));
-       $result = $query->row_array();
-       return $result['conversation_id'];
-
+   public function get_chat_file($conversation_id){
+        return 5;
    }
-    */
+
+
    function get_other_id($my_id,$conversation_id){
        $sql = "call other_id(?,?)";
        $query = $this->db->query($sql,array($my_id,$conversation_id));

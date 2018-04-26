@@ -9,6 +9,13 @@ $lang['about'] = 'About';
 $lang['terms'] = 'Terms of service';
 $lang['statistic'] = 'Statistics';
 
+
+$lang['sitemap'] = 'Sitemap';
+$lang['home'] = 'Home';
+$lang['Welcome to the sitemap!'] = "Welcome to the sitemap!";
+
+
+
 $lang['welcome_back'] = 'Welcome back to Rando';
 $lang['nickname'] = 'Nickname';
 $lang['Your conversationID is:'] = 'Your conversationID is:';

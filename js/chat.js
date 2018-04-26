@@ -2,7 +2,8 @@ var chat = {};
 
 chat.fetchMessages = function () {
     $.ajax({
-        url: 'application/conversations/908984320.json',
+        url: 'application/conversations/1951465472.json',
+        //TODO: lisa controller
         type: 'POST',
         data: { method: 'fetch' },
         success: function(data) {

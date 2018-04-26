@@ -190,6 +190,19 @@
             $this->load->view('pages/history');
             $this->load->view('pages/footer');
         }
+
+        public function sitemap(){
+            $this->load->view('pages/header');
+            $this->load->view('pages/sitemap');
+            $this->load->view('pages/footer');
+        }
+
+        public function home(){
+            $this->load->view('pages/header');
+            $this->load->view('pages/home');
+            $this->load->view('pages/footer');
+        }
+
         public function settings(){
             $this->load->view('pages/header');
 			$this->load->view('pages/nav_bar');

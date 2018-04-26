@@ -134,6 +134,8 @@ class Auth_model extends CI_Model{
      */
     public function get_userpicture_name($user_id){
 
+        return "default.gif";
+
         $sql = "call get_profile_picture(?)";
         $query = $this->db->query($sql,array($user_id));
         mysqli_next_result( $this->db->conn_id);
