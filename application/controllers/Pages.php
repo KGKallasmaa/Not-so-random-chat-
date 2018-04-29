@@ -168,16 +168,19 @@
         }
         public function about(){
             $this->load->view('pages/header');
+			$this->load->view('pages/nav_bar');
             $this->load->view('pages/about');
             $this->load->view('pages/footer');
         }
         public function tos(){
             $this->load->view('pages/header');
+			$this->load->view('pages/nav_bar');
             $this->load->view('pages/tos');
             $this->load->view('pages/footer');
         }
         public function stat(){
             $this->load->view('pages/header');
+			$this->load->view('pages/nav_bar');
             $data['information'] =$this->stat_data();
             $data['general_information'] =$this->general_data();
             $data['chat_information'] =$this->chat_data();
