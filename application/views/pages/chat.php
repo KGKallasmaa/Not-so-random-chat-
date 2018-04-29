@@ -65,16 +65,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <div class = ".col-xs-6 .col-md-4">
-    <?php if (!isset($_SESSION['logged_in'])) { ?>
-        <button onclick="location.href='<?php echo base_url();?>index.php/Pages/login'">Login</button>
-        <button onclick="location.href='<?php echo base_url();?>index.php/Pages/register'">Register</button>
-    <?php } else{?>
-	<?php echo form_open('index.php/Auth/logout'); ?>
-            <form action="" method="post" autocomplete="on" target="_top">
-                <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure you want to logout?')"><?php echo lang("log_out"); ?></button>
-            </form>
-    <?php form_close();?>
-    <?php }?>
+	
+
     <?php
     /*
      * <img src="<?php echo base_url('images/profile_pictures/'.$_SESSION['opponent_picture']);?> ?> alt="Your opponents picture" />
