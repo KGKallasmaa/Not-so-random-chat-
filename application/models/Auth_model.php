@@ -105,6 +105,23 @@ class Auth_model extends CI_Model{
         return $result['user_id'];
     }
 
+    function get_user_idcard($id_code){
+        $this->db->select("user_idCode");
+        $this->db->where(array("user_email" => $id_code));
+        $query = $this->db->get('users');
+        $result = $query->rowarray();
+        return $result['user_idCode'];
+    }
+
+    function register_idUser($email, $idCode){
+        $new_userid =  uniqid(rand(), true);
+        $new_data = array(
+            'user_id' => $new_userid,
+            'user_email' => $email['user_email'],
+            'user_idCode' => $idCode['user_idCode']
+        );
+        $this->db->insert('users', $new_data);
+    }
 
     function get_username($email)
     {
