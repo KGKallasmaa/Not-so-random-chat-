@@ -8,6 +8,10 @@ if(!isset($_SESSION['user_id'])){
 
     echo "<a href='".base_url()."index.php/Pages/home"."'>". lang("home")."</a>";
     echo "<br>";
+	echo "<a href='".base_url()."index.php/Pages/register"."'>". lang("register")."</a>";
+    echo "<br>";
+	echo "<a href='".base_url()."index.php/Pages/login"."'>". lang("login")."</a>";
+    echo "<br>";
     echo "<a href='".base_url()."index.php/Pages/about"."'>". lang("about")."</a>";
     echo "<br>";
     echo "<a href='".base_url()."index.php/Pages/tos"."'>". lang("terms")."</a>";

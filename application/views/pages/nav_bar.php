@@ -33,6 +33,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<li class="nav-item">
 				<li><a class="nav-link" href="<?php echo base_url();?>index.php/Pages/register" alt="register"><?php echo lang("register"); ?></a></li>
 			</li>
+			<li class="nav-item">
+				<li><a class="nav-link" href="<?php echo base_url();?>index.php/Pages/chat" alt="chat"><?php echo lang("chat"); ?></a></li>
+			</li>
 		</ul>
 		<?php }?>
 		<select onchange="window.location.href='<?php echo base_url(); ?>index.php/LanguageSwitcher/switchLang/'+this.value;">
