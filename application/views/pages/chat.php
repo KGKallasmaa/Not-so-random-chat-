@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <form action="" method="post" autocomplete="on" target="_top">
                 <button class="btn btn-primary btn-md" name="message_sent" type="submit" value=log_out"  onclick="return confirm('Are you sure you want to logout?')"><?php echo lang("log_out"); ?></button>
             </form>
-            <?php form_close();?>
+    <?php form_close();?>
     <?php }?>
     <?php
     /*
@@ -102,13 +102,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <form>
         <button class="btn btn-primary btn-md" name="save" type="submit" value=save"><?php echo lang("save"); ?></button>
     </form>
-	<div id="gmap">
-        <div id="map"></div>
-    <script src="<?php echo base_url(); ?>js/gmap.js">
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXFGiuUMrmP1Gm9jn4FcbgSnX9ZwD0Aa0&callback=initMap">
-    </script>
+	<div class= "container">
+		<div id="gmap">
+			<div id="map"></div>
+		<script src="<?php echo base_url(); ?>js/gmap.js">
+		</script>
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXFGiuUMrmP1Gm9jn4FcbgSnX9ZwD0Aa0&callback=initMap">
+		</script>
+		</div>
 	</div>
 </div>
 </div>

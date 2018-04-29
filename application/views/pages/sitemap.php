@@ -30,7 +30,7 @@ else{
     echo "<br>";
     echo "<a href='".base_url()."index.php/Pages/history"."'>". lang("history")."</a>";
     echo "<br>";
-    echo "<a href='".base_url()."index.php/Pages/setting"."'>". lang("settings")."</a>";
+    echo "<a href='".base_url()."index.php/Pages/settings"."'>". lang("settings")."</a>";
 
 
 

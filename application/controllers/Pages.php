@@ -207,7 +207,7 @@
             $this->load->view('pages/header');
 			$this->load->view('pages/nav_bar');
             $this->load->view('pages/settings');
-            //$this->load->view('pages/footer'); ajutiselt võtsin ära
+            $this->load->view('pages/footer');
         }
         public function register(){
             $this->load->view('pages/header');
