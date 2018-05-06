@@ -13,8 +13,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //TODO: fix the topic variable in the future
     ?>
 
-
-    <!-- -->
 	<?php if (isset($_SESSION['conversation_id'])){
        echo "<h3>".lang("Your conversationID is:").$_SESSION['conversation_id']."</h3>";
     }?>

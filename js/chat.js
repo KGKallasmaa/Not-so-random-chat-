@@ -1,16 +1,21 @@
-var chat = {};
+var socket = io();
 
-chat.fetchMessages = function () {
-    $.ajax({
-        url: 'application/conversations/1951465472.json',
-        //TODO: lisa controller
-        type: 'POST',
-        data: { method: 'fetch' },
-        success: function(data) {
-            $('#chat_log').html(data);
+//-----------------------------------------------------------------------------
+// Emit chat message when enter key is pressed.
+//-----------------------------------------------------------------------------
+$("#chat-input").keydown(function(event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        if ($("#chat-input").val() != "") {
+            socket.emit("chat-message", $("#chat-input").val());
+            $("#chat-input").val("");
         }
-    });
-};
+    }
+});
 
-chat.interval = setInterval(chat.fetchMessages, 1000);
-chat.fetchMessages();
+//-----------------------------------------------------------------------------
+// Receive chat message from server.
+//-----------------------------------------------------------------------------
+socket.on("chat-message", function(message) {
+    $("#chat-container").append(message + "<br />")
+});

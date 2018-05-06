@@ -24,6 +24,14 @@
     <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="landing_chat"><?php echo lang("chat"); ?></button>
     <button onclick="location.href='<?php echo base_url();?>index.php/Pages/register'" id="landing_register"><?php echo lang("register"); ?></button>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
 </div>
 
 

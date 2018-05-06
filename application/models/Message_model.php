@@ -102,8 +102,12 @@ class Message_model extends CI_Model
    }
 
 
-   public function get_chat_file($conversation_id){
-        return 5;
+   public function get_chat_file()
+   {
+       if (file_exists(base_url() . 'application/conversations/' . $_SESSION['conversation_id'] . '.json')) {
+           $data = file_get_contents(base_url() . 'application/conversations/' . $_SESSION['conversation_id']. '.json');
+           return $data;
+       }
    }
 
 
