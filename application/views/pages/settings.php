@@ -36,7 +36,6 @@
 				<div id ="interestLine">Huvid: </div>
 				<br>
 				<button id="save">save</button>
-				<p id="demo">demo:</p>
 			</div>
 			</td>
 			<tr></tr>

@@ -11,7 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {session_start();}
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="<?php echo base_url();?>images/favicon.ico">
 
-    <link rel ="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css">
+    <link rel ="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/chatapp.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/landing.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/register.css" type="text/css">

@@ -1,9 +1,5 @@
 $(document).ready(function(){
-	var interestList = ["Kappa", "Mina"];
-	var i;
-	for (i = 0; i < interestList.length; i++) {
-		show(interestList[i]);
-	}
+
 	
     $("#addInterest").click(function(){
 		var contains = 0;
