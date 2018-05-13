@@ -74,6 +74,9 @@ class Message extends  CI_Controller{
                     echo "new conversation_id".$_SESSION['conversation_id'];
                     redirect( '/index.php/Pages/chat','refresh');
                 }
+                else{
+                    redirect( '/index.php/Pages/chat','refresh');
+                }
             }
         }
     }

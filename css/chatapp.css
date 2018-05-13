@@ -1,65 +1,66 @@
-.chat{
-    background-color: #00CC00;
+#master_chat {
+    width: 100%;
+    height: 100%;
+    min-width: 1000px;
+    min-height: 1000px;
+    font-size: 20px;
+}
+.opponent_picture img {
+    border-radius: 50%;
+}
+#next_button{
+    background-color:#44c767;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:17px;
+    padding:16px 31px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+}
+#send_button{
+    -moz-box-shadow: 0px 1px 0px 0px #fff6af;
+    -webkit-box-shadow: 0px 1px 0px 0px #fff6af;
+    box-shadow: 0px 1px 0px 0px #fff6af;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+    background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+    background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+    background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+    background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+    background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+    background-color:#ffec64;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #ffaa22;
+    display:inline-block;
+    cursor:pointer;
+    color:#333333;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffee66;
 }
 
-.nav_bar {
-    list-style-type: none;
-    margin:0;
-    padding:0;
-    width:16.6666667%;
-    background-color: #f1f1f1;
-    display: block;
 
+#save_button{
+    background-color:#445588;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #445588;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:17px;
+    padding:16px 31px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #445588;
 }
-
-#fb_button{
-	width: 30%;
-	height: auto;
-}
-	
-#chat_log{
-    margin-top: 80%;
-}
-#chat_box{
-    margin-top: 20%;
-}
-
-
-#chat_application {
-    list-style-type: none;
-    padding: 0;
-    font-size: larger;
-    background-color: #f1f1f1;
-    width:58.3333333333%;
-}
-
-#info {
-    list-style-type: none;
-    margin-left:75%;
-    padding: 0;
-    background-color: #f1f1f1;
-    width:25%;
-
-}
-
-.footer{
-    text-align: center;
-}
-
-
-.fb_button img{
-	width:100%;
-	height:auto;
-}
-
-#map {
-  height: 100%;
-  width: 100%;
-}
-
-#gmap{
-  height: 300px;
-  margin: 0;
-  padding: 0;
-}
-

@@ -15,6 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {session_start();}
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/chatapp.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/landing.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/register.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 </head>
