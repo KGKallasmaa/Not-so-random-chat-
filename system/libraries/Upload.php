@@ -310,9 +310,12 @@ class CI_Upload {
 	 */
 	public function initialize(array $config = array(), $reset = TRUE)
 	{
-		$reflection = new ReflectionClass($this);
+        try {
+            $reflection = new ReflectionClass($this);
+        } catch (ReflectionException $e) {
+        }
 
-		if ($reset === TRUE)
+        if ($reset === TRUE)
 		{
 			$defaults = $reflection->getDefaultProperties();
 			foreach (array_keys($defaults) as $key)

@@ -110,33 +110,26 @@ class CI_Cache_redis extends CI_Driver
 
 		$this->_redis = new Redis();
 
-		try
-		{
-			if ($config['socket_type'] === 'unix')
-			{
-				$success = $this->_redis->connect($config['socket']);
-			}
-			else // tcp socket
-			{
-				$success = $this->_redis->connect($config['host'], $config['port'], $config['timeout']);
-			}
+        if ($config['socket_type'] === 'unix')
+        {
+            $success = $this->_redis->connect($config['socket']);
+        }
+        else // tcp socket
+        {
+            $success = $this->_redis->connect($config['host'], $config['port'], $config['timeout']);
+        }
 
-			if ( ! $success)
-			{
-				log_message('error', 'Cache: Redis connection failed. Check your configuration.');
-			}
+        if ( ! $success)
+        {
+            log_message('error', 'Cache: Redis connection failed. Check your configuration.');
+        }
 
-			if (isset($config['password']) && ! $this->_redis->auth($config['password']))
-			{
-				log_message('error', 'Cache: Redis authentication failed.');
-			}
-		}
-		catch (RedisException $e)
-		{
-			log_message('error', 'Cache: Redis connection refused ('.$e->getMessage().')');
-		}
+        if (isset($config['password']) && ! $this->_redis->auth($config['password']))
+        {
+            log_message('error', 'Cache: Redis authentication failed.');
+        }
 
-		// Initialize the index of serialized values.
+        // Initialize the index of serialized values.
 		$serialized = $this->_redis->sMembers('_ci_redis_serialized');
 		empty($serialized) OR $this->_serialized = array_flip($serialized);
 	}

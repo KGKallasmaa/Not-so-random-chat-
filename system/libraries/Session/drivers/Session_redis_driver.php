@@ -246,22 +246,16 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 	{
 		if (isset($this->_redis))
 		{
-			try {
-				if ($this->_redis->ping() === '+PONG')
-				{
-					$this->_release_lock();
-					if ($this->_redis->close() === FALSE)
-					{
-						return $this->_fail();
-					}
-				}
-			}
-			catch (RedisException $e)
-			{
-				log_message('error', 'Session: Got RedisException on close(): '.$e->getMessage());
-			}
+            if ($this->_redis->ping() === '+PONG')
+            {
+                $this->_release_lock();
+                if ($this->_redis->close() === FALSE)
+                {
+                    return $this->_fail();
+                }
+            }
 
-			$this->_redis = NULL;
+            $this->_redis = NULL;
 			return $this->_success;
 		}
 

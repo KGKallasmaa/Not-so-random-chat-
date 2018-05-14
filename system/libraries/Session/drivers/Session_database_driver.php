@@ -71,12 +71,15 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 
 	// ------------------------------------------------------------------------
 
-	/**
-	 * Class constructor
-	 *
-	 * @param	array	$params	Configuration parameters
-	 * @return	void
-	 */
+    /**
+     * Class constructor
+     *
+     * @param    array $params Configuration parameters
+     * @throws Exception
+     * @throws Exception
+     * @throws Exception
+     * @return    void
+     */
 	public function __construct(&$params)
 	{
 		parent::__construct($params);

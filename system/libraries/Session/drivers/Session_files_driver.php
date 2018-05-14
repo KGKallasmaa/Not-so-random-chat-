@@ -120,15 +120,17 @@ class CI_Session_files_driver extends CI_Session_driver implements SessionHandle
 
 	// ------------------------------------------------------------------------
 
-	/**
-	 * Open
-	 *
-	 * Sanitizes the save_path directory.
-	 *
-	 * @param	string	$save_path	Path to session files' directory
-	 * @param	string	$name		Session cookie name
-	 * @return	bool
-	 */
+    /**
+     * Open
+     *
+     * Sanitizes the save_path directory.
+     *
+     * @param    string $save_path Path to session files' directory
+     * @param    string $name Session cookie name
+     * @return    bool
+     * @throws Exception
+     * @throws Exception
+     */
 	public function open($save_path, $name)
 	{
 		if ( ! is_dir($save_path))

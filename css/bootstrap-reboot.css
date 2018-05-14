@@ -20,9 +20,7 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-@-ms-viewport {
-  width: device-width;
-}
+
 
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
@@ -63,9 +61,6 @@ abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-  cursor: help;
-  border-bottom: 0;
 }
 
 address {
@@ -209,10 +204,6 @@ button {
   border-radius: 0;
 }
 
-button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-}
 
 input,
 button,

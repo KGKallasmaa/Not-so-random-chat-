@@ -721,8 +721,11 @@ if ( ! function_exists('date_range'))
 			$arg = (int) $mixed;
 		}
 
-		$period = new DatePeriod($from, new DateInterval('P1D'), $arg);
-		foreach ($period as $date)
+        try {
+            $period = new DatePeriod($from, new DateInterval('P1D'), $arg);
+        } catch (Exception $e) {
+        }
+        foreach ($period as $date)
 		{
 			$range[] = $date->format($format);
 		}

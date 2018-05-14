@@ -436,8 +436,11 @@ if ( ! is_php('5.4'))
 		 */
 		elseif ( ! is_callable(array($class, $method)))
 		{
-			$reflection = new ReflectionMethod($class, $method);
-			if ( ! $reflection->isPublic() OR $reflection->isConstructor())
+            try {
+                $reflection = new ReflectionMethod($class, $method);
+            } catch (ReflectionException $e) {
+            }
+            if ( ! $reflection->isPublic() OR $reflection->isConstructor())
 			{
 				$e404 = TRUE;
 			}

@@ -1275,8 +1275,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		});
 
 		assert(function( el ) {
-			el.innerHTML = "<a href='' disabled='disabled'></a>" +
-				"<select disabled='disabled'><option/></select>";
+            el.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";
 
 			// Support: Windows 8 Native Apps
 			// The type and name attributes are restricted during .innerHTML assignment

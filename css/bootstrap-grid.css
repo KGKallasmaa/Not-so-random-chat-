@@ -4,9 +4,6 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-@-ms-viewport {
-  width: device-width;
-}
 
 html {
   box-sizing: border-box;
@@ -1166,11 +1163,6 @@ html {
   display: flex !important;
 }
 
-.d-inline-flex {
-  display: -webkit-inline-box !important;
-  display: -ms-inline-flexbox !important;
-  display: inline-flex !important;
-}
 
 @media (min-width: 576px) {
   .d-sm-none {
@@ -1199,11 +1191,7 @@ html {
     display: -ms-flexbox !important;
     display: flex !important;
   }
-  .d-sm-inline-flex {
-    display: -webkit-inline-box !important;
-    display: -ms-inline-flexbox !important;
-    display: inline-flex !important;
-  }
+
 }
 
 @media (min-width: 768px) {
@@ -1233,11 +1221,7 @@ html {
     display: -ms-flexbox !important;
     display: flex !important;
   }
-  .d-md-inline-flex {
-    display: -webkit-inline-box !important;
-    display: -ms-inline-flexbox !important;
-    display: inline-flex !important;
-  }
+
 }
 
 @media (min-width: 992px) {
@@ -1267,11 +1251,7 @@ html {
     display: -ms-flexbox !important;
     display: flex !important;
   }
-  .d-lg-inline-flex {
-    display: -webkit-inline-box !important;
-    display: -ms-inline-flexbox !important;
-    display: inline-flex !important;
-  }
+
 }
 
 @media (min-width: 1200px) {
@@ -1301,11 +1281,7 @@ html {
     display: -ms-flexbox !important;
     display: flex !important;
   }
-  .d-xl-inline-flex {
-    display: -webkit-inline-box !important;
-    display: -ms-inline-flexbox !important;
-    display: inline-flex !important;
-  }
+
 }
 
 @media print {
@@ -1334,11 +1310,6 @@ html {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
     display: flex !important;
-  }
-  .d-print-inline-flex {
-    display: -webkit-inline-box !important;
-    display: -ms-inline-flexbox !important;
-    display: inline-flex !important;
   }
 }
 

@@ -69,7 +69,6 @@ if ( ! function_exists('lang'))
 		{
 			$line = '<label for="'.$for.'"'._stringify_attributes($attributes).'>'.$line.'</label>';
 		}
-
 		return $line;
 	}
 }

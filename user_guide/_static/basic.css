@@ -11,10 +11,6 @@
 
 /* -- main layout ----------------------------------------------------------- */
 
-div.clearer {
-    clear: both;
-}
-
 /* -- relbar ---------------------------------------------------------------- */
 
 div.related {
@@ -42,19 +38,6 @@ div.related li.right {
 }
 
 /* -- sidebar --------------------------------------------------------------- */
-
-div.sphinxsidebarwrapper {
-    padding: 10px 5px 0 10px;
-}
-
-div.sphinxsidebar {
-    float: left;
-    width: 230px;
-    margin-left: -100%;
-    font-size: 90%;
-    word-wrap: break-word;
-    overflow-wrap : break-word;
-}
 
 div.sphinxsidebar ul {
     list-style: none;
@@ -99,9 +82,7 @@ ul.search {
 
 ul.search li {
     padding: 5px 0 5px 20px;
-    background-image: url(file.png);
-    background-repeat: no-repeat;
-    background-position: 0 7px;
+    background: url(file.png) no-repeat 0 7px;
 }
 
 ul.search li a {
@@ -119,26 +100,6 @@ ul.keywordmatches li.goodmatch a {
 }
 
 /* -- index page ------------------------------------------------------------ */
-
-table.contentstable {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-table.contentstable p.biglink {
-    line-height: 150%;
-}
-
-a.biglink {
-    font-size: 1.3em;
-}
-
-span.linkdescr {
-    font-style: italic;
-    padding-top: 5px;
-    font-size: 90%;
-}
 
 /* -- general index --------------------------------------------------------- */
 
@@ -158,11 +119,7 @@ table.indextable ul {
 }
 
 table.indextable > tbody > tr > td > ul {
-    padding-left: 0em;
-}
-
-table.indextable tr.pcap {
-    height: 10px;
+    padding-left: 0;
 }
 
 table.indextable tr.cap {
@@ -174,13 +131,6 @@ img.toggler {
     margin-right: 3px;
     margin-top: 3px;
     cursor: pointer;
-}
-
-div.modindex-jumpbox {
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    margin: 1em 0 1em 0;
-    padding: 0.4em;
 }
 
 div.genindex-jumpbox {
@@ -235,11 +185,6 @@ div.body td {
     margin-top: 0 !important;
 }
 
-p.rubric {
-    margin-top: 30px;
-    font-weight: bold;
-}
-
 img.align-left, .figure.align-left, object.align-left {
     clear: left;
     float: left;
@@ -272,19 +217,6 @@ img.align-center, .figure.align-center, object.align-center {
 
 /* -- sidebars -------------------------------------------------------------- */
 
-div.sidebar {
-    margin: 0 0 0.5em 1em;
-    border: 1px solid #ddb;
-    padding: 7px 7px 0 7px;
-    background-color: #ffe;
-    width: 40%;
-    float: right;
-}
-
-p.sidebar-title {
-    font-weight: bold;
-}
-
 /* -- topics ---------------------------------------------------------------- */
 
 div.topic {
@@ -316,7 +248,7 @@ div.admonition dl {
 }
 
 p.admonition-title {
-    margin: 0px 10px 5px 0px;
+    margin: 0 10px 5px 0;
     font-weight: bold;
 }
 
@@ -354,11 +286,6 @@ table.footnote td, table.footnote th {
 th {
     text-align: left;
     padding-right: 5px;
-}
-
-table.citation {
-    border-left: solid 1px gray;
-    margin-left: 1px;
 }
 
 table.citation td {
@@ -411,28 +338,12 @@ ol.arabic {
     list-style: decimal;
 }
 
-ol.loweralpha {
-    list-style: lower-alpha;
-}
-
-ol.upperalpha {
-    list-style: upper-alpha;
-}
-
-ol.lowerroman {
-    list-style: lower-roman;
-}
-
-ol.upperroman {
-    list-style: upper-roman;
-}
-
 dl {
     margin-bottom: 15px;
 }
 
 dd p {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 dd ul, dd table {
@@ -462,18 +373,10 @@ dl.glossary dt {
     font-size: larger;
 }
 
-.versionmodified {
-    font-style: italic;
-}
-
 .system-message {
     background-color: #fda;
     padding: 5px;
     border: 3px solid red;
-}
-
-.footnote:target  {
-    background-color: #ffa;
 }
 
 .line-block {
@@ -486,18 +389,6 @@ dl.glossary dt {
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 1.5em;
-}
-
-.guilabel, .menuselection {
-    font-family: sans-serif;
-}
-
-.accelerator {
-    text-decoration: underline;
-}
-
-.classifier {
-    font-style: oblique;
 }
 
 abbr, acronym {
@@ -520,14 +411,10 @@ span.pre {
 }
 
 td.linenos pre {
-    padding: 5px 0px;
+    padding: 5px 0;
     border: 0;
     background-color: transparent;
     color: #aaa;
-}
-
-table.highlighttable {
-    margin-left: 0.5em;
 }
 
 table.highlighttable td {
@@ -569,10 +456,6 @@ code.descname {
     font-size: 1.2em;
 }
 
-code.descclassname {
-    background-color: transparent;
-}
-
 code.xref, a code {
     background-color: transparent;
     font-weight: bold;
@@ -580,20 +463,6 @@ code.xref, a code {
 
 h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
     background-color: transparent;
-}
-
-.viewcode-link {
-    float: right;
-}
-
-.viewcode-back {
-    float: right;
-    font-family: sans-serif;
-}
-
-div.viewcode-block:target {
-    margin: -1px -10px;
-    padding: 0 10px;
 }
 
 /* -- math display ---------------------------------------------------------- */
@@ -606,13 +475,9 @@ div.body div.math p {
     text-align: center;
 }
 
-span.eqno {
-    float: right;
-}
-
 span.eqno a.headerlink {
     position: relative;
-    left: 0px;
+    left: 0;
     z-index: 1;
 }
 

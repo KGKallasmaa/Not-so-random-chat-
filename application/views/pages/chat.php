@@ -15,27 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php if (isset($_SESSION['conversation_id'])){
                     echo "<h3>".lang("Your conversationID is:").$_SESSION['conversation_id']."</h3>";
                 }?>
-                <?php
-                if(file_exists(base_url().'application/conversations/'.$_SESSION['conversation_id'].'.json')){
-                    $data = file_get_contents (base_url().'application/conversations/'.$_SESSION['conversation_id'].'.json');
-                    $json = json_decode($data, true);
-                    foreach ($json as $key => $value) {
-                        if (is_array($value)) {
-                            $i = 0;
-                            foreach ($value as $key => $val) {
-                                echo $val;
-                                if ($i%3){
-                                    echo '<br/>';
-                                    $i = 0;
-                                }
-                                else{
-                                    $i = $i+1;
-                                }
-                            }
-                        }
-                    }
-                }
-                ?>
+
+
                 <p id="chat_log"></p>
 
                 <!--TODO-->
@@ -47,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php echo form_open('index.php/Message/send_message'); ?>
                 <div class="form-group">
                     <form action="" method="post" autocomplete="on" target="_top">
-                        <textarea class="form-control input-lg" name="message" placeholder=<?php echo lang("type_to_send"); ?>></textarea>
+                        <textarea class="form-control input-lg" name="message" id="inputMessage" placeholder=<?php echo lang("type_to_send"); ?>></textarea>
                         <button id ="send_button" class="form-control" value="message_sent" type="submit"><?php echo lang("send") ?></button>
                         <?php form_close();?>
                     </form>
