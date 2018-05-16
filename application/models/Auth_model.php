@@ -30,7 +30,6 @@ class Auth_model extends CI_Model{
 
     }
     function register_user($data){
-
         $new_userid =  uniqid(rand(), true);
         $new_data = array(
             'user_id' => $new_userid,
@@ -40,18 +39,14 @@ class Auth_model extends CI_Model{
             'user_password'  => $data['user_password'],
             'user_picture' => $data['user_picture']
         );
-
         $this->db->insert('users', $new_data);
-
     }
 
     function email_confirm($email){
         $user_email =  $email;
-
     }
 
     function format_email($info, $format){
-
         //set the root
         $root = $_SERVER['DOCUMENT_ROOT'].'/dev/tutorials/email_signup';
 
@@ -92,7 +87,7 @@ class Auth_model extends CI_Model{
 
     }
 
-    function set_online_status($email, $value){
+    public function set_online_status($email, $value){
         $this->db->set("user_online_status", $value);
         $this->db->where('user_email', $email);
         $this->db->update('users');
@@ -150,31 +145,26 @@ class Auth_model extends CI_Model{
     }
      */
     public function get_userpicture_name($user_id){
-
-        return "default.gif";
-
+       return "default.gif";
+        //todo: broken
         $sql = "call get_profile_picture(?)";
         $query = $this->db->query($sql,array($user_id));
         mysqli_next_result( $this->db->conn_id);
         $result = $query->row_array(); //sender1 and sender2
-
         return $result['user_picture'];
-
     }
 
     public function change_userpicture_name($user_id,$new_name){
         $sql = "call change_profile_picture(?,?)";
         mysqli_next_result( $this->db->conn_id);
         $query = $this->db->query($sql,array($user_id,$new_name));
-
     }
 
-    /*
-     * function set_chat_status($user_id,$new_status){
+    function set_chat_status($user_id,$new_status){
         $sql = "call new_chat_status(?,?)";
         $query = $this->db->query($sql,array($user_id,$new_status));
     }
-     */
+
 
     function online_users()
     {

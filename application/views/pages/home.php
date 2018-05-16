@@ -12,14 +12,23 @@
         <script src="<?php echo base_url(); ?>js/time.js"></script>
 
         <div class="action_buttons">
-            <button onclick="document.getElementById('general_info').blur(); document.getElementById('modal_login').style.display='block'; document.getElementById('modal_register').blur()" id="landing_login"><?php echo lang("login"); ?></button>
+            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/login'" id="landing_login"><?php echo lang("login"); ?></button>
             <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="landing_chat"><?php echo lang("chat"); ?></button>
-            <button onclick="document.getElementById('general_info').blur();document.getElementById('modal_login').blur(); document.getElementById('modal_register').style.display='block';" id="landing_register"><?php echo lang("register"); ?></button>
+            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/registerl'" id="landing_register"><?php echo lang("register"); ?></button>
         </div>
+        <?php
+        /*
+         * <button onclick="document.getElementById('general_info').blur(); document.getElementById('modal_login').style.display='block'; document.getElementById('modal_register').blur()" id="landing_login"><?php echo lang("login"); ?></button>
+            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="landing_chat"><?php echo lang("chat"); ?></button>
+            <button onclick="document.getElementById('general_info').blur();document.getElementById('modal_login').blur(); document.getEl
+         */
+        ?>
     </div>
 
+
+
     <!-- The Modal Login-->
-    <div id="modal_login" class="modal">
+    <div id="modal_login" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <!-- Modal Content -->
                 <div class="imgcontainer">
@@ -55,7 +64,7 @@
 
     </div>
         <!-- The Modal Register -->
-        <div id="modal_register" class="modal">
+        <div id="modal_register" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <!-- Modal Content -->
                 <div class="imgcontainer">
@@ -117,5 +126,3 @@
     <br>
 
 </div>
-
-

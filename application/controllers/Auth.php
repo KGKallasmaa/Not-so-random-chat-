@@ -4,13 +4,10 @@ class Auth extends  CI_Controller{
 	
 	function __construct() {
         parent::__construct();
-
         // Load facebook library
         $this->load->library('facebook');
-
         //Load facebook user model
         $this->load->model('fbuser','',TRUE);
-
     }
 
     public function login()
@@ -23,7 +20,6 @@ class Auth extends  CI_Controller{
                 if ($this->form_validation->run() !== FALSE){
                     //load model
                     $this->load->model('Auth_model');
-
                     //input variables
                     $email = $this->input->post('email');
                     $password = $this->input->post('password');
@@ -36,14 +32,13 @@ class Auth extends  CI_Controller{
                         //changing the user online status on database from false to true
                         $this->Auth_model->set_online_status($email,true);
 
+
                         //SUCCESS!;
                         $_SESSION['logged_in'] = true;
                         $_SESSION['user_email'] = $email;
                         $_SESSION['user_name'] = $this->Auth_model->get_username($email);
                         $_SESSION['user_id'] = $this->Auth_model->get_userid($email);
                         $_SESSION['user_picture'] = $this->Auth_model->get_userpicture_name($_SESSION['user_id']);
-
-
                         redirect( '/index.php/Pages/chat');
                     }
                     $this->session->set_flashdata('error', 'Incorrect password');
@@ -62,20 +57,15 @@ class Auth extends  CI_Controller{
     public function logout(){
         //was the logout button clicked?
         if ($this->input->post('logout') !== false) {
-
             //Log out from current chats
             //loading the model
             $this->load->model('Message_model');
             $this->Message_model->log_out_from_chat($_SESSION['user_id']);
 
-
             //loading the model
             $this->load->model('Auth_model');
-
-
             //set status
             $this->Auth_model->set_online_status($_SESSION['user_email'],false);
-
             $this->Auth_model->set_chat_status($_SESSION['user_id'],false);
 
             $user_data = $this->session->all_userdata();
@@ -85,8 +75,6 @@ class Auth extends  CI_Controller{
                 }
             }
             $this->session->sess_destroy();
-
-
             redirect( '/','refresh');
           //  redirect( '/index.php/Pages/','refresh');
         }
@@ -94,26 +82,20 @@ class Auth extends  CI_Controller{
 
     public function register(){
         if ($this->input->post('register') !== false) {
-
             $this->form_validation->set_rules('username', 'Username', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
             $this->form_validation->set_rules('password2', 'Confirm Password', 'required|matches[password]');
             $this->form_validation->set_rules('agree_to_tos', 'agree_to_tos', 'required');
-
             if ($this->form_validation->run() !== false){
-
                 //load model
                 $this->load->model('Auth_model');
-
                 $data = array(
                     'user_name' => $_POST['username'],
                     'user_email' => $_POST['email'],
                     'user_password' => md5($_POST['password']),
                     'user_picture' => 'default.gif'
                 );
-
-
                 if ($this->Auth_model->contains_email($data['email']) == false) {
 
                     $this->Auth_model->register_user($data);
@@ -131,42 +113,30 @@ class Auth extends  CI_Controller{
                     //location: /profile
                 }
                 redirect( '/index.php/Pages/register','refresh');
-
-
                 //  $this->session->set_flashdata('error','Incorrect password');
             }
            else{
               // redirect( '/index.php/Pages/register','refresh');
                redirect( '/index.php/Pages/register','refresh');
            }
-
-
         }
         // load view
     }
 
-
-
 	//Facebook login
 	public function fblogin(){
         //load Facebook
-
-
         $userData = array();
         // Check if user is logged
-
         if($this->facebook->is_authenticated()){
             // Get user facebook profile details
             $userProfile = $this->facebook->request('get', '/me?fields=id,first_name');
-
             // Preparing data for database insertion
             $userData['oauth_provider'] = 'facebook';
             $userData['oauth_uid'] = $userProfile['id'];
             $userData['first_name'] = $userProfile['first_name'];
-
             // Insert or update user data
             $userID = $this->user->checkUser($userData);
-
             // Check user data insert or update status
             if(!empty($userID)){
                 $data['userData'] = $userData;
@@ -179,29 +149,17 @@ class Auth extends  CI_Controller{
             $data['logoutUrl'] = $this->facebook->logout_url();
         }else{
             $fbuser = '';
-
             // Get login URL
             $data['authUrl'] =  $this->facebook->login_url();
 			redirect($this->facebook->login_url());
         }
-        
     }
-	
     public function fblogout() {
         // Remove local Facebook session
         $this->facebook->destroy_session();
-
         // Remove user data from session
         $this->session->unset_userdata('userData');
-
         // Redirect to login page
         redirect('/index.php/Pages/login');
-
      }
-	
-	
-	
 }
-
-
-

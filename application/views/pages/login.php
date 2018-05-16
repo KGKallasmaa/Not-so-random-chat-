@@ -1,8 +1,6 @@
 <title>Rando||Login</title>
 <meta name="description" content="Login to have a more tailored experience">
 
-
-
 <div class="row center-text">
 	<div class="col-md-offset-5 col-md-3">
 		<?php
@@ -30,7 +28,6 @@
 					<a href="<?php echo base_url();?>index.php/Pages/register" alt="register"><?php echo lang("not_a_user"); ?></a>
 			</form>
 		</div>
-
 	</div>
 </div>
 

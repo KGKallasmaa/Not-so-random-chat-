@@ -20,21 +20,15 @@ class Message_model extends CI_Model
            } else {
                $current_data = file_get_contents($file_location);
                $array_data = json_decode($current_data, true);
-
-
             //   $profile_pic =  "0."width=\"40\" height=\"40\" />";
-
-
                    $extra = array(
                //    <img src="<?php echo base_url('images/profile_pictures/'.$_SESSION['user_picture']
-
                    'sender_picture' => "test",
                    'sender' => $_SESSION['user_name'],
                    'message' => $_POST["message"]
                );
                $array_data[] = $extra;
                $final_data = json_encode($array_data);
-
                file_put_contents($file_location, $final_data);
            }
        }
@@ -60,10 +54,10 @@ class Message_model extends CI_Model
            else{
                $data['sender_2'] = $my_id;
            }
-
            $sql = "call add_current_chat(?,?,?)";
            $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
         //   $this->db->insert('current_chats', $data);
+          // $this->db->close();
            return $chat_line['conversation_id'];
        }
 
@@ -82,7 +76,7 @@ class Message_model extends CI_Model
        $sql = "call add_current_chat(?,?,?)";
        $this->db->query($sql,array($data['conversation_id'],$data['sender_1'],$data['sender_2']));
       // $this->db->insert('current_chats', $data);
-
+      // $this->db->close();
        return $conversation_id;
    }
 
@@ -106,6 +100,7 @@ class Message_model extends CI_Model
    {
        if (file_exists(base_url() . 'application/conversations/' . $_SESSION['conversation_id'] . '.json')) {
            $data = file_get_contents(base_url() . 'application/conversations/' . $_SESSION['conversation_id']. '.json');
+          // $this->db->close();
            return $data;
        }
    }
@@ -116,8 +111,10 @@ class Message_model extends CI_Model
        $query = $this->db->query($sql,array($my_id,$conversation_id));
        $result = $query->row_array(); //sender1 and sender2
        if($result['sender_1'] == $my_id){
+        //   $this->db->close();
             return $result['sender_2'];
        }
+      // $this->db->close();
        return $result['sender_1'];
    }
 
@@ -132,17 +129,14 @@ class Message_model extends CI_Model
        //do we have that id in the database?
        //load model
        $this->load->model('Auth_model');
-
-
        if ($this->Auth_model-> get_userpicture_name($other_sender_id) == "Nope"){
            return 'Brandon, the almost ultimate user(user not in db)';
        }
-         mysqli_next_result( $this->db->conn_id);
-        $sql = "call other_name(?)";
-        $query = $this->db->query($sql,array($other_sender_id));
-
-        $result = $query->row_array();
-        return $result['user_name'];
+       mysqli_next_result( $this->db->conn_id);
+       $sql = "call other_name(?)";
+       $query = $this->db->query($sql,array($other_sender_id));
+       $result = $query->row_array();
+       return $result['user_name'];
    }
 
 
@@ -161,7 +155,6 @@ class Message_model extends CI_Model
                 //yes
                 $data['sender_2'] = $_SESSION['my_sender_id'];
             }
-
             else{
                 //no
                 $data['sender_1'] = $_SESSION['my_sender_id'];
@@ -169,8 +162,6 @@ class Message_model extends CI_Model
             //is this conversation_id in the db
             $this->db->where('conversation_id',$data['conversation_id']);
             $this->db->update('saved_conversation',$data);
-
-
         }
         //redirecting the user back to chat screen
         //TODO: implement special login and save
@@ -185,7 +176,7 @@ class Message_model extends CI_Model
 
     function log_out_from_chat($sender_id){
         $sql = "call log_out_from_chat(?)";
-        mysqli_next_result($this->db->conn_id);
+      //  mysqli_next_result($this->db->conn_id);
         $query = $this->db->query($sql,array($sender_id));
       //  mysqli_next_result($this->db->conn_id);
        // $result = $query->result();
@@ -199,7 +190,7 @@ class Message_model extends CI_Model
         $sql = "call sender_names()";
         $query = $this->db->query($sql,array());
 
-        mysqli_next_result($this->db->conn_id);
+       // mysqli_next_result($this->db->conn_id);
 
         $result = $query->row_array(); //sender1, sender_1_name, sender2, sender_2_name
         if($type == "1"){
@@ -212,7 +203,6 @@ class Message_model extends CI_Model
         $query = $this->db->get("current_chats");
         $result = $query->row_array();
         return $result["chat_topic"];
-
     }
 
     function chat_line(){
@@ -221,8 +211,5 @@ class Message_model extends CI_Model
         mysqli_next_result( $this->db->conn_id);
         $res = $query->row_array();
         return $res;
-
     }
-
-
 }
