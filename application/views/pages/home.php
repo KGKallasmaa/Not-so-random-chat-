@@ -14,7 +14,7 @@
         <div class="action_buttons">
             <button onclick="location.href='<?php echo base_url();?>index.php/Pages/login'" id="landing_login"><?php echo lang("login"); ?></button>
             <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="landing_chat"><?php echo lang("chat"); ?></button>
-            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/registerl'" id="landing_register"><?php echo lang("register"); ?></button>
+            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/register'" id="landing_register"><?php echo lang("register"); ?></button>
         </div>
         <?php
         /*
@@ -24,9 +24,6 @@
          */
         ?>
     </div>
-
-
-
     <!-- The Modal Login-->
     <div id="modal_login" class="modal fade">
             <div class="modal-dialog modal-lg">
@@ -65,7 +62,7 @@
     </div>
         <!-- The Modal Register -->
         <div id="modal_register" class="modal fade">
-            <div class="modal-dialog modal-lg">
+            <fdiv class="modal-dialog modal-lg">
                 <!-- Modal Content -->
                 <div class="imgcontainer">
                     <img src="<?php echo base_url('images/profile_pictures/login_pic.png');?> ?> alt="Your opponents picture" />
@@ -114,9 +111,8 @@
             </script>
                  */
                 ?>
-        </div>
+        </fdiv>
     </div>
-
     <br>
     <br>
     <br>
@@ -124,5 +120,4 @@
     <br>
     <br>
     <br>
-
 </div>

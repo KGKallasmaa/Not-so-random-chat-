@@ -6,17 +6,13 @@
                 // Whoops, we don't have a page for that!
                 show_404();
             }
-
            // $header_data = $this->header_data();
-
             $this->load->helper('url');
           //  $this->load->view('pages/header', $header_data);
              $this->load->view('pages/header');
             $this->load->view('pages/'.$page, $data);
             $this->load->view('pages/footer', $data);
         }
-
-
         function header_data(){
             //Is the current user logged in?
             if (!isset($_SESSION['user_id'])){
@@ -119,7 +115,6 @@
             //load model
             $this->load->model('Message_model');
 
-
             $data = array(
                 'sender_1_name' => $this->Message_model->sender_names("1"),
                 'sender_2_name' => $this->Message_model->sender_names("2"),
@@ -160,6 +155,19 @@
             }
             else{
                 $_SESSION['opponent_picture'] = $this->Auth_model->get_userpicture_name($_SESSION['other_sender_id']);
+            }
+            //todo: fix this
+            $topic_universe = array(
+                'Cars' => 'cars.gif',
+                'Music' => 'music.gif',
+                'News' => 'news.gif',
+                'Food' => 'food.gif',
+                'Books' => 'books.gif',
+            );
+
+            if (!isset($_SESSION['chat_topic'])){
+                $_SESSION['chat_topic'] =  array_rand($topic_universe);
+                $_SESSION['topic_pic'] = $topic_universe[$_SESSION['chat_topic']];
             }
 
 

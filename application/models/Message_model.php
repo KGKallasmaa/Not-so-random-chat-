@@ -141,7 +141,7 @@ class Message_model extends CI_Model
 
 
 
-    function save_message(){
+    function save_chat(){
         //is the user logged in?
         if (isset($_SESSION['logged_in'])){
             //has the other party already save that conversation?
@@ -165,7 +165,7 @@ class Message_model extends CI_Model
         }
         //redirecting the user back to chat screen
         //TODO: implement special login and save
-        redirect( '/index.php/Pages/test2');
+        redirect( '/index.php/Pages/chat');
     }
 
     function number_of_current_chats(){
