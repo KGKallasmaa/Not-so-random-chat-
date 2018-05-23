@@ -198,7 +198,10 @@
         public function history(){
             $this->load->view('pages/header');
 			$this->load->view('pages/nav_bar');
-            $this->load->view('pages/history');
+			//Add conversation data
+            $this->load->model('Message_model');
+            $data['chat_information'] = $this->Message_model->getSavedConversations();
+            $this->load->view('pages/history',$data);
             $this->load->view('pages/footer');
         }
 
@@ -240,5 +243,17 @@
         }
 		 */
 
+        function get_conversation(){
 
+            $this->load->model('Message_model');
+
+            return $this->Message_model->get_chat_file();
+
+            /*
+             * //todo: it sort of works
+            $sql = "call load_conversation(?)";
+            $query = $this->db->query($sql, array($_SESSION['conversation_id']));
+            return $query->result();
+             */
+        }
     }

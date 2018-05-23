@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php if (isset($_SESSION['conversation_id'])){
                     echo "<h3>".lang("Your conversationID is:").$_SESSION['conversation_id']."</h3>";
                 }?>
-                <textarea id="chat_log" disabled></textarea>
+                <p id="chat_log">Change me</p>
                 <!--TODO-->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script src="<?php echo base_url(); ?>js/chat.js"></script>
@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="col-md-6">
                     <div class="topic_picture">
-                        <img src="<?php echo base_url('images/topics/'.$_SESSION['topic_pic'].'');?> ?> alt="Your topics picture" />
+                        <img src="<?php echo base_url('images/topics/'.$_SESSION['topic_pic'].'');?>" alt="Your topics picture" class="img-responsive" />
                     </div>
                     <h2><?php echo lang("topic"); ?> <?php echo  $_SESSION['chat_topic']?></h2>
                     <form>
@@ -38,16 +38,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php form_close();?>
                     </form>
                     <br>
+                <?php if (isset($_SESSION['logged_in'])) : ?>
                     <form>
                         <?php echo form_open('index.php/Message/save_chat'); ?>
                         <button onclick="savechat()"  id= "save_button" class="form-control" name="save" type="submit" value=save"><?php echo lang("save"); ?></button>
                         <?php form_close();?>
                         <script src="<?php echo base_url(); ?>js/save.js"></script>
                     </form>
-                        <div id="gmap">
-                            <div id="map"></div>
-                            <script src="<?php echo base_url(); ?>js/gmap.js">
-                            </script>
+                <?php endif; ?>
+                <div id="gmap">
+                    <div id="map"></div>
+                    <script src="<?php echo base_url(); ?>js/gmap.js"></script>
                             <script async defer
                                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXFGiuUMrmP1Gm9jn4FcbgSnX9ZwD0Aa0&callback=initMap">
                             </script>

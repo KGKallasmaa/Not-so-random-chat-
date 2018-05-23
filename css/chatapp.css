@@ -49,6 +49,11 @@
     text-shadow:0 1px 0 #ffee66;
 }
 
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 
 #save_button{
     background-color:#445588;

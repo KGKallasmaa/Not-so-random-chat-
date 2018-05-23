@@ -98,11 +98,11 @@ class Message_model extends CI_Model
 
    public function get_chat_file()
    {
-       if (file_exists(base_url() . 'application/conversations/' . $_SESSION['conversation_id'] . '.json')) {
-           $data = file_get_contents(base_url() . 'application/conversations/' . $_SESSION['conversation_id']. '.json');
-          // $this->db->close();
-           return $data;
-       }
+       $current_message_Data = file_get_contents("application/conversations/".$_SESSION['conversation_id'].".json");
+
+       echo "<script type='text/javascript'> alert('".json_encode($current_message_Data)."') </script>";
+
+       return $current_message_Data;
    }
 
 
@@ -141,31 +141,19 @@ class Message_model extends CI_Model
 
 
 
-    function save_chat(){
-        //is the user logged in?
-        if (isset($_SESSION['logged_in'])){
-            //has the other party already save that conversation?
-            $data = array(
-                'conversation_id' => $_SESSION['conversation_id'],
-            );
-            $this->db->select("sender_1");
-            $this->db->where('saved_conversation_id',$_SESSION['conversation_id']);
-            $query = $this->db->get('saved_conversation');
-            if($query->num_rows() == 1){
-                //yes
-                $data['sender_2'] = $_SESSION['my_sender_id'];
-            }
-            else{
-                //no
-                $data['sender_1'] = $_SESSION['my_sender_id'];
-            }
-            //is this conversation_id in the db
-            $this->db->where('conversation_id',$data['conversation_id']);
-            $this->db->update('saved_conversation',$data);
-        }
-        //redirecting the user back to chat screen
-        //TODO: implement special login and save
-        redirect( '/index.php/Pages/chat');
+    public function save_chat(){
+        $data = array(
+            'conversation_id' => $_SESSION['conversation_id'],
+            'topic_img' => $_SESSION['topic_pic'],
+            'sender_id' => $_SESSION['user_id'],
+        );
+        $sql = "call save_chat(?,?,?)";
+        //  mysqli_next_result($this->db->conn_id);
+        $query = $this->db->query($sql,array($data['conversation_id'],$data['topic_img'],$data['sender_id']));
+        $result = $query->row_array();
+
+
+       // redirect( '/index.php/Pages/chat');
     }
 
     function number_of_current_chats(){
@@ -212,4 +200,5 @@ class Message_model extends CI_Model
         $res = $query->row_array();
         return $res;
     }
+
 }
