@@ -32,7 +32,6 @@ $(document).ready(function(){
 			}
 		}
 	});
-	
 	function show(interest){
 		$("#interestLine").append("<b id="+interest+"> " + interest + " </b>");
 		$("#interestLine").append('<button id="btn_' + interest + '" class="btn btn-danger remove-me">x</button>');
