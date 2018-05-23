@@ -1,22 +1,10 @@
-<html>
 <title>Rando||Setting</title>
 <meta name="description" content="Customise your user experience">
 
-
-
-<!DOCTYPE html>
-
 <div class="table-responsive">
+    <script src="<?php echo base_url(); ?>js/settings.js"></script>
     <table class="table">
-        <!DOCTYPE html>
-
-        <body>
-        <form action="<?php echo base_url();?>upload/upload.php" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Upload image" name="submit">
-        </form>
-        </body>
+       //todo: upload
 
         <tr>
             <td><img src="<?php echo base_url('images/profile_pictures/'.$_SESSION['user_picture']);?> ?> alt="Profile_picture" /></td>

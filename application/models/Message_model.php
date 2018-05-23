@@ -102,7 +102,7 @@ class Message_model extends CI_Model
 
        echo "<script type='text/javascript'> alert('".json_encode($current_message_Data)."') </script>";
 
-       return $current_message_Data;
+       return json_encode($current_message_Data);
    }
 
 

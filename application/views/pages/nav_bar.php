@@ -11,11 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?php if (isset($_SESSION['logged_in'])) { ?>
 		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 			<li class="nav-item active">
-				<a class="nav-link" href="<?php echo base_url();?>index.php/Pages/history" alt="history"><?php echo lang("history"); ?></a></li>
-			</li>
-			<li class="nav-item">
 				<li><a class="nav-link" href="<?php echo base_url();?>index.php/Pages/chat" alt="chat"><?php echo lang("chat"); ?></a></li>
 			</li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url();?>index.php/Pages/history" alt="history"><?php echo lang("history"); ?></a></li>
+            </li>
 			<li class="nav-item">
 				<li><a class="nav-link" href="<?php echo base_url();?>index.php/Pages/settings" alt="settings"><?php echo lang("settings"); ?></a></li>
 			</li>
