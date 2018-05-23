@@ -100,9 +100,12 @@ class Message_model extends CI_Model
    {
        $current_message_Data = file_get_contents("application/conversations/".$_SESSION['conversation_id'].".json");
 
-       echo "<script type='text/javascript'> alert('".json_encode($current_message_Data)."') </script>";
+       print_r($current_message_Data);
+      // echo "<script type='text/javascript'> alert('".json_encode($current_message_Data)."') </script>";
 
+     //  return json_encode($current_message_Data);
        return $current_message_Data;
+
    }
 
 

@@ -26,6 +26,7 @@ class Message extends CI_Controller
                 'sender' => $_SESSION['user_id'],
                 'message' => $message,
             );
+
             $array_data[] = $new_data;
             $final_data[] = json_encode($array_data);
             if (file_put_contents($file_name,$final_data)){
