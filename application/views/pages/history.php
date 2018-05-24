@@ -14,9 +14,9 @@
                 <tbody>
                 <tr>
                     <?php foreach ($chat_information as $row) { ?>
-                    <td><?php echo $row->topic; ?></td>
-                    <td><?php echo $row->sender; ?></td>
-                    <td><?php echo $row->conversation; ?></td>
+                    <td><?php echo $row->topic_img; ?></td>
+                    <td><?php echo $row->sender_id; ?></td>
+                    <td><?php echo $row->saved_conversation_id; ?></td>
                 <tr> </tr>
                 <?php } ?>
                 </tr>

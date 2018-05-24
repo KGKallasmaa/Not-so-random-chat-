@@ -191,7 +191,7 @@
 			$this->load->view('pages/nav_bar');
             $data['information'] =$this->stat_data();
             $data['general_information'] =$this->general_data();
-            $data['chat_information'] =$this->chat_data();
+           // $data['chat_information'] =$this->chat_data();
             $this->load->view('pages/stat',$data);
             $this->load->view('pages/footer');
         }
@@ -200,7 +200,7 @@
 			$this->load->view('pages/nav_bar');
 			//Add conversation data
             $this->load->model('Message_model');
-            $data['chat_information'] = $this->Message_model->getSavedConversations();
+            $data['chat_information'] = $this->Message_model->getSavedConversations(); //topic,sendername,conversation
             $this->load->view('pages/history',$data);
             $this->load->view('pages/footer');
         }

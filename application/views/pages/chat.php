@@ -13,10 +13,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php if (isset($_SESSION['conversation_id'])){
                     echo "<h3>".lang("Your conversationID is:").$_SESSION['conversation_id']."</h3>";
                 }?>
-                <p id="chat_log"></p>
-                <!--TODO-->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script src="<?php echo base_url(); ?>js/chat.js"></script>
+                <p id="chat_log"></p>
+                <!--TODO-->
                 <!-- -->
                 <?php echo form_open('index.php/Message/send_message'); ?>
                 <div class="form-group">

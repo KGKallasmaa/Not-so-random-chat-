@@ -3,8 +3,7 @@
 class Message_model extends CI_Model
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
     }
 
@@ -12,9 +11,7 @@ class Message_model extends CI_Model
        //TODO
        if (isset($_SESSION['conversation_id'])) {
            $data[] = array($_SESSION['user_name'], time(), $_POST['message']);
-
            $file_location = 'application/conversations/' . $_SESSION['conversation_id'] . '.json';
-
            if (!file_exists($file_location)) {
                fopen($file_location, "w");
            } else {
@@ -204,4 +201,20 @@ class Message_model extends CI_Model
         return $res;
     }
 
+    function getSavedConversations(){
+        //Returns: topic,sender,conversationid
+        $sql = "call load_saved_chats(?)";
+        $query = $this->db->query($sql,array($_SESSION['user_id'])); //saved_conversation_id,topic_img,sender_id
+        if ($query->num_rows() >= 1){
+            $res = $query->row_array();
+            echo "<script type='text/javascript'>alert($query->num_rows());</script>";
+            return $res;
+        }
+        $data = array(
+            'saved_conversation_id' => 'sample.json',
+            'topic_img' => 'sample.gif',
+            'sender_id' => '1113'
+        );
+        return json_encode($data);
+    }
 }

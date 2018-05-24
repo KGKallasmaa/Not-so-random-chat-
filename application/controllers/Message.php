@@ -89,4 +89,5 @@ class Message extends CI_Controller
         $this->load->model('Message_model');
         $this->Message_model->save_chat();
     }
+    public function getSavedConversations(){}
 }
