@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }?>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script src="<?php echo base_url(); ?>js/chat.js"></script>
-                <p id="chat_log"></p>
+                <div class = "container"><p id="chat_log"></p></div>
                 <!--TODO-->
                 <!-- -->
                 <?php echo form_open('index.php/Message/send_message'); ?>

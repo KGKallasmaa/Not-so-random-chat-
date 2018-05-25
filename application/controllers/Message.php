@@ -23,7 +23,9 @@ class Message extends CI_Controller
             $array_data = json_decode($current_message_Data,true);
 
             $new_data = array(
-                'sender' => $_SESSION['user_id'],
+                'sender_id' => $_SESSION['user_id'],
+				'sender_name' => $_SESSION['user_name'],
+				'sender_picture' => $_SESSION['user_picture'],
                 'message' => $message,
             );
 

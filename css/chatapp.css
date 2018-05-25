@@ -69,3 +69,15 @@
     text-decoration:none;
     text-shadow:0 1px 0 #445588;
 }
+
+.chat_line{
+   padding-top: 5px;
+}
+
+.chat_line img{
+   width: 40px;
+   height: 40px;
+   background-size: cover;
+   background-position: top center;
+   border-radius: 50%;
+}
