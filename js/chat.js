@@ -7,12 +7,7 @@ setInterval(function()
         datatype:'JSON',
         success:function(data)
         {
-
-
-
         //    console.log(JSON.parse(data));
-
-
           //  var obj = JSON.parse(data);
             var obj =JSON.parse(data) ;
             console.log(obj.length);
@@ -21,11 +16,7 @@ setInterval(function()
 			for (i = 0; i < obj.length; i++) { 
 				text += obj[i].sender+": "+obj[i].message + "<br>";
 			}
-
-
-
         //    console.log(JSON.stringify(data));  // returns ["person", "age"]
-
             document.getElementById("chat_log").innerHTML = text;
            // document.getElementById("chat_log").innerHTML = data.sender + data.message;
           //  document.getElementById("chat_log").innerHTML = data;

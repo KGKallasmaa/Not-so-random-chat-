@@ -4,12 +4,17 @@ $lang['welcome_message'] = 'Tere tulemast Randosse!';
 $lang['login'] = 'Meldi';
 $lang['chat'] = 'Vestle';
 $lang['register'] = 'Registreeri';
+$lang['Footer Content'] = 'Rando lühitutvustus';
+$lang['Why Rando?'] = 'Rando loodi selleks, et saaksid uute sõpradega rääkida.Ole nende vastu hell.';
 
 $lang['about'] = 'Meist';
 $lang['home'] = 'Kodu';
 $lang['terms'] = 'Kasutustingimused';
 $lang['statistic'] = 'Statistika';
 $lang['sitemap'] = 'Sisu kaart';
+
+
+
 
 
 

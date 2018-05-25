@@ -4,6 +4,8 @@ $lang['welcome_message'] = 'Welcome to Rando';
 $lang['login'] = 'Login';
 $lang['chat'] = 'Chat';
 $lang['register'] = 'Register';
+$lang['Footer Content'] = 'Rando is the finiest chat app for random people.';
+$lang['Why Rando?'] = 'Rando was greated for you to find new friends. Please be nice to your new friends.';
 
 $lang['about'] = 'About';
 $lang['terms'] = 'Terms of service';
