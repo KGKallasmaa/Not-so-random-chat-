@@ -173,7 +173,6 @@ if ( ! function_exists('get_clickable_smileys'))
 				continue;
 			}
 
-			$link[] = '<a href="javascript:void(0);" onclick="insert_smiley(\''.$key.'\', \''.$alias.'\')"><img src="'.$image_url.$smileys[$key][0].'" alt="'.$smileys[$key][3].'" style="width: '.$smileys[$key][1].'; height: '.$smileys[$key][2].'; border: 0;" /></a>';
 			$used[$smileys[$key][0]] = TRUE;
 		}
 
@@ -186,35 +185,12 @@ if ( ! function_exists('get_clickable_smileys'))
 if ( ! function_exists('parse_smileys'))
 {
 	/**
-	 * Parse Smileys
 	 *
-	 * Takes a string as input and swaps any contained smileys for the actual image
 	 *
-	 * @param	string	the text to be parsed
-	 * @param	string	the URL to the folder containing the smiley images
-	 * @param	array
-	 * @return	string
 	 */
-	function parse_smileys($str = '', $image_url = '', $smileys = NULL)
-	{
-		if ($image_url === '' OR ( ! is_array($smileys) && FALSE === ($smileys = _get_smiley_array())))
-		{
-			return $str;
-		}
 
-		// Add a trailing slash to the file path if needed
-		$image_url = rtrim($image_url, '/').'/';
-
-		foreach ($smileys as $key => $val)
-		{
-			$str = str_replace($key, '<img src="'.$image_url.$smileys[$key][0].'" alt="'.$smileys[$key][3].'" style="width: '.$smileys[$key][1].'; height: '.$smileys[$key][2].'; border: 0;" />', $str);
-		}
-
-		return $str;
-	}
 }
 
-// ------------------------------------------------------------------------
 
 if ( ! function_exists('_get_smiley_array'))
 {

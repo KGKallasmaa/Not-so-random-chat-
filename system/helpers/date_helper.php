@@ -569,30 +569,6 @@ if ( ! function_exists('timezone_menu'))
 	 * @param	mixed	attributes
 	 * @return	string
 	 */
-	function timezone_menu($default = 'UTC', $class = '', $name = 'timezones', $attributes = '')
-	{
-		$CI =& get_instance();
-		$CI->lang->load('date');
-
-		$default = ($default === 'GMT') ? 'UTC' : $default;
-
-		$menu = '<select name="'.$name.'"';
-
-		if ($class !== '')
-		{
-			$menu .= ' class="'.$class.'"';
-		}
-
-		$menu .= _stringify_attributes($attributes).">\n";
-
-		foreach (timezones() as $key => $val)
-		{
-			$selected = ($default === $key) ? ' selected="selected"' : '';
-			$menu .= '<option value="'.$key.'"'.$selected.'>'.$CI->lang->line($key)."</option>\n";
-		}
-
-		return $menu.'</select>';
-	}
 }
 
 // ------------------------------------------------------------------------

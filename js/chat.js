@@ -15,7 +15,7 @@ $.ajax({
 			var text ="";
 			for (i = 0; i < obj.length; i++) { 
 			console.log(obj[i].sender_picture);
-				text +="<div class = 'chat_line'> <img src='http://localhost/rando/images/profile_pictures/" + obj[i].sender_picture + "' alt='Avatar'>" + obj[i].sender_name+": "+obj[i].message + "</div>";
+				text +="<div class = 'chat_line'> <img src='http://localhost/rando/Not-so-random-chat-/images/profile_pictures/" + obj[i].sender_picture + "' alt='Avatar'>" + obj[i].user_name+": "+obj[i].message + "</div>";
 			}
         //    console.log(JSON.stringify(data));  // returns ["person", "age"]
             document.getElementById("chat_log").innerHTML = text;
@@ -38,9 +38,9 @@ $.ajax({
             console.log(obj.length);
 			var i;
 			var text ="";
-			for (i = 0; i < obj.length; i++) { 
+			for (i = 0; i < obj.length; i++) {
 			console.log(obj[i].sender_picture);
-				text +="<div class = 'chat_line'> <img src='http://localhost/rando/images/profile_pictures/" + obj[i].sender_picture + "' alt='Avatar'>" + obj[i].sender_name+": "+obj[i].message + "</div>";
+				text +="<div class = 'chat_line'> <img src='http://localhost/rando/Not-so-random-chat-/images/profile_pictures/" + obj[i].sender_picture + "' alt='Avatar'>" + obj[i].sender_name+": "+obj[i].message + "</div>";
 			}
         //    console.log(JSON.stringify(data));  // returns ["person", "age"]
             document.getElementById("chat_log").innerHTML = text;

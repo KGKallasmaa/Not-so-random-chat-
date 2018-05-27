@@ -11,9 +11,9 @@
         <script src="<?php echo base_url(); ?>js/time.js"></script>
 
         <div class="action_buttons">
-            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/login'" id="landing_login"><?php echo lang("login"); ?></button>
-            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/chat'" id="landing_chat"><?php echo lang("chat"); ?></button>
-            <button onclick="location.href='<?php echo base_url();?>index.php/Pages/register'" id="landing_register"><?php echo lang("register"); ?></button>
+            <button onclick="location.href='<?php echo base_url();?>login'" id="landing_login"><?php echo lang("login"); ?></button>
+            <button onclick="location.href='<?php echo base_url();?>chat'" id="landing_chat"><?php echo lang("chat"); ?></button>
+            <button onclick="location.href='<?php echo base_url();?>register'" id="landing_register"><?php echo lang("register"); ?></button>
         </div>
 
     </div>

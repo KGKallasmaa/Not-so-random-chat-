@@ -13,11 +13,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php if (isset($_SESSION['conversation_id'])){
                     echo "<h3>".lang("Your conversationID is:").$_SESSION['conversation_id']."</h3>";
                 }?>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script src="<?php echo base_url(); ?>js/chat.js"></script>
-                <div class = "container"><p id="chat_log"></p></div>
-                <!--TODO-->
-                <!-- -->
+                <div  id ="chat_container" class = "container">
+                    <p id="chat_log"></p>
+                </div>
+
+
+
                 <?php echo form_open('index.php/Message/send_message'); ?>
                 <div class="form-group">
                     <form action="" method="post" autocomplete="on" target="_top">
@@ -41,9 +43,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php if (isset($_SESSION['logged_in'])) : ?>
                     <form>
                         <?php echo form_open('index.php/Message/save_chat'); ?>
-                        <button onclick="savechat()"  id= "save_button" class="form-control" name="save" type="submit" value=save"><?php echo lang("save"); ?></button>
+                        <button   id= "save_button" class="form-control" name="save" type="submit" value=save"><?php echo lang("save"); ?></button>
                         <?php form_close();?>
-                        <script src="<?php echo base_url(); ?>js/save.js"></script>
                     </form>
                 <?php endif; ?>
                 <div id="gmap">

@@ -81,3 +81,19 @@
    background-position: top center;
    border-radius: 50%;
 }
+.container .img-responsive{
+    display: block;
+    max-height: fit-content;
+}
+#chat_container{
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+#chat_container::after {
+    content: "";
+    clear: both;
+    display: table;
+}

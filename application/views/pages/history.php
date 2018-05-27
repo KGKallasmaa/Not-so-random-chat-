@@ -17,9 +17,8 @@
                     <td><?php echo $row->topic_img; ?></td>
                     <td><?php echo $row->sender_id; ?></td>
                     <td><?php echo $row->saved_conversation_id; ?></td>
-                <tr> </tr>
-                <?php } ?>
                 </tr>
+                <?php } ?>
                 </tbody>
             </table>
         </div>

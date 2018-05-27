@@ -19,7 +19,6 @@ if (session_status() == PHP_SESSION_NONE) {session_start();}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Rando||The Home of create chats between random people</title>
 
-
 </head>
 <body>
 <div class = "container">

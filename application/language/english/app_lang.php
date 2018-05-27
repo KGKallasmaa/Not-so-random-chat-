@@ -41,6 +41,8 @@ $lang['next'] = 'Next';
 $lang['save'] = 'Save';
 $lang['chatting_with'] = 'You\'re chatting with: ';
 
+$lang['save_message'] = 'Your chat was saved. Yay!';
+
 
 
 ?>

@@ -13,18 +13,20 @@ class Message extends CI_Controller
         if ($this->input->post('message_sent') !== false) {
             $message = $this->input->post('message');
             $file_name = "application/conversations/".$_SESSION['conversation_id'].".json";
+
             //0. Do we have that file?
             if (!file_exists($file_name)){
                 $file = fopen($file_name,'w');
                 fclose($file);
             }
+
             //1. add new message data to a file
             $current_message_Data = file_get_contents("application/conversations/".$_SESSION['conversation_id'].".json");
             $array_data = json_decode($current_message_Data,true);
 
             $new_data = array(
-                'sender_id' => $_SESSION['user_id'],
-				'sender_name' => $_SESSION['user_name'],
+                'my_sender_id' => $_SESSION['my_sender_id'],
+				'user_name' => $_SESSION['user_name'],
 				'sender_picture' => $_SESSION['user_picture'],
                 'message' => $message,
             );
@@ -37,11 +39,12 @@ class Message extends CI_Controller
             else{
                 echo "<script type='text/javascript'>alert('Adding new message data to the file was not successful');</script>";
             }
+            redirect('Pages/chat', 'refresh');
 
         } else {
-            redirect('/index.php/Pages/chat', 'refresh');
+            redirect('Pages/chat', 'refresh');
         }
-        redirect('/index.php/Pages/chat', 'refresh');
+        redirect('Pages/chat', 'refresh');
     }
     public function get_conversation()
     {
@@ -69,7 +72,7 @@ class Message extends CI_Controller
                     unset($key);
                     //  $this->session->unset_userdata($key);
                 }
-                redirect('/index.php/Pages/chat', 'refresh');
+                redirect('Pages/chat', 'refresh');
             } else {
                 $data = array(
                     'conversation_id' => $_SESSION['conversation_id'],
@@ -79,10 +82,10 @@ class Message extends CI_Controller
                     unset($key);
                     //  $this->session->unset_userdata($key);
                 }
-                redirect('/index.php/Pages/chat', 'refresh');
+                redirect('chat', 'refresh');
             }
         }
-        redirect('/index.php/Pages/chat', 'refresh');
+        redirect('chat', 'refresh');
     }
 
     public function save_chat()

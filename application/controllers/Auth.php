@@ -39,17 +39,17 @@ class Auth extends  CI_Controller{
                         $_SESSION['user_name'] = $this->Auth_model->get_username($email);
                         $_SESSION['user_id'] = $this->Auth_model->get_userid($email);
                         $_SESSION['user_picture'] = $this->Auth_model->get_userpicture_name($_SESSION['user_id']);
-                        redirect( '/index.php/Pages/chat');
+                        redirect( 'index.php/Pages/chat');
                     }
                     $this->session->set_flashdata('error', 'Incorrect password');
-                        redirect( '/index.php/Pages/login');
+                        redirect( 'login');
                 }
                else{
-                   redirect( '/index.php/Pages/register','refresh');
+                   redirect( 'register','refresh');
                }
             }
             else{
-                redirect( '/index.php/Pages/login');
+                redirect( 'login');
                 }
         }
     }
@@ -102,22 +102,22 @@ class Auth extends  CI_Controller{
 
                     $this->session->set_flashdata('success', 'Registration successful. You can now login ');
                     //  redirect("pages/login","refresh");
-                    redirect( '/index.php/Pages/login','refresh');
+                    redirect( 'login','refresh');
 
                 } else {
                     $this->session->set_flashdata('error', 'This email already exists. Please try another one');
                     // redirect("pages/register","refresh");
                   //  header('Location: register.php');
                    // redirect( '/index.php/Pages/register','refresh');
-                    redirect('/index.php/Pages/register');
+                    redirect('register');
                     //location: /profile
                 }
-                redirect( '/index.php/Pages/register','refresh');
+                redirect( 'register','refresh');
                 //  $this->session->set_flashdata('error','Incorrect password');
             }
            else{
               // redirect( '/index.php/Pages/register','refresh');
-               redirect( '/index.php/Pages/register','refresh');
+               redirect( 'register','refresh');
            }
         }
         // load view
@@ -160,6 +160,6 @@ class Auth extends  CI_Controller{
         // Remove user data from session
         $this->session->unset_userdata('userData');
         // Redirect to login page
-        redirect('/index.php/Pages/login');
+        redirect('login');
      }
 }

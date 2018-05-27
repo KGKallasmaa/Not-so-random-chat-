@@ -299,28 +299,7 @@ if ( ! function_exists('form_textarea'))
 	 * @param	mixed	$extra
 	 * @return	string
 	 */
-	function form_textarea($data = '', $value = '', $extra = '')
-	{
-		$defaults = array(
-			'name' => is_array($data) ? '' : $data,
-			'cols' => '40',
-			'rows' => '10'
-		);
 
-		if ( ! is_array($data) OR ! isset($data['value']))
-		{
-			$val = $value;
-		}
-		else
-		{
-			$val = $data['value'];
-			unset($data['value']); // textareas don't use the value attribute
-		}
-
-		return '<textarea '._parse_form_attributes($data, $defaults)._attributes_to_string($extra).'>'
-			.html_escape($val)
-			."</textarea>\n";
-	}
 }
 
 // ------------------------------------------------------------------------
@@ -452,39 +431,8 @@ if ( ! function_exists('form_checkbox'))
 	 *
 	 * @param	mixed
 	 * @param	string
-	 * @param	bool
-	 * @param	mixed
-	 * @return	string
 	 */
-	function form_checkbox($data = '', $value = '', $checked = FALSE, $extra = '')
-	{
-		$defaults = array('type' => 'checkbox', 'name' => ( ! is_array($data) ? $data : ''), 'value' => $value);
 
-		if (is_array($data) && array_key_exists('checked', $data))
-		{
-			$checked = $data['checked'];
-
-			if ($checked == FALSE)
-			{
-				unset($data['checked']);
-			}
-			else
-			{
-				$data['checked'] = 'checked';
-			}
-		}
-
-		if ($checked == TRUE)
-		{
-			$defaults['checked'] = 'checked';
-		}
-		else
-		{
-			unset($defaults['checked']);
-		}
-
-		return '<input '._parse_form_attributes($data, $defaults)._attributes_to_string($extra)." />\n";
-	}
 }
 
 // ------------------------------------------------------------------------
@@ -630,16 +578,7 @@ if ( ! function_exists('form_fieldset'))
 	 * @param	array	Additional attributes
 	 * @return	string
 	 */
-	function form_fieldset($legend_text = '', $attributes = array())
-	{
-		$fieldset = '<fieldset'._attributes_to_string($attributes).">\n";
-		if ($legend_text !== '')
-		{
-			return $fieldset.'<legend>'.$legend_text."</legend>\n";
-		}
 
-		return $fieldset;
-	}
 }
 
 // ------------------------------------------------------------------------

@@ -14,13 +14,7 @@ $lang['statistic'] = 'Statistika';
 $lang['sitemap'] = 'Sisu kaart';
 
 
-
-
-
-
 $lang['Welcome to the sitetmap!'] = 'Tere tulemast sisukaardi lehele!';
-
-
 
 
 $lang['welcome_back'] = 'Tere tulemast tagasi Randosse';
@@ -45,5 +39,8 @@ $lang['topic'] = 'Teema';
 $lang['next'] = 'Järgmine';
 $lang['save'] = 'Salvesta';
 $lang['chatting_with'] = 'Sa vestled kasutajaga: ';
+
+
+$lang['save_message'] = 'Sinu vestlus on salvestatud. Hurraa!';
 
 ?>

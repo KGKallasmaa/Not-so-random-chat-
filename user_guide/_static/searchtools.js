@@ -191,7 +191,7 @@ var Stemmer = function() {
       w = firstch.toLowerCase() + w.substr(1);
     return w;
   }
-}
+};
 
 
 
@@ -400,7 +400,7 @@ var Search = {
     this.title = $('<h2>' + _('Searching') + '</h2>').appendTo(this.out);
     this.dots = $('<span></span>').appendTo(this.title);
     this.status = $('<p style="display: none"></p>').appendTo(this.out);
-    this.output = $('<ul class="search"/>').appendTo(this.out);
+    this.output = $("<ul class=\"search\"/>").appendTo(this.out);
 
     $('#search-progress').text(_('Preparing search...'));
     this.startPulse();
@@ -671,7 +671,7 @@ var Search = {
       $u.each(_o, function(o) {
         var _files = o.files;
         if (_files === undefined)
-          return
+          return;
 
         if (_files.length === undefined)
           _files = [_files];
@@ -681,7 +681,7 @@ var Search = {
         for (j = 0; j < _files.length; j++) {
           file = _files[j];
           if (!(file in scoreMap))
-            scoreMap[file] = {}
+            scoreMap[file] = {};
           scoreMap[file][word] = o.score;
         }
       });
