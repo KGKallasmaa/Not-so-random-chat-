@@ -96,9 +96,19 @@ class Auth extends  CI_Controller{
                     'user_password' => md5($_POST['password']),
                     'user_picture' => 'default.gif'
                 );
-                if ($this->Auth_model->contains_email($data['email']) == false) {
+                if ($this->Auth_model->contains_email($data['user_email']) == false) {
 
                     $this->Auth_model->register_user($data);
+
+                    // Subject of confirmation email.
+                    $conf_subject = 'Email registration confirmation';
+
+                    // Who should the confirmation email be from?
+                    $conf_sender = 'Not so random chat <no-reply@rando.com>';
+
+                    $msg = $_POST['Name'] . ",\n\nThank you for registering to our site.";
+
+                    mail( $_POST['Email'], $conf_subject, $msg, 'From: ' . $conf_sender );
 
                     $this->session->set_flashdata('success', 'Registration successful. You can now login ');
                     //  redirect("pages/login","refresh");
